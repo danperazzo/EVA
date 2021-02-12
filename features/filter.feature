@@ -15,11 +15,12 @@ Cenário 2: A vítima precisa de ajuda policial e uma delegacia em sua cidade é
 Given Eu, uma vítima utilizando
 When Eu termino de registrar uma ocorrência
 And Eu requisito do sistema para “retornar instituições indicadas”
-And Eu indico que “Tenho risco de violências futuras”
+And Eu indico que “Tenho risco de violências futuras
 Then o sistema mostra uma lista com “Delegacia da Mulher” com o endereço “Praça do Campo Santo” situado em “Recife”
 And o nome da advogada “Beatriz Maia dos Anjos” com o número de contato “985187234” 
 
 Cenário 3: A vítima  precisa de ajuda psicológica e o nome de um psicólogo que resida na mesma cidade da vítima é indicado junto com seu número 
+
 
 Given Eu, uma vítima utilizando o sistema
 When Eu termino de registrar uma ocorrência
