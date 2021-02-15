@@ -26,6 +26,15 @@ Restauração - Av. Gov. Agamenon Magalhães - Recife"
 And vejo a data selecionada como "09/02/2020"
 
 
+Scenario: visualização mal sucedida do breakdown de ocorrências em um dia por escolher um dia no futuro
+Given eu estou no página "dados das ocorrências"
+And a data de hoje é "09/02/2021"
+When eu seleciono "breakdown das ocorrências"
+And eu escolho filtrar pela data "10/02/2021"
+Then eu vejo uma mensagem de erro
+And vejo a data selecionada como "10/02/2020"
+
+
 Scenario: filtragem bem sucedida das ocorrências urgentes em uma semana
 Given eu estou na página "dados das ocorrências"
 And a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
@@ -63,6 +72,15 @@ quantidades "3.517, 1.208, 786, 80"
 And vejo o ano selecionado como "2021"
 
 
+Scenario: visualização mal sucedida da quantidade de ocorrências por tipo no ano por escolher ano no futuro
+Given eu estou no página "dados das ocorrências"
+And estamos no ano de "2021"
+When eu seleciono "quantidade por tipo de ocorrências"
+And eu escolho filtrar pelo ano "2022"
+Then eu vejo uma mensagem de erro
+And vejo o ano selecionado como "2022"
+
+
 Scenario: visualização bem sucedida do relatório mensal
 Given eu estou no página "dados das ocorrências"
 And a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
@@ -74,9 +92,17 @@ dentro do intervalo "6:00 - 11:59, 12:00 - 16:59, 17:00 - 22:59"
 And o sistema possui "207,146, 60, 4" ocorrências com o mês "02" e tipo 
 "Policial, Médica, Psicológica, Erro"
 When eu seleciono "gerar relatório"
-And eu escolho filtrar pelo mês "02"
-Then eu vejo as informações como mês, quantidade total de ocorrências, turno de 
-pico e tipo principal com os valores "Fevereiro, 417, 17 - 22, Policial"
+And eu escolho filtrar pelo mês "02" do ano "2021"
+Then eu vejo as informações como mês, ano, quantidade total de ocorrências, turno de 
+pico e tipo principal com os valores "Fevereiro, 2021, 417, 17 - 22, Policial"
+
+
+Scenario: visualização mal sucedida do relatório mensal por escolher um mês no futuro
+Given eu estou no página "dados das ocorrências"
+And estamos no mês "01" do ano "2021"
+When eu seleciono "gerar relatório"
+And eu escolho filtrar pelo mês "02" do ano "2021"
+Then eu vejo uma mensagem de erro
 
 
 ############################## Cenários de Serviço ##############################
