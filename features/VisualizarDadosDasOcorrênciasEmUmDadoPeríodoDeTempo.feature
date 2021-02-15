@@ -130,3 +130,21 @@ Then o sistema retorna um relatório incluindo informações como mês,
 quantidade total de ocorrências, turno de pico e tipo principal de 
 ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
 22, Policial"
+
+
+Scenario: seleção bem sucedida das ocorrências urgentes em uma semana
+Given a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
+psicológica Dra. Simone Paraíso - Av. Conselheiro Rosa e Silva, 670 - 
+Recife" está armazenada no sistema
+And o sistema possui armazenadas "100, 150, 75, 92" ocorrências com data 
+entre "01/02/2021-07/02/2021, 08/02/2021-14/02/2021, 
+15/02/2021-21/02/2021, 22/02/2021-28/02/2021" 
+And o sistema possui armazenadas "90, 55, 47, 80" ocorrências com data 
+entre "01/02/2021-07/02/2021, 08/02/2021-14/02/2021, 
+15/02/2021-21/02/2021, 22/02/2021-28/02/2021" e grau de urgência 
+"5"
+When o usuário seleciona o filtro por "ocorrências urgentes"
+Then o sistema retorna uma lista com as semanas "01/02/2021-07/02/2021, 
+08/02/2021-14/02/2021, 15/02/2021-21/02/2021, 
+22/02/2021-28/02/2021" e as quantidades totais de ocorrências na 
+semana "90, 55, 47, 80"
