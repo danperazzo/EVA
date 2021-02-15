@@ -117,16 +117,17 @@ Then o sistema retorna a quantidade "1"
 
 
 Scenario: geração bem sucedida do relatório mensal
-Given a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
+Given a ocorrência "3, Psicológica, 10, 05, 2021, 19:43, 4, Aflitos, Cliníca 
 psicológica Dra. Simone Paraíso - Av. Conselheiro Rosa e Silva, 670 - 
-Recife" estão armazenadas no sistema
-And o sistema possui "417" ocorrências com o mês "02"
-And o sistema possui "88, 115, 214" ocorrências com o mês "02" e horários 
+Recife" está armazenada no sistema
+And o sistema possui "417" ocorrências com o mês "02" e ano "2021"
+And o sistema possui "88, 115, 214" ocorrências com o mês "02", ano "2021" e horários 
 dentro do intervalo "6:00 - 11:59, 12:00 - 16:59, 17:00 - 22:59"
-And o sistema possui "207,146, 60, 4" ocorrências com o mês "02" e tipo 
+And o sistema possui "207, 146, 60, 4" ocorrências com o mês "02", ano "2021" e tipo 
 "Policial, Médica, Psicológica, Erro"
 When o usuário solicita o relatório mensal
-Then o sistema retorna um relatório incluindo informações como mês, 
+Then o sistema retorna um relatório incluindo informações como mês, ano, 
 quantidade total de ocorrências, turno de pico e tipo principal de 
-ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
+ocorrência no período avaliado com os valores "Fevereiro, 2021, 417, 17 - 
 22, Policial"
+And o sistema emite uma mensagem de sucesso
