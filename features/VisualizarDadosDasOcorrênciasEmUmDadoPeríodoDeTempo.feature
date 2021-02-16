@@ -148,3 +148,16 @@ Then o sistema retorna uma lista com as semanas "01/02/2021-07/02/2021,
 08/02/2021-14/02/2021, 15/02/2021-21/02/2021, 
 22/02/2021-28/02/2021" e as quantidades totais de ocorrências na 
 semana "90, 55, 47, 80"
+
+
+Scenario: exportação bem sucedida do relatório mensal por email
+Given o relatório mensal do mês "02" do ano "2021" contendo informações como mês, 
+quantidade total de ocorrências, turno de pico e tipo principal de 
+ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
+22, Policial" está armazenadas no sistema
+And o usuário "Natália Soares" está logado com o email "nss2@cin.ufpe.br"
+When o usuário solicita o envio, por email, do relatório mensal do mês "02" do ano "2021"
+Then o sistema envia um email com o relatório contendo informações como mês, 
+quantidade total de ocorrências, turno de pico e tipo principal de 
+ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
+22, Policial" para o email "nss2@cin.ufpe.br"
