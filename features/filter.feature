@@ -40,3 +40,4 @@ And Eu requisito do sistema para “retornar instituições indicadas”
 And o sistema não possui hospitais em “Paulista”
 Then o sistema retorna uma mensagem de erro
 And informa o “Hospital da Restauração” situado em “Recife”
+And informa a distancia de "Recife" para "Paulista"
