@@ -40,3 +40,14 @@ And Eu requisito do sistema para “retornar instituições indicadas”
 And o sistema não possui hospitais em “Paulista”
 Then o sistema retorna uma mensagem de erro
 And informa o “Hospital da Restauração” situado em “Recife”
+
+
+Cenário 5: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade. O sistema retorna uma mensagem de erro
+
+Given Eu, uma vítima utilizando o sistema
+When Eu termino de registrar uma ocorrência
+And eu indico que estou situada em “Paulista”
+And Eu indico que necessito de “Atendimento psicológico”
+And Eu requisito do sistema para “retornar instituições indicadas”
+And o sistema não possui psicólogos em “Paulista”
+Then o sistema retorna uma mensagem de erro
