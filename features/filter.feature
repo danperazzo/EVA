@@ -58,9 +58,10 @@ Then o sistema retorna uma mensagem de erro
 Cenário 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
 Given Eu, uma vítima utilizando o sistema
 When Eu termino de registrar uma ocorrência
+And coloco meu nome "Manuela"
 And Eu indico que necessito de “Atendimento psicológico”
 And Eu indico que necessito de “atendimento médico por fratura óssea” 
-And Eu requisito do sistema para “retornar instituições indicadas”
+And Eu requisito do sistema para “Retornar instituições indicadas”
 And Eu informo que moro em “Recife”
 Then o sistema mostra uma lista com “Cliníca psicológica Dra. Simone Paraíso” com o endereço “Av. Conselheiro Rosa e Silva, 670” e situada em “Recife”
 And o sistema mostra uma lista com “Hospital da Restauração” com o endereço “Av. Gov. Agamenon Magalhães” situada em “Recife”
