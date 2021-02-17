@@ -39,14 +39,13 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         Given eu estou na página "dados das ocorrências"
         And a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
         psicológica Dra. Simone Paraíso - Av. Conselheiro Rosa e Silva, 670 - 
-        Recife" estão armazenadas no sistema
+        Recife" está armazenada no sistema
         And o sistema possui armazenadas "100, 150, 75, 92" ocorrências com data 
         entre "01/02/2021-07/02/2021, 08/02/2021-14/02/2021, 
         15/02/2021-21/02/2021, 22/02/2021-28/02/2021" 
         And o sistema possui armazenadas "90, 55, 47, 80" ocorrências com data 
         entre "01/02/2021-07/02/2021, 08/02/2021-14/02/2021, 
-        15/02/2021-21/02/2021, 22/02/2021-28/02/2021" e grau de urgência 
-        "5"
+        15/02/2021-21/02/2021, 22/02/2021-28/02/2021" e grau de urgência "5"
         And eu estou vendo uma lista com as semanas "01/02/2021-07/02/2021,
         08/02/2021-14/02/2021, 15/02/2021-21/02/2021, 
         22/02/2021-28/02/2021" e as quantidades totais de ocorrência na 
@@ -62,7 +61,7 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         Given eu estou no página "dados das ocorrências"
         And a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
         psicológica Dra. Simone Paraíso - Av. Conselheiro Rosa e Silva, 670 - 
-        Recife" estão armazenadas no sistema
+        Recife" está armazenada no sistema
         And o sistema possui "3.517, 1.208, 786, 80" ocorrências com os tipos 
         "Policial, Médica, Psicológica, Erro" e o ano de "2021" na data
         When eu seleciono "quantidade por tipo de ocorrências"
@@ -85,7 +84,7 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         Given eu estou no página "dados das ocorrências"
         And a ocorrência "3, Psicológica, 10, 05, 2020, 19:43, 4, Aflitos, Cliníca 
         psicológica Dra. Simone Paraíso - Av. Conselheiro Rosa e Silva, 670 - 
-        Recife" estão armazenadas no sistema
+        Recife" está armazenada no sistema
         And o sistema possui "417" ocorrências com o mês "02"
         And o sistema possui "88, 115, 214" ocorrências com o mês "02" e horários 
         dentro do intervalo "6:00 - 11:59, 12:00 - 16:59, 17:00 - 22:59"
@@ -125,7 +124,7 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         dentro do intervalo "6:00 - 11:59, 12:00 - 16:59, 17:00 - 22:59"
         And o sistema possui "207, 146, 60, 4" ocorrências com o mês "02", ano "2021" e tipo 
         "Policial, Médica, Psicológica, Erro"
-        When o usuário solicita o relatório mensal
+        When o usuário solicita o relatório mensal do mês "02" do ano "2021"
         Then o sistema retorna um relatório incluindo informações como mês, ano, 
         quantidade total de ocorrências, turno de pico e tipo principal de 
         ocorrência no período avaliado com os valores "Fevereiro, 2021, 417, 17 - 
@@ -142,8 +141,7 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         15/02/2021-21/02/2021, 22/02/2021-28/02/2021" 
         And o sistema possui armazenadas "90, 55, 47, 80" ocorrências com data 
         entre "01/02/2021-07/02/2021, 08/02/2021-14/02/2021, 
-        15/02/2021-21/02/2021, 22/02/2021-28/02/2021" e grau de urgência 
-        "5"
+        15/02/2021-21/02/2021, 22/02/2021-28/02/2021" e grau de urgência "5"
         When o usuário seleciona o filtro por "ocorrências urgentes"
         Then o sistema retorna uma lista com as semanas "01/02/2021-07/02/2021, 
         08/02/2021-14/02/2021, 15/02/2021-21/02/2021, 
