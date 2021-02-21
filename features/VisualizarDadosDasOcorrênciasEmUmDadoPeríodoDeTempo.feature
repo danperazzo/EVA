@@ -104,6 +104,17 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         Then eu vejo uma mensagem de erro
 
 
+    Scenario: envio bem sucedido do relatório mensal por email
+        Given eu estou no página "dados das ocorrências"
+        And o relatório mensal do mês "02" do ano "2021" contendo informações como mês, 
+        quantidade total de ocorrências, turno de pico e tipo principal de 
+        ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
+        22, Policial" está armazenadas no sistema
+        When eu seleciono "enviar relatório"
+        And eu escolho filtrar pelo mês "02" do ano "2021"
+        Then eu vejo uma mensagem de sucesso
+
+
     ############################## Cenários de Serviço ##############################
     Scenario: calculo bem sucedida da quantidade de ocorrências urgentes 
         Given as ocorrências "1, Policial, 09, 02, 2020, 08:37, 4, Espinheiro, 
@@ -160,3 +171,4 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         quantidade total de ocorrências, turno de pico e tipo principal de 
         ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
         22, Policial" para o email "nss2@cin.ufpe.br"
+        And o sistema emite uma mensagem de sucesso
