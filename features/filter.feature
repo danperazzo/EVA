@@ -35,17 +35,6 @@ Scenario 3: A vítima  precisa de ajuda psicológica e o nome de um psicólogo q
 
 Scenario 4: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma mensagem de erro.
 
-<<<<<<< HEAD
-Given Eu, uma vítima utilizando o sistema
-When Eu termino de registrar uma ocorrência
-And eu indico que estou situada em “Paulista”
-And Eu indico que necessito de “atendimento médico para queimaduras”
-And Eu requisito do sistema para “retornar instituições indicadas”
-And o sistema não possui hospitais em “Paulista”
-Then o sistema retorna uma mensagem de erro
-And informa o “Hospital da Restauração” situado em “Recife”
-And informa a distancia de "Recife" para "Paulista"
-=======
     Given Eu, uma vítima utilizando o sistema
     When Eu registro meu nome como "Sandra"
     And meu telefone como "99878718"
@@ -55,18 +44,13 @@ And informa a distancia de "Recife" para "Paulista"
     And o sistema não possui hospitais em “Paulista”
     Then o sistema retorna uma mensagem de erro
     And informa o “Hospital da Restauração” situado em “Recife”
->>>>>>> Standarzing scenarios description and names
 
 
 Scenario 5: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade. O sistema retorna uma mensagem de erro
 
     Given Eu, uma vítima utilizando o sistema
-<<<<<<< HEAD
     When Eu registro meu nome como "Sandra"
     And meu telefone como "99878718"    
-=======
-    When Eu termino de registrar uma ocorrência
->>>>>>> Standarzing scenarios description and names
     And eu indico que estou situada em “Paulista”
     And Eu indico que necessito de “Atendimento psicológico”
     And Eu requisito do sistema para “retornar instituições indicadas”
@@ -74,8 +58,7 @@ Scenario 5: A vítima precisa de ajuda psicológica porém não existem psicólo
     Then o sistema retorna uma mensagem de erro
 
 
-<<<<<<< HEAD
-Cenário 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
+Scenario 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
 
     Given Eu, uma vítima utilizando o sistema
     When Eu registro meu nome como "Sandra"
@@ -87,15 +70,3 @@ Cenário 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneame
     And Eu informo que moro em “Recife”
     Then o sistema mostra uma lista com “Cliníca psicológica Dra. Simone Paraíso” com o endereço “Av. Conselheiro Rosa e Silva, 670” e situada em “Recife”
     And o sistema mostra uma lista com “Hospital da Restauração” com o endereço “Av. Gov. Agamenon Magalhães” situada em “Recife”
-=======
-Scenario 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
-
-    Given Eu, uma vítima utilizando o sistema
-    When Eu termino de registrar uma ocorrência
-    And Eu indico que necessito de “Atendimento psicológico”
-    And Eu indico que necessito de “atendimento médico por fratura óssea” 
-    And Eu requisito do sistema para “retornar instituições indicadas”
-    And Eu informo que moro em “Recife”
-    Then o sistema mostra uma lista com “Cliníca psicológica Dra. Simone Paraíso” com o endereço “Av. Conselheiro Rosa e Silva, 670” e situada em “Recife”
-    And o sistema mostra uma lista com “Hospital da Restauração” com o endereço “Av. Gov. Agamenon Magalhães” situada em “Recife”
->>>>>>> Standarzing scenarios description and names
