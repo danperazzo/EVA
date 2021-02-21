@@ -7,7 +7,7 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
     ocorrências e ajudar as instituições de ajuda a se preparar 
     melhor também.
 
-    ############################## Cenários de GUI ##############################
+    ############################## GUI Scenarios  ##############################
     Scenario: visualização bem sucedida do breakdown de ocorrências em um dia
         Given eu estou no página "dados das ocorrências"
         And apenas as ocorrências "1, Policial, 09, 02, 2020, 08:37, 0, Espinheiro, 
@@ -114,7 +114,7 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         Then eu vejo uma mensagem de sucesso
 
 
-    ############################## Cenários de Serviço ##############################
+    ############################## Services Scenarios ##############################
     Scenario: calculo bem sucedida da quantidade de ocorrências urgentes 
         Given as ocorrências "1, Policial, 09, 02, 2020, 08:37, 4, Espinheiro, 
         Delegacia da Mulher - Praça do Campo Santo - Recife" e "2, Médica, 
