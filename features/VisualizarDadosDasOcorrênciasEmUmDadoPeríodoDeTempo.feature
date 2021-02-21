@@ -1,12 +1,11 @@
 Feature: Visualizar dados das ocorrências em um dado período de tempo
     
-    As a gestora do centro de encaminhamento de suporte às ocorrências
-    I want to visualizar uma lista com dados das ocorrências dado um 
-    período de tempo, filtrar/agrupar por informações 
-    relevantes e gerar relatórios
-    so that eu posso preparar melhor o meu centro para atender as 
+    As a gestora do centro de encaminhamento de suporte às ocorrências,
+    I want to visualizar dados das ocorrências dado um período de tempo,
+    filtrar/agrupar por informações relevantes e gerar relatórios,
+    So that eu posso preparar melhor o meu centro para atender as 
     ocorrências e ajudar as instituições de ajuda a se preparar 
-    melhor também
+    melhor também.
 
     ############################## Cenários de GUI ##############################
     Scenario: visualização bem sucedida do breakdown de ocorrências em um dia
