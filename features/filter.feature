@@ -46,22 +46,25 @@ And informa a distancia de "Recife" para "Paulista"
 
 Cenário 5: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade. O sistema retorna uma mensagem de erro
 
-Given Eu, uma vítima utilizando o sistema
-When Eu termino de registrar uma ocorrência
-And eu indico que estou situada em “Paulista”
-And Eu indico que necessito de “Atendimento psicológico”
-And Eu requisito do sistema para “retornar instituições indicadas”
-And o sistema não possui psicólogos em “Paulista”
-Then o sistema retorna uma mensagem de erro
+    Given Eu, uma vítima utilizando o sistema
+    When Eu registro meu nome como "Sandra"
+    And meu telefone como "99878718"    
+    And eu indico que estou situada em “Paulista”
+    And Eu indico que necessito de “Atendimento psicológico”
+    And Eu requisito do sistema para “retornar instituições indicadas”
+    And o sistema não possui psicólogos em “Paulista”
+    Then o sistema retorna uma mensagem de erro
 
 
 Cenário 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
-Given Eu, uma vítima utilizando o sistema
-When Eu termino de registrar uma ocorrência
-And coloco meu nome "Manuela"
-And Eu indico que necessito de “Atendimento psicológico”
-And Eu indico que necessito de “atendimento médico por fratura óssea” 
-And Eu requisito do sistema para “Retornar instituições indicadas”
-And Eu informo que moro em “Recife”
-Then o sistema mostra uma lista com “Cliníca psicológica Dra. Simone Paraíso” com o endereço “Av. Conselheiro Rosa e Silva, 670” e situada em “Recife”
-And o sistema mostra uma lista com “Hospital da Restauração” com o endereço “Av. Gov. Agamenon Magalhães” situada em “Recife”
+
+    Given Eu, uma vítima utilizando o sistema
+    When Eu registro meu nome como "Sandra"
+    And meu telefone como "99878718"
+    And coloco meu nome "Manuela"
+    And Eu indico que necessito de “Atendimento psicológico”
+    And Eu indico que necessito de “atendimento médico por fratura óssea” 
+    And Eu requisito do sistema para “Retornar instituições indicadas”
+    And Eu informo que moro em “Recife”
+    Then o sistema mostra uma lista com “Cliníca psicológica Dra. Simone Paraíso” com o endereço “Av. Conselheiro Rosa e Silva, 670” e situada em “Recife”
+    And o sistema mostra uma lista com “Hospital da Restauração” com o endereço “Av. Gov. Agamenon Magalhães” situada em “Recife”
