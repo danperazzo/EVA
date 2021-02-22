@@ -1,4 +1,4 @@
-Feature: Visualizar dados das ocorrências em um dado período de tempo
+Feature: Visualizar ocorrências por tempo
     
     As a gestora do centro de encaminhamento de suporte às ocorrências,
     I want to visualizar dados das ocorrências dado um período de tempo,
