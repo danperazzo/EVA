@@ -114,7 +114,7 @@ Feature: Visualizar ocorrências por tempo
         Then eu vejo uma mensagem de sucesso
 
 
-    ############################## Services Scenarios ##############################
+    ############################## Service Scenarios ##############################
     Scenario: calculo bem sucedida da quantidade de ocorrências urgentes 
         Given as ocorrências "1, Policial, 09, 02, 2020, 08:37, 4, Espinheiro, 
         Delegacia da Mulher - Praça do Campo Santo - Recife" e "2, Médica, 
