@@ -1,14 +1,13 @@
-Feature: Visualizar dados das ocorrências em um dado período de tempo
+Feature: Visualizar ocorrências por tempo
     
-    As a gestora do centro de encaminhamento de suporte às ocorrências
-    I want to visualizar uma lista com dados das ocorrências dado um 
-    período de tempo, filtrar/agrupar por informações 
-    relevantes e gerar relatórios
-    so that eu posso preparar melhor o meu centro para atender as 
+    As a gestora do centro de encaminhamento de suporte às ocorrências,
+    I want to visualizar dados das ocorrências dado um período de tempo,
+    filtrar/agrupar por informações relevantes e gerar relatórios,
+    So that eu posso preparar melhor o meu centro para atender as 
     ocorrências e ajudar as instituições de ajuda a se preparar 
-    melhor também
+    melhor também.
 
-    ############################## Cenários de GUI ##############################
+    ############################## GUI Scenarios  ##############################
     Scenario: visualização bem sucedida do breakdown de ocorrências em um dia
         Given eu estou no página "dados das ocorrências"
         And apenas as ocorrências "1, Policial, 09, 02, 2020, 08:37, 0, Espinheiro, 
@@ -104,7 +103,18 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         Then eu vejo uma mensagem de erro
 
 
-    ############################## Cenários de Serviço ##############################
+    Scenario: envio bem sucedido do relatório mensal por email
+        Given eu estou no página "dados das ocorrências"
+        And o relatório mensal do mês "02" do ano "2021" contendo informações como mês, 
+        quantidade total de ocorrências, turno de pico e tipo principal de 
+        ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
+        22, Policial" está armazenadas no sistema
+        When eu seleciono "enviar relatório"
+        And eu escolho filtrar pelo mês "02" do ano "2021"
+        Then eu vejo uma mensagem de sucesso
+
+
+    ############################## Service Scenarios ##############################
     Scenario: calculo bem sucedida da quantidade de ocorrências urgentes 
         Given as ocorrências "1, Policial, 09, 02, 2020, 08:37, 4, Espinheiro, 
         Delegacia da Mulher - Praça do Campo Santo - Recife" e "2, Médica, 
@@ -160,3 +170,4 @@ Feature: Visualizar dados das ocorrências em um dado período de tempo
         quantidade total de ocorrências, turno de pico e tipo principal de 
         ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
         22, Policial" para o email "nss2@cin.ufpe.br"
+        And o sistema emite uma mensagem de sucesso
