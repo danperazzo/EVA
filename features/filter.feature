@@ -1,6 +1,6 @@
 Feature: Mostrar instituições filtradas para a vítima
 
-Scenario 1: A vítima necessita de atendimento médico por conta de fraturas ósseas e o nome de um hospital em sua cidade junto com seu endereço é informado
+Scenario: A vítima necessita de atendimento médico por conta de fraturas ósseas e o nome de um hospital em sua cidade junto com seu endereço é informado
 
     Given Eu, uma vítima utilizando o sistema
     When Eu registro meu nome como "Sandra"
@@ -11,7 +11,7 @@ Scenario 1: A vítima necessita de atendimento médico por conta de fraturas ós
     Then o sistema mostra uma lista com “Hospital da Restauração” com o endereço “Av. Gov. Agamenon Magalhães” situada em “Recife”
 
 
-Scenario 2: A vítima precisa de ajuda policial e uma delegacia em sua cidade é indicada junto com o nome e telefone de uma advogada
+Scenario: A vítima precisa de ajuda policial e uma delegacia em sua cidade é indicada junto com o nome e telefone de uma advogada
 
     Given Eu, uma vítima utilizando
     When Eu registro meu nome como "Sandra"
@@ -21,7 +21,7 @@ Scenario 2: A vítima precisa de ajuda policial e uma delegacia em sua cidade é
     Then o sistema mostra uma lista com “Delegacia da Mulher” com o endereço “Praça do Campo Santo” situado em “Recife”
     And o nome da advogada “Beatriz Maia dos Anjos” com o número de contato “985187234” 
 
-Scenario 3: A vítima  precisa de ajuda psicológica e o nome de um psicólogo que resida na mesma cidade da vítima é indicado junto com seu número 
+Scenario: A vítima  precisa de ajuda psicológica e o nome de um psicólogo que resida na mesma cidade da vítima é indicado junto com seu número 
 
 
     Given Eu, uma vítima utilizando o sistema
@@ -33,7 +33,7 @@ Scenario 3: A vítima  precisa de ajuda psicológica e o nome de um psicólogo q
     Then o sistema mostra uma lista com “Cliníca psicológica Dra. Simone Paraíso” com o endereço “Av. Conselheiro Rosa e Silva, 670” e situada em “Recife”
 
 
-Scenario 4: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma mensagem de erro.
+Scenario: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma mensagem de erro.
 
     Given Eu, uma vítima utilizando o sistema
     When Eu registro meu nome como "Sandra"
@@ -46,7 +46,7 @@ Scenario 4: A vítima precisa de ajuda médica porém não existe um hospital pa
     And informa o “Hospital da Restauração” situado em “Recife”
 
 
-Scenario 5: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade. O sistema retorna uma mensagem de erro
+Scenario: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade. O sistema retorna uma mensagem de erro
 
     Given Eu, uma vítima utilizando o sistema
     When Eu registro meu nome como "Sandra"
@@ -58,7 +58,7 @@ Scenario 5: A vítima precisa de ajuda psicológica porém não existem psicólo
     Then o sistema retorna uma mensagem de erro
 
 
-Scenario 6: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
+Scenario: A vítima precisa de ajuda psicológica e ajuda médica simultaneamente. O sistema retorna o nome de um psicólogo e um nome de um hospital.
 
     Given Eu, uma vítima utilizando o sistema
     When Eu registro meu nome como "Sandra"
