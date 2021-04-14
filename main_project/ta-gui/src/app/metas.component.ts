@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from '../../../common/institution';
+import { Aluno } from '../../../common/models';
 import { AdminServices } from './admin.service';
 
   @Component({
