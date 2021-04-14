@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Aluno } from '../../../common/aluno';
-import { AlunoService } from './aluno.service';
+import { AdminServices } from './admin.service';
+import {Occurrence} from '../../common/models';
 
   @Component({
    selector: 'app-root',
@@ -19,13 +19,13 @@ import { AlunoService } from './aluno.service';
        através de um dos métodos abaixo, mas só após o término da 
        execução do método.
     */
-    aluno: Aluno = new Aluno();
-    alunos: Aluno[] = [];
+    // aluno: Aluno = new Aluno();
+    occurrences: Occurence[] = [];
     cpfduplicado: boolean = false;
 
-    constructor(private alunoService: AlunoService) {}
+    constructor(private alunoService: AdminServices) {}
 
-    criarAluno(a: Aluno): void {
+    criarAluno(a: Occurrence): void {
        /* Clone feito para que atraso na resposta da requisição
           não permita que alterações feitas no textfield após a
           solicitação do cadastro afetem o objeto ar a ser 
@@ -59,6 +59,8 @@ import { AlunoService } from './aluno.service';
         mas logo antes é feita a inicialização dos 
         atributos do componente.  
       */
+
+        /*
      ngOnInit(): void {
        this.alunoService.getAlunos()
              .subscribe(
@@ -66,5 +68,6 @@ import { AlunoService } from './aluno.service';
                msg => { alert(msg.message); }
               );
      }
+     */
 
   }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from '../../../common/aluno';
-import { AlunoService } from './aluno.service';
+import { Aluno } from '../../../common/institution';
+import { AdminServices } from './admin.service';
 
   @Component({
    selector: 'metas',
@@ -10,7 +10,7 @@ import { AlunoService } from './aluno.service';
    styleUrls: ['./metas.component.css']
  })
  export class MetasComponent implements OnInit {
-    constructor(private alunoService: AlunoService) {}
+    constructor(private alunoService: AdminServices) {}
 
     alunos: Aluno[];
 

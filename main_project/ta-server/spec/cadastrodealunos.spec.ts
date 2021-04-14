@@ -1,5 +1,5 @@
 import { CadastroDeAlunos } from '../cadastrodealunos';
-import { Aluno } from '../../common/aluno';
+import { Aluno } from '../../common/institution';
 
 describe("O cadastro de alunos", () => {
   var cadastro: CadastroDeAlunos;

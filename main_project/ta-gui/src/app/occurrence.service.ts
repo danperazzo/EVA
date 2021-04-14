@@ -3,16 +3,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Aluno } from '../../../common/aluno';
+import { Occurrence} from '../../../common/models';
 
 @Injectable()
-export class AlunoService {
+export class AdminServices {
 
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private taURL = 'http://localhost:3000';
+  private taURL = 'http://localhost:3000/occurrences';
 
   constructor(private http: HttpClient) {}
+  
 
+  findInstitutions(occurrence:Occurrence): Observable<Occurrence> {}
+  addOccurrence(occurence: Occurrence):Observable<Occurrence> {}
+
+  
+  /*
   criar(aluno: Aluno): Observable<Aluno> {
     return this.http.post<any>(this.taURL + "/aluno", aluno, {headers: this.headers})
              .pipe( 
@@ -34,5 +40,6 @@ export class AlunoService {
                  retry(2)
                );
   }
+  */
 
 }

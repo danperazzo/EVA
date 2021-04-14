@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetasComponent } from './metas.component';
 import { AlunosComponent } from './alunos.component';
-import { AlunoService } from './aluno.service';
+import { AdminServices } from './admin.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { AlunoService } from './aluno.service';
       }
     ])
   ],
-  providers: [AlunoService],
+  providers: [AdminServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

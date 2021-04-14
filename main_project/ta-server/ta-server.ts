@@ -1,7 +1,7 @@
 import express = require('express');
 import bodyParser = require("body-parser");
 
-import {Aluno} from '../common/aluno';
+import {Aluno} from '../common/institution';
 import {CadastroDeAlunos} from './cadastrodealunos';
 
 var taserver = express();
