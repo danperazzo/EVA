@@ -12,6 +12,12 @@ export class OccurrencesComponent implements OnInit {
   cpfduplicado: boolean = false;
    
   constructor(private adminService: AdminServices) {}
+
+  addOccurrence(occurence: Occurrence){}
+
+  filterOccurrencesByYear(year: number) {}
+  filterOccurrenceByDateRange(from : Date, to : Date) {}
+  filterOcurrencesByUrgencyLevel(urgencyLevel : number) {}
    
   ngOnInit(): void {}  
   

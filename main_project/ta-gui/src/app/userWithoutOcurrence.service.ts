@@ -17,5 +17,8 @@ export class UserWithoutOcurrence {
   filterInstitutionsByType(type : string) {}
   filterInstitutionByAddress(address:Address) {}
   filterInstitutionByName(name:string) {}
+
+  showLocationOnMap(institution : Institution){}
+
   
 }

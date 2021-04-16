@@ -7,14 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetasComponent } from './metas.component';
-import { AlunosComponent } from './alunos.component';
+import { OcurrencesComponent } from './occurrences.component';
 import { AdminServices } from './admin.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MetasComponent,
-    AlunosComponent
+    OcurrencesComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,7 @@ import { AdminServices } from './admin.service';
       },
       {
         path: 'alunos',
-        component: AlunosComponent
+        component: OcurrencesComponent
       }
     ])
   ],

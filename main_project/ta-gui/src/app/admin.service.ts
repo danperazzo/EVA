@@ -18,7 +18,6 @@ export class AdminServices {
   filterOcurrencesByUrgencyLevel(urgencyLevel : number) {}
   
   addInstitution(institution : Institution ):Observable<Institution>{}
-
   deleteInstitution(institution : Institution):Observable<Institution>{}
   
   /*

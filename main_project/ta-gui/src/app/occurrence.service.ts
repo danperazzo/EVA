@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Occurrence} from '../../../common/models';
+import { Occurrence,Institution} from '../../../common/models';
 
 @Injectable()
 export class AdminServices {
@@ -16,6 +16,7 @@ export class AdminServices {
 
   findInstitutions(occurrence:Occurrence): Observable<Occurrence> {}
   addOccurrence(occurence: Occurrence):Observable<Occurrence> {}
+  showLocationOnMap(institution : Institution){}
 
   
   /*
