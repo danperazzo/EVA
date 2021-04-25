@@ -4,6 +4,7 @@ Feature: Mostrar instituições filtradas para a vítima
     So that eu posso buscar a ajuda adequada
 
 
+############################## GUI Scenarios  ##############################
 Scenario: A vítima necessita de atendimento médico por conta de fraturas ósseas e o nome de um hospital em sua cidade junto com seu endereço é informado
 
     Given Eu, uma vítima utilizando o sistema
@@ -36,6 +37,7 @@ Scenario: A vítima  precisa de ajuda psicológica e o nome de um psicólogo que
     And Eu informo que moro em "Recife"
     Then o sistema mostra uma lista com "Cliníca psicológica Dra. Simone Paraíso" com o endereço "Av. Conselheiro Rosa e Silva, 670" e situada em "Recife"
 
+############################## Service Scenarios ##############################
 
 Scenario: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma mensagem de erro.
 
