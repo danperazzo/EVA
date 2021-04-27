@@ -5,13 +5,18 @@ import { retry, map } from "rxjs/operators";
 
 import { Institution } from "../../../common/models";
 
+import { MockServer } from "../../../ta-server/ta-server";
+
 @Injectable()
 export class AdminServices {
   private headers = new HttpHeaders({ "Content-Type": "application/json" });
   private taURL = "http://localhost:3000";
 
+  private server: MockServer;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.server = new MockServer();
+  }
 
   filterOccurrencesByYear(year: number) {}
   filterOccurrenceByDateRange(from: Date, to: Date) {}
@@ -25,9 +30,7 @@ export class AdminServices {
   deleteInstitution(
     institutionList: Institution[],
     institutionName: string
-  ): void {
-    
-  }
+  ): void {}
 
   /*
   criar(aluno: Aluno): Observable<Aluno> {
