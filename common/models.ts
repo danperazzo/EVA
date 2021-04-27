@@ -14,18 +14,17 @@ export class Institution {
     type: InstitutionType,
     street: string,
     number: string,
-    postalCode: string
+    postalCode: string,
+    city: string
   ) {
-    this.address = new Address(street, number, postalCode);
+    this.address = new Address(street, number, postalCode,city);
     this.name = name;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.type = type;
     console.log("institution instantiated!");
-    this.clean();
   }
 
-  clean(): void {}
 
   show(): void {
     console.log(
@@ -44,19 +43,46 @@ export class Address {
   street: string;
   number: string;
   postalCode: string;
+  city: string;
 
-  constructor(street: string, number: string, postalCode: string) {
+  constructor(street: string, number: string, postalCode: string, city: string) {
     this.street = street;
     this.number = number;
     this.postalCode = postalCode;
+    this.city = city;
   }
 }
 
 export class Occurrence {
+  
   date: Date;
   needsMedicalAssistance: boolean;
   needsSecurityAssistance: boolean;
   needsPsychologicalAssistance: boolean;
   urgencyLevel: number;
   location: Address;
+
+  constructor(
+  date: Date,
+  needsMedicalAssistance: boolean,
+  needsSecurityAssistance: boolean,
+  needsPsychologicalAssistance: boolean,
+  urgencyLevel: number,
+  street: string,
+  number: string,
+  postalCode: string,
+  city: string) {
+
+    this.location = new Address(street, number, postalCode,city);
+    this.date = date;
+    this.needsMedicalAssistance = needsMedicalAssistance;
+    this.needsSecurityAssistance = needsSecurityAssistance;
+    this.needsPsychologicalAssistance = needsPsychologicalAssistance;
+    this.urgencyLevel = urgencyLevel;
+
+    
+    console.log("Ocurrence instantiated!");
+    
+  }
+
 }
