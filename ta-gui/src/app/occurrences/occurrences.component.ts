@@ -45,7 +45,7 @@ export class OccurrencesComponent implements OnInit {
       //           },
       //           msg => { alert(msg.message); }
       //         );    
-    } 
+    //} 
 /*
     onMove(): void {
        this.cpfduplicado = false;
