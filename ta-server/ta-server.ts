@@ -45,6 +45,13 @@ taserver.put("/aluno", function (req: express.Request, res: express.Response) {
   }
 });
 
+taserver.get(
+  "/institutions",
+  function (req: express.Request, res: express.Response) {
+    res.send({success: "toma ai"})
+  }
+);
+
 var server = taserver.listen(3000, function () {
   console.log("Example app listening on port 3000!");
 });
@@ -53,28 +60,28 @@ function closeServer(): void {
   server.close();
 }
 
-class MockServer {
-  institutions: Institution[];
-  constructor() {
-    this.institutions = [];
+// class MockServer {
+//   institutions: Institution[];
+//   constructor() {
+//     this.institutions = [];
 
-    // todo usar cadastro de insititutions
-    const inst = new Institution(
-      "Hospital das Freiras",
-      "hospitaldasfreiras@gmail.com",
-      "8199999912",
-      "medico",
-      "Rua falsa",
-      "123",
-      "123654-3"
-    );
-    
-    this.institutions.push(inst);
-  }
+//     // todo usar cadastro de insititutions
+//     const inst = new Institution(
+//       "Hospital das Freiras",
+//       "hospitaldasfreiras@gmail.com",
+//       "8199999912",
+//       "medico",
+//       "Rua falsa",
+//       "123",
+//       "123654-3"
+//     );
 
-  getInstitutions(): Institution[] {
-    return this.institutions;
-  }
-}
+//     this.institutions.push(inst);
+//   }
 
-export { server, closeServer, MockServer };
+//   getInstitutions(): Institution[] {
+//     return this.institutions;
+//   }
+// }
+
+export { server, closeServer };
