@@ -6,15 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas.component';
-import { OcurrencesComponent } from './occurrences.component';
+import { OccurrencesComponent } from './occurrences/occurrences.component';
 import { AdminServices } from './admin.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MetasComponent,
-    OcurrencesComponent
+    OccurrencesComponent
   ],
   imports: [
     BrowserModule,
@@ -23,12 +21,8 @@ import { AdminServices } from './admin.service';
     HttpClientModule, 
     RouterModule.forRoot([
       {
-        path: 'metas',
-        component: MetasComponent
-      },
-      {
         path: 'alunos',
-        component: OcurrencesComponent
+        component: OccurrencesComponent
       }
     ])
   ],

@@ -1,25 +1,34 @@
-import { Injectable }    from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { retry, map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { retry, map } from "rxjs/operators";
 
-import { Institution } from '../../../common/models';
+import { Institution } from "../../../common/models";
 
 @Injectable()
 export class AdminServices {
+  private headers = new HttpHeaders({ "Content-Type": "application/json" });
+  private taURL = "http://localhost:3000";
 
-  private headers = new HttpHeaders({'Content-Type': 'application/json'});
-  private taURL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   filterOccurrencesByYear(year: number) {}
-  filterOccurrenceByDateRange(from : Date, to : Date) {}
-  filterOcurrencesByUrgencyLevel(urgencyLevel : number) {}
-  
-  addInstitution(institution : Institution ):Observable<Institution>{}
-  deleteInstitution(institution : Institution):Observable<Institution>{}
-  
+  filterOccurrenceByDateRange(from: Date, to: Date) {}
+  filterOcurrencesByUrgencyLevel(urgencyLevel: number) {}
+
+  // addInstitution(institution : Institution ):Observable<Institution>{}
+  // deleteInstitution(institution : Institution):Observable<Institution>{}
+  addInstitution(institution: Institution): void {
+    // TODO: query
+  }
+  deleteInstitution(
+    institutionList: Institution[],
+    institutionName: string
+  ): void {
+    
+  }
+
   /*
   criar(aluno: Aluno): Observable<Aluno> {
     return this.http.post<any>(this.taURL + "/aluno", aluno, {headers: this.headers})
@@ -43,5 +52,4 @@ export class AdminServices {
                );
   }
   */
-
 }
