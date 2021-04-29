@@ -6,6 +6,14 @@ import { AppComponent } from './app.component';
 import { InstitutionsComponent } from './institutions/institutions.component';
 import { OccurencesComponent } from './occurences/occurences.component';
 
+import {MenubarModule} from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
+import {MenuModule} from 'primeng/menu';
+import {MenuItem} from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+import {MegaMenuItem} from 'primeng/api';  //required when using MegaMenu
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +22,12 @@ import { OccurencesComponent } from './occurences/occurences.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MenuModule,
+    MenubarModule,
+    InputTextModule,
+    ButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
