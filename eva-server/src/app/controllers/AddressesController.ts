@@ -63,6 +63,16 @@ class AddressesController {
 
     try {
       const newAddress1 = new Address(address1);
+      
+
+      /*
+      const streetAdd = newAddress1.street;
+      const existingAddress = await Address.find({ 
+        street: streetAdd});
+        if(existingAddress){
+          console.log("endereço ja cadastrado")
+        }
+      */
       const createdAddress1 = await newAddress1.save();
 
       const newAddress2 = new Address(address2);
@@ -80,7 +90,7 @@ class AddressesController {
       const addressesList = {
         address1, address2, address3, address4, address5
       }
-      return res.send(addressesList);
+      return res.send(newAddress5);
     
     } catch (err) {
       Sentry.captureException(err);

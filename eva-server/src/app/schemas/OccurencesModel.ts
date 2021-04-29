@@ -27,9 +27,8 @@ const OccurenceSchema = new mongoose.Schema({
         required: true,
         default: false
       },
-    location: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Address',
+    city: {
+        type: String,
         required: true
     },
     createdAt: {

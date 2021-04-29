@@ -8,12 +8,12 @@ const AddressSchema = new mongoose.Schema({
     },
     number: {
         type: String,
-        required: false,
+        required: true,
         maxLength: 200
     },
     postalCode: {
         type: String,
-        required: false,
+        required: true,
         maxLength: 200
     },
     city: {
