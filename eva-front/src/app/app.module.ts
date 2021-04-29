@@ -5,21 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InstitutionsComponent } from './institutions/institutions.component';
 import { OccurencesComponent } from './occurences/occurences.component';
+import { SafePipe } from './safe.pipe';
 
-import {MenubarModule} from 'primeng/menubar';
+import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
-import {MenuModule} from 'primeng/menu';
-import {MenuItem} from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
-import {MegaMenuItem} from 'primeng/api';  //required when using MegaMenu
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InstitutionsComponent,
-    OccurencesComponent
-  ],
+  declarations: [AppComponent, InstitutionsComponent, OccurencesComponent, SafePipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,9 +22,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MenubarModule,
     InputTextModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
