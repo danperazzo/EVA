@@ -12,9 +12,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenuModule } from 'primeng/menu';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
-  declarations: [AppComponent, InstitutionsComponent, OccurencesComponent, SafePipe],
+  declarations: [AppComponent, InstitutionsComponent, OccurencesComponent, SafePipe, MapsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

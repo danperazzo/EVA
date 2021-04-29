@@ -11,17 +11,6 @@ import { MegaMenuItem } from 'primeng/api'; //required when using MegaMenu
 export class AppComponent {
   items: MenuItem[] = [];
 
-  mapsUrl =
-    'https://maps.google.com/maps?q=hospital%20das%20clinicas&t=&z=13&ie=UTF8&iwloc=&output=embed';
-
-  positionMap = {
-    name: 'Hospital das clínicas',
-    street: 'Av prof moraes rego',
-    num: '1235',
-    city: 'Recife',
-  };
-  mapsURL = `https://maps.google.com/maps?q=${this.positionMap.name}%20${this.positionMap.street}%20${this.positionMap.num}%20%${this.positionMap.city}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
-
   ngOnInit() {
     this.items = [
       {
