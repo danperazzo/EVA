@@ -6,6 +6,7 @@ import { MegaMenuItem } from 'primeng/api'; //required when using MegaMenu
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   items: MenuItem[] = [];
