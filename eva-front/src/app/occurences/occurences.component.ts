@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Occurrence, Institution} from '../../../../common/models'
 
 @Component({
   selector: 'app-occurences',
@@ -11,5 +12,9 @@ export class OccurencesComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  findInstitutions(occurrence: Occurrence): void {}
+  addOccurrence(occurence: Occurrence): void {}
+  showLocationOnMap(institution: Institution): void {}
 
 }
