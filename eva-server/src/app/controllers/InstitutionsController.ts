@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { Request, Response } from "express";
 import * as Sentry from "@sentry/node";
 import { Institution } from "../schemas/InstitutionsModel";
+import { Occurrence } from "../schemas/OccurrencesModel";
 
 class InstitutionsController {
   async index(req: Request, res: Response) {
@@ -27,30 +28,48 @@ class InstitutionsController {
     console.log("estou filtrando!")
 
     const {
-      needs_psycho, 
-      needs_med,
-      needs_police
-      } = req.body;
+      date,
+      needsMedicalAssistance,
+      needsSecurityAssistance,
+      needsPsychologicalAssistance,
+      urgencyLevel,
+      city
+    } = req.body;
+
+    const data = {
+      date,
+      needsMedicalAssistance,
+      needsSecurityAssistance,
+      needsPsychologicalAssistance,
+      urgencyLevel,
+      city
+    };
+
+    const newOccurrence = new Occurrence(data);
+
+    const createdInstitution = await newOccurrence.save();
 
     var to_filter = [];
+    console.log(data.needsSecurityAssistance)
 
-    if (needs_psycho){
-      to_filter.push({type:"psy"});
+    if (needsPsychologicalAssistance){
+      to_filter.push({type:"Psi"});
     }
 
-    if(needs_med){
-      to_filter.push({type:"medic"});
+    if(needsMedicalAssistance){
+      to_filter.push({type:"Medic"});
     }
 
-    if(needs_police){
-      to_filter.push({type:"police"})
+    if(needsSecurityAssistance){
+      to_filter.push({type:"Police"})
     }
 
     console.log(to_filter)
 
     try {
       const institutionList = await Institution.find({
-         $or: to_filter 
+        //type: "Psi" 
+        $or: to_filter 
         
       })
       .select('name email phoneNumber type address')
@@ -81,10 +100,8 @@ class InstitutionsController {
 
     try {
       const newInstitution = new Institution(data);
-      //console.log(data);
 
       const createdInstitution = await newInstitution.save();
-      //console.log(createdInstitution);
 
       return res.send(createdInstitution);
     } catch (err) {
