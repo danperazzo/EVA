@@ -1,23 +1,22 @@
-## Comandos básicos
+# eva-server
 
-#### Primeiro Passo:
+## Rodando
 
- - Confirgurar .env
+1. Faça uma cópia do `.env.example` e reonomeie ela para `.env`
 
-#### Segundo Passo:
+2. Rode `yarn`, depois `yarn dev`.
 
-- Rodar Serviço
+## Rotas
 
-* Ambiente de Desenvolvimento:
+### GET /institutions
 
-```
-  yarn dev
-```
+Enviar um json pelo body da request.
 
-* Ambiente de Produção:
 
-```
-  yarn prod
-```
-
-###### Template MicroServiços TypeScript - v1.0
+Atributo | Tipo
+--- | ---
+name | string
+email | string
+phoneNumber | string
+type | `hospital` \| `police`
+address | string
