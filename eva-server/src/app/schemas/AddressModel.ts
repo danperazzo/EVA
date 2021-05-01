@@ -1,7 +1,8 @@
 import mongoose, { model } from 'mongoose';
+import { number } from 'yup';
 
 const AddressSchema = new mongoose.Schema({
-    _id: Number,
+    adress_id: String,
     street: {
         type: String,
         required: true,

@@ -13,7 +13,7 @@ class InstitutionsController {
     try {
         const institutionList = await Institution.find({  
         })
-        .select('name email phoneNumber type address')
+        .select('name email phoneNumber type adress_id')
         .sort({ name: 'asc' });
         
         return res.send(institutionList);
@@ -55,26 +55,35 @@ class InstitutionsController {
     console.log(data.needsSecurityAssistance)
 
     if (needsPsychologicalAssistance){
-      to_filter.push({type:"Psi"});
+      to_filter.push("Psi");
     }
 
     if(needsMedicalAssistance){
-      to_filter.push({type:"Medic"});
+      to_filter.push("Medic");
     }
 
     if(needsSecurityAssistance){
-      to_filter.push({type:"Police"})
+      to_filter.push("Police")
     }
 
     console.log(to_filter)
 
+    var id_adresses = await Address.find({city: city}).select('adress_id');
+
+    var id_addresses_name = [];
+    for (var dict_name of id_adresses) {
+      id_addresses_name.push(dict_name.get('adress_id'))
+    }
+
+    console.log(id_addresses_name)
     try {
-      const institutionList = await Institution.find({
-        //type: "Psi" 
-        $or: to_filter 
-        
+      const institutionList = await Institution
+      .find({
+        type: {$in: to_filter },
+        adress_id: {$in: id_addresses_name}
+
       })
-      .select('name email phoneNumber type address')
+      .select('name email phoneNumber type adress_id')
       .sort({ name: 'asc' });
       
       return res.send(institutionList);
@@ -120,7 +129,7 @@ class InstitutionsController {
       "email": "psi@data.com",
       "phoneNumber": "312345-1223",
       "type": "Psi",
-      "address": "000000000000000000000001",
+      "adress_id": "1",
       }
 
     const inst2 = {
@@ -128,7 +137,7 @@ class InstitutionsController {
       "email": "med@data.com",
       "phoneNumber": "212345-1223",
       "type": "Med",
-      "address": "000000000000000000000002",
+      "adress_id": "2",
     }         
 
     const inst3 = {
@@ -136,7 +145,7 @@ class InstitutionsController {
       "email": "pol2@data.com",
       "phoneNumber": "112345-1223",
       "type": "Pol",
-      "address": "000000000000000000000003",
+      "adress_id": "3",
     }
 
     const inst4 = {
@@ -144,7 +153,7 @@ class InstitutionsController {
       "email": "psi2@data.com",
       "phoneNumber": "31312122345-1223",
       "type": "Psi",
-      "address": "000000000000000000000004",
+      "adress_id": "4",
     }
 
     const inst5 = {
@@ -152,7 +161,7 @@ class InstitutionsController {
       "email": "med2@data.com",
       "phoneNumber": "212142345-1223",
       "type": "Med",
-      "address": "000000000000000000000005",
+      "adress_id": "5",
     }
 
     try {

@@ -27,7 +27,7 @@ class AddressesController {
   async store(req: Request, res: Response) {
 
     const address1 = {
-        "_id":1,
+        "adress_id":"1",
         "street": "Rua das Pernambucanas",
         "number": "407",
         "postalCode": "52011-010",
@@ -35,7 +35,7 @@ class AddressesController {
     }
 
     const address2 = {
-        "_id":2,
+        "adress_id":"2",
         "street": "Rua Dr. Arthur Gonçalves",
         "number": "46",
         "postalCode": "50610-560",
@@ -43,7 +43,7 @@ class AddressesController {
     }
 
     const address3 = {
-        "_id":3,
+        "adress_id":"3",
         "street": "Rua Beco do Batman",
         "number": "233",
         "postalCode": "81811-123",
@@ -51,7 +51,7 @@ class AddressesController {
     }
 
     const address4 = {
-        "_id":4,
+        "adress_id":"4",
         "street": "Galeria Cordeiro - Praça Doze de Março",
         "number": "23",
         "postalCode": "53030-110",
@@ -59,7 +59,7 @@ class AddressesController {
     }
 
     const address5 = {
-        "_id":5,
+        "adress_id":"5",
         "street": "Av. Pres. Getúlio Varga",
         "number": "999",
         "postalCode": "53030-010",
