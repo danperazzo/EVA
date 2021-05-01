@@ -11,6 +11,8 @@ import { MegaMenuItem } from 'primeng/api'; //required when using MegaMenu
 export class AppComponent {
   items: MenuItem[] = [];
 
+  mapsUrl: string = '/maps/hospital&das&clinicas';
+  
   ngOnInit() {
     this.items = [
       {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-maps',
@@ -6,15 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./maps.component.css'],
 })
 export class MapsComponent implements OnInit {
-  positionMap = {
-    name: 'Hospital das clínicas',
-    street: 'Av prof moraes rego',
-    num: '1235',
-    city: 'Recife',
-  };
-  mapsURL = `https://maps.google.com/maps?q=${this.positionMap.name}%20${this.positionMap.street}%20${this.positionMap.num}%20%${this.positionMap.city}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+  name = '';
+  city = '';
+  mapsURL = `https://maps.google.com/maps?q=recife&t=&z=13&ie=UTF8&iwloc=&output=embed`;
 
-  constructor() {}
+  constructor(private _Activatedroute: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._Activatedroute.paramMap.subscribe((params) => {
+      let address: any = params.get('address');
+
+      address = address?.split('&').join('%20');
+
+      this.mapsURL = `https://maps.google.com/maps?q=${address}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+    });
+  }
 }

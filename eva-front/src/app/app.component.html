@@ -1,19 +1,24 @@
-<p-menubar [model]="items">
-  <div>
-    <input type="text" pInputText placeholder="Search" />
-    <button
-      type="button"
-      pButton
-      label="Logout"
-      icon="pi pi-power-off"
-      style="margin-left: 0.25em"
-    ></button>
-  </div>
-</p-menubar>
+<div class="all">
+  <p-menubar [model]="items">
+    <div>
+      <input type="text" pInputText placeholder="Search" />
+      <button
+        type="button"
+        pButton
+        label="Logout"
+        icon="pi pi-power-off"
+        style="margin-left: 0.25em"
+      ></button>
+    </div>
+  </p-menubar>
 
-<li>
-  <a routerLink="/maps" routerLinkActive="active">Ir para mapa</a>
-</li>
+  <li>
+    <a [routerLink]="mapsUrl" teste='oi' routerLinkActive="active">Ir para mapa</a>
+  </li>
+  <li>
+    <a routerLink="/maps" routerLinkActive="active">Adicinoar ocorrência</a>
+  </li>
 
-<institutions></institutions>
-<router-outlet></router-outlet>
+  <institutions></institutions>
+  <router-outlet></router-outlet>
+</div>
