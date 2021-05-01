@@ -11,8 +11,8 @@ routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
 routes.get('/institutions/:id', InstitutionsController.findOne);
 routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
-routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData)
-// routes.get('/institutions/find/:id', InstitutionsController.findOne);
+
+routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
 routes.get('/institutions_filter',InstitutionsController.filterInstitutionsOc );
 
 //occurrences routes 

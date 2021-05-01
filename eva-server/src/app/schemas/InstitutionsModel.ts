@@ -1,4 +1,5 @@
 import mongoose, { model } from 'mongoose';
+import { number } from 'yup';
 
 const InstitutionSchema = new mongoose.Schema({
     name: {
@@ -17,11 +18,7 @@ const InstitutionSchema = new mongoose.Schema({
       type: String,
       required: true
     },
-    address: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Address',
-      required: true
-    },
+    adress_id: String,
     createdAt: {
       type: Date,
       required: true,
