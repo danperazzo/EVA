@@ -17,6 +17,7 @@ routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData)
 //occurrences routes 
 routes.post('/occurrencesMocks', OccurrencesController.store);
 routes.get('/occurrences', OccurrencesController.index);
+routes.get('/occurencesByUrgencyLevel/', OccurrencesController.getByUrgencyLevel);
 // routes.get('/occurrences/:id', OccurrencesController.getById);
 
 //address routes

@@ -155,7 +155,23 @@ class OccurrencesController {
     }
   } 
 
+  async getByUrgencyLevel(req: Request, res: Response){
 
+    try {
+      const urgencyLevel: string = req.query.urgencyLevel as string
+
+      const occurrencesFiltered = await Occurrence.find( { urgencyLevel: urgencyLevel } )
+      .select('_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel city')
+      .sort({ date: 'desc' });
+      
+      return res.send(occurrencesFiltered);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Ocorrência não criada");
+      return res.send(err);
+    }
+  }
   // async getById(req: Request, res: Response) {
   //   //const { id } = req.params.id;
   //   try {
