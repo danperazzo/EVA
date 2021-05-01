@@ -26,7 +26,7 @@ class OccurrencesController {
     }
 
 /* cria uma ocorrência */
-  async store(req: Request, res: Response) {
+  async storeMocks(req: Request, res: Response) {
     const occurrence1 = {
       "date": "2021-02-25T22:31:09.553Z",
       "needsMedicalAssistance": "true",
