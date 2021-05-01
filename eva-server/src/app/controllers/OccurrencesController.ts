@@ -63,7 +63,6 @@ class OccurrencesController {
       return res.send(err);
     }
   }
-
   // async getById(req: Request, res: Response) {
   //   //const { id } = req.params.id;
   //   try {
