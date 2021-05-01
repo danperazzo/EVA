@@ -27,20 +27,23 @@ class AddressesController {
   async store(req: Request, res: Response) {
 
     const address1 = {
-        "street": "Rua x",
-        "number": "53",
-        "postalCode": "12345-123",
+        "_id":1,
+        "street": "Rua das Pernambucanas",
+        "number": "407",
+        "postalCode": "52011-010",
         "city": "Recife"
     }
 
     const address2 = {
-        "street": "Rua y",
-        "number": "83",
-        "postalCode": "12335-123",
+        "_id":2,
+        "street": "Rua Dr. Arthur Gonçalves",
+        "number": "46",
+        "postalCode": "50610-560",
         "city": "Recife"
     }
 
     const address3 = {
+        "_id":3,
         "street": "Rua Beco do Batman",
         "number": "233",
         "postalCode": "81811-123",
@@ -48,17 +51,19 @@ class AddressesController {
     }
 
     const address4 = {
-        "street": "Av. Marginal Tietê",
-        "number": "212",
-        "postalCode": "12121-009",
-        "city": "Jaboatão dos Guararapes"
+        "_id":4,
+        "street": "Galeria Cordeiro - Praça Doze de Março",
+        "number": "23",
+        "postalCode": "53030-110",
+        "city": "Olinda"
     }
 
     const address5 = {
-        "street": "Av. Agamenon Magalhães",
-        "number": "1080",
-        "postalCode": "50600-099",
-        "city": "Recife"
+        "_id":5,
+        "street": "Av. Pres. Getúlio Varga",
+        "number": "999",
+        "postalCode": "53030-010",
+        "city": "Olinda"
     }
 
     try {

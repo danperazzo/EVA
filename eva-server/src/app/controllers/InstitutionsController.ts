@@ -5,6 +5,8 @@ import { Request, Response } from "express";
 import * as Sentry from "@sentry/node";
 import { Institution } from "../schemas/InstitutionsModel";
 import { Occurrence } from "../schemas/OccurrencesModel";
+import { Address } from "../schemas/AddressModel";
+
 
 class InstitutionsController {
   async index(req: Request, res: Response) {
@@ -115,26 +117,42 @@ class InstitutionsController {
     
     const inst1 = {
       "name": "Psicologo 1",
-      "email": "psi1@data.com",
+      "email": "psi@data.com",
       "phoneNumber": "312345-1223",
-      "type": "psy",
-      "address":"608d6697c6a99357d790420b",
-    }
+      "type": "Psi",
+      "address": "000000000000000000000001",
+      }
 
     const inst2 = {
-      "name": "Medic 2",
-      "email": "psi2@data.com",
+      "name": "Medic 1",
+      "email": "med@data.com",
       "phoneNumber": "212345-1223",
-      "type": "medic",
-      "address":"608d6697c6a99357d790420b",
-    }
+      "type": "Med",
+      "address": "000000000000000000000002",
+    }         
 
     const inst3 = {
-      "name": "Police 3",
-      "email": "psi2@data.com",
+      "name": "Delegacia De Polícia Varadouro",
+      "email": "pol2@data.com",
       "phoneNumber": "112345-1223",
-      "type": "police",
-      "address":"608d6697c6a99357d790420b",
+      "type": "Pol",
+      "address": "000000000000000000000003",
+    }
+
+    const inst4 = {
+      "name": "Psicologo 2",
+      "email": "psi2@data.com",
+      "phoneNumber": "31312122345-1223",
+      "type": "Psi",
+      "address": "000000000000000000000004",
+    }
+
+    const inst5 = {
+      "name": "PartMed Saúde",
+      "email": "med2@data.com",
+      "phoneNumber": "212142345-1223",
+      "type": "Med",
+      "address": "000000000000000000000005",
     }
 
     try {
@@ -147,13 +165,21 @@ class InstitutionsController {
       const newInst3 = new Institution(inst3);
       const createdInstitution3 = await newInst3.save();
 
+      const newInst4 = new Institution(inst4);
+      const createdInstitution4 = await newInst4.save();
+
+      const newInst5 = new Institution(inst5);
+      const createdInstitution5 = await newInst5.save();
+
       const institutionList = {
         inst1,
         inst2,
         inst3,
+        inst4,
+        inst5
       };
 
-      return res.send(createdInstitution3);
+      return res.send(createdInstitution5);
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro: Instituições não criada");

@@ -1,6 +1,7 @@
 import mongoose, { model } from 'mongoose';
 
 const AddressSchema = new mongoose.Schema({
+    _id: Number,
     street: {
         type: String,
         required: true,
