@@ -19,6 +19,7 @@ routes.get('/institutions_filter',InstitutionsController.filterInstitutionsOc );
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);
 routes.get('/occurrences', OccurrencesController.index);
 routes.get('/occurrences/countByUrgencyInDate', OccurrencesController.countByUrgencyInDate);
+routes.get('/occurrences/filterByDateRange', OccurrencesController.filterByDateRange);
 
 //address routes
 //create 5 addresses

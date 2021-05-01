@@ -1,12 +1,12 @@
   const occurrence1 = {
-    "date": "2021-02-25T22:31:09.553Z",
-    "needsMedicalAssistance": "true",
+    "date": "2020-11-25T22:31:09.553Z",
+    "needsSecurityAssistance": "true",
     "urgencyLevel": "3",
     "city": "Recife",
   }
 
   const occurrence2 = {
-    "date": "2021-03-19T10:45:28.934Z",
+    "date": "2020-12-19T10:45:28.934Z",
     "needsMedicalAssistance": "true",
     "needsPsychologicalAssistance": "true",
     "urgencyLevel": "5",
@@ -16,12 +16,12 @@
   const occurrence3 = {
     "date": "2021-02-10T12:42:07.193Z",
     "needsSecurityAssistance": "true",
-    "urgencyLevel": "4",
+    "urgencyLevel": "3",
     "city": "Jaboatão"
   }
 
   const occurrence4 = {
-    "date": "2021-04-30T20:43:15.346Z",
+    "date": "2021-04-29T20:43:15.346Z",
     "needsMedicalAssistance": "true",
     "needsSecurityAssistance": "true",
     "urgencyLevel": "5",
@@ -29,21 +29,21 @@
   }
 
   const occurrence5 = {
-    "date": "2021-04-01T13:28:12.233Z",
+    "date": "2021-04-28T13:28:12.233Z",
     "needsPsychologicalAssistance": "true",
     "urgencyLevel": "2",
     "city": "Olinda"
   }
 
   const occurrence6 = {
-    "date": "2021-02-13T21:51:14.672Z",
+    "date": "2021-04-25T21:51:14.672Z",
     "needsSecurityAssistance": "true",
     "urgencyLevel": "1",
     "city": "Recife"
   }
 
   const occurrence7 = {
-    "date": "2021-03-19T10:45:28.934Z",
+    "date": "2021-04-24T10:45:28.934Z",
     "needsMedicalAssistance": "true",
     "needsPsychologicalAssistance": "true",
     "urgencyLevel": "5",
@@ -58,14 +58,14 @@
   }
 
   const occurrence9 = {
-    "date": "2021-01-13T18:38:17.485Z",
+    "date": "2021-02-10T18:38:17.485Z",
     "needsSecurityAssistance": "true",
-    "urgencyLevel": "3",
+    "urgencyLevel": "5",
     "city": "Olinda"
   }
 
   const occurrence10 = {
-    "date": "2021-01-27T22:18:53.823Z",
+    "date": "2020-12-27T22:18:53.823Z",
     "needsMedicalAssistance": "true",
     "needsSecurityAssistance": "true",
     "needsPsychologicalAssistance": "true",

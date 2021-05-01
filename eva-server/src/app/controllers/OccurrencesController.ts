@@ -85,6 +85,29 @@ class OccurrencesController {
       return res.send(err);
     }
   }
+
+  async filterByDateRange(req: Request, res: Response){
+    try {
+      const startDate: Date = new Date(req.query.startDate as string);
+      const endDate: Date = new Date(req.query.endDate as string);
+
+      const occurrenceFiltered = await Occurrence.find({  
+        "date": {
+          $gte: startDate,
+          $lt: endDate,      
+        }
+      });
+      
+      return res.send(occurrenceFiltered);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Ocorrência não criada");
+      return res.send(err);
+    }
+  }
+
+
 }
 
 export default new OccurrencesController();
