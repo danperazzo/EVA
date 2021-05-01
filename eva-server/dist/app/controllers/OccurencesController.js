@@ -56,90 +56,92 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sentry = __importStar(require("@sentry/node"));
-var InstitutionsModel_1 = require("../schemas/InstitutionsModel");
-var InstitutionsController = /** @class */ (function () {
-    function InstitutionsController() {
+var OccurencesModel_1 = require("../schemas/OccurencesModel");
+var OccurencesController = /** @class */ (function () {
+    function OccurencesController() {
     }
-    InstitutionsController.prototype.index = function (req, res) {
+    /* lista todos as ocorrencias */
+    OccurencesController.prototype.index = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var institutionList, err_1;
+            var occurenceList, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, InstitutionsModel_1.Institution.find({})
-                                .select('name email phoneNumber type address')
-                                .sort({ name: 'asc' })];
+                        return [4 /*yield*/, OccurencesModel_1.Occurence.find({})
+                                .select('_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel location')
+                                .sort({ date: 'desc' })];
                     case 1:
-                        institutionList = _a.sent();
-                        return [2 /*return*/, res.send(institutionList)];
+                        occurenceList = _a.sent();
+                        return [2 /*return*/, res.send(occurenceList)];
                     case 2:
                         err_1 = _a.sent();
                         Sentry.captureException(err_1);
-                        console.log("Erro: Instituição não pode ser listada");
+                        console.log("Erro: Instituição não criada");
                         return [2 /*return*/, res.send(err_1)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    InstitutionsController.prototype.store = function (req, res) {
+    /* cria uma ocorrencia */
+    OccurencesController.prototype.store = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, name, email, phoneNumber, type, address, data, newInstitution, createdInstitution, err_2;
+            var _a, needsMedicalAssistance, needsSecurityAssistance, needsPsychologicalAssistance, urgencyLevel, location, data, newOccurence, createdOccurence, err_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _a = req.body, name = _a.name, email = _a.email, phoneNumber = _a.phoneNumber, type = _a.type, address = _a.address;
+                        _a = req.body, needsMedicalAssistance = _a.needsMedicalAssistance, needsSecurityAssistance = _a.needsSecurityAssistance, needsPsychologicalAssistance = _a.needsPsychologicalAssistance, urgencyLevel = _a.urgencyLevel, location = _a.location;
                         data = {
-                            name: name,
-                            email: email,
-                            phoneNumber: phoneNumber,
-                            type: type,
-                            address: address
+                            needsMedicalAssistance: needsMedicalAssistance,
+                            needsSecurityAssistance: needsSecurityAssistance,
+                            needsPsychologicalAssistance: needsPsychologicalAssistance,
+                            urgencyLevel: urgencyLevel,
+                            location: location
                         };
                         _b.label = 1;
                     case 1:
                         _b.trys.push([1, 3, , 4]);
-                        newInstitution = new InstitutionsModel_1.Institution(data);
-                        return [4 /*yield*/, newInstitution.save()];
+                        newOccurence = new OccurencesModel_1.Occurence(data);
+                        return [4 /*yield*/, newOccurence.save()];
                     case 2:
-                        createdInstitution = _b.sent();
-                        //console.log(createdInstitution);
-                        return [2 /*return*/, res.send(createdInstitution)];
+                        createdOccurence = _b.sent();
+                        //console.log(createdOccurence);
+                        return [2 /*return*/, res.send(createdOccurence)];
                     case 3:
                         err_2 = _b.sent();
                         Sentry.captureException(err_2);
-                        console.log("Erro: Instituição não criada");
+                        console.log("Erro: Occorencia não criada");
                         return [2 /*return*/, res.send(err_2)];
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    InstitutionsController.prototype.getById = function (req, res) {
+    OccurencesController.prototype.getById = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var institutionById, err_3;
+            var occurenceById, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, InstitutionsModel_1.Institution.findOne({
+                        return [4 /*yield*/, OccurencesModel_1.Occurence.findOne({
                                 _id: req.params.id
                             })];
                     case 1:
-                        institutionById = _a.sent();
-                        //console.log(institutionByName);
-                        return [2 /*return*/, res.send(institutionById)];
+                        occurenceById = _a.sent();
+                        //console.log(occurenceById);
+                        return [2 /*return*/, res.send(occurenceById)];
                     case 2:
                         err_3 = _a.sent();
                         Sentry.captureException(err_3);
-                        console.log("Erro: Instituição não encontrada");
+                        console.log("Erro: Ocorrencia não encontrada");
                         return [2 /*return*/, res.send(err_3)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    return InstitutionsController;
+    return OccurencesController;
 }());
-exports.default = new InstitutionsController();
+exports.default = new OccurencesController();

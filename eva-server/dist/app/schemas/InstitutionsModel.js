@@ -10,8 +10,21 @@ var InstitutionSchema = new mongoose_1.default.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     phoneNumber: {
         type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: mongoose_1.default.Schema.Types.ObjectId,
+        ref: 'Address',
         required: true
     },
     createdAt: {
@@ -21,8 +34,6 @@ var InstitutionSchema = new mongoose_1.default.Schema({
     }
 });
 exports.InstitutionSchema = InstitutionSchema;
-//InstitutionSchema.plugin(beautifyUnique);
-//InstitutionSchema.plugin(mongooseAggregatePaginate);
 var Institution = mongoose_1.default.model('Institution', InstitutionSchema);
 exports.Institution = Institution;
 var ObjectId = mongoose_1.default.Types.ObjectId;

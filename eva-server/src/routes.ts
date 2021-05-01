@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import InstitutionsController from './app/controllers/InstitutionsController';
-import OccurencesController from  './app/controllers/OccurencesController';
+import OccurrencesController from  './app/controllers/OccurrencesController';
 import AddressesController from './app/controllers/AddressesController';
 
 const routes = Router();
@@ -11,10 +11,10 @@ routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
 routes.get('/institutions/:id', InstitutionsController.getById);
 
-//occurences routes 
-routes.get('/occurences', OccurencesController.index);
-routes.post('/occurences', OccurencesController.store);
-routes.get('/occurences/:id', OccurencesController.getById);
+//occurrences routes 
+routes.get('/occurrences', OccurrencesController.index);
+routes.post('/occurrences', OccurrencesController.store);
+routes.get('/occurrences/:id', OccurrencesController.getById);
 
 //address routes
 //create 5 addresses

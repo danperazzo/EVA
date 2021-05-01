@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InstitutionsComponent } from './institutions/institutions.component';
-import { OccurencesComponent } from './occurences/occurences.component';
+import { OccurrencesComponent } from './occurrences/occurrences.component';
 import { SafePipe } from './safe.pipe';
 import {ReactiveFormsModule} from '@angular/forms'
 
@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
-  declarations: [AppComponent, InstitutionsComponent, OccurencesComponent, SafePipe, MapsComponent],
+  declarations: [AppComponent, InstitutionsComponent, OccurrencesComponent, SafePipe, MapsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

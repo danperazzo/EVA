@@ -3,29 +3,29 @@ import * as Yup from 'yup';
 import mongoose from 'mongoose';
 import { Request, Response } from 'express';
 import * as Sentry from '@sentry/node';
-import  {Occurence} from '../schemas/OccurencesModel';
+import  {Occurrence} from '../schemas/OccurrencesModel';
 
-class OccurencesController {
+class OccurrencesController {
 
 /* lista todos as ocorrencias */
   async index(req: Request, res: Response) {
 
     try {
-        const occurenceList = await Occurence.find({  
+        const occurrenceList = await Occurrence.find({  
         })
         .select('_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel location')
         .sort({ date: 'desc' });
         
-        return res.send(occurenceList);
+        return res.send(occurrenceList);
       
       } catch (err) {
         Sentry.captureException(err);
-        console.log("Erro: Instituição não criada");
+        console.log("Erro: Ocorrência não criada");
         return res.send(err);
       }
     }
 
-/* cria uma ocorrencia */
+/* cria uma ocorrência */
   async store(req: Request, res: Response) {
     const {
       needsMedicalAssistance,
@@ -44,17 +44,17 @@ class OccurencesController {
     //console.log(data);
 
     try {
-      const newOccurence = new Occurence(data);
+      const newOccurrence = new Occurrence(data);
       //console.log(data);
 
-      const createdOccurence = await newOccurence.save();
-      //console.log(createdOccurence);
+      const createdOccurrence = await newOccurrence.save();
+      //console.log(createdOccurrence);
       
-      return res.send(createdOccurence);
+      return res.send(createdOccurrence);
     
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Occorencia não criada");
+      console.log("Erro: Ocorrência não criada");
       return res.send(err);
     }
   } 
@@ -64,18 +64,18 @@ class OccurencesController {
     //const { id } = req.params.id;
     try {
       
-      const occurenceById = await Occurence.findOne({
+      const occurrenceById = await Occurrence.findOne({
         _id:req.params.id
       });
-      //console.log(occurenceById);
+      //console.log(occurrenceById);
       
-      return res.send(occurenceById);
+      return res.send(occurrenceById);
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Ocorrencia não encontrada");
+      console.log("Erro: Ocorrência não encontrada");
       return res.send(err);
     }
   } 
 }
 
-export default new OccurencesController();
+export default new OccurrencesController();

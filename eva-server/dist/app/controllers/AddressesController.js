@@ -56,90 +56,108 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Sentry = __importStar(require("@sentry/node"));
-var InstitutionsModel_1 = require("../schemas/InstitutionsModel");
-var InstitutionsController = /** @class */ (function () {
-    function InstitutionsController() {
+var AddressModel_1 = require("../schemas/AddressModel");
+var AddressesController = /** @class */ (function () {
+    function AddressesController() {
     }
-    InstitutionsController.prototype.index = function (req, res) {
+    /* lista todos os endereços */
+    AddressesController.prototype.index = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var institutionList, err_1;
+            var addressesList, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, InstitutionsModel_1.Institution.find({})
-                                .select('name email phoneNumber type address')
-                                .sort({ name: 'asc' })];
+                        return [4 /*yield*/, AddressModel_1.Address.find({})
+                                .select('_id street number postalCode city')
+                                .sort({ city: 'asc' })];
                     case 1:
-                        institutionList = _a.sent();
-                        return [2 /*return*/, res.send(institutionList)];
+                        addressesList = _a.sent();
+                        return [2 /*return*/, res.send(addressesList)];
                     case 2:
                         err_1 = _a.sent();
                         Sentry.captureException(err_1);
-                        console.log("Erro: Instituição não pode ser listada");
+                        console.log("Erro: Endereços não listados");
                         return [2 /*return*/, res.send(err_1)];
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    InstitutionsController.prototype.store = function (req, res) {
+    /* cria endereços */
+    AddressesController.prototype.store = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, name, email, phoneNumber, type, address, data, newInstitution, createdInstitution, err_2;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = req.body, name = _a.name, email = _a.email, phoneNumber = _a.phoneNumber, type = _a.type, address = _a.address;
-                        data = {
-                            name: name,
-                            email: email,
-                            phoneNumber: phoneNumber,
-                            type: type,
-                            address: address
-                        };
-                        _b.label = 1;
-                    case 1:
-                        _b.trys.push([1, 3, , 4]);
-                        newInstitution = new InstitutionsModel_1.Institution(data);
-                        return [4 /*yield*/, newInstitution.save()];
-                    case 2:
-                        createdInstitution = _b.sent();
-                        //console.log(createdInstitution);
-                        return [2 /*return*/, res.send(createdInstitution)];
-                    case 3:
-                        err_2 = _b.sent();
-                        Sentry.captureException(err_2);
-                        console.log("Erro: Instituição não criada");
-                        return [2 /*return*/, res.send(err_2)];
-                    case 4: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    InstitutionsController.prototype.getById = function (req, res) {
-        return __awaiter(this, void 0, void 0, function () {
-            var institutionById, err_3;
+            var address1, address2, address3, address4, address5, newAddress1, createdAddress1, newAddress2, createdAddress2, newAddress3, createdAddress3, newAddress4, createdAddress4, newAddress5, createdAddress5, addressesList, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, InstitutionsModel_1.Institution.findOne({
-                                _id: req.params.id
-                            })];
+                        address1 = {
+                            "street": "Rua x",
+                            "number": "53",
+                            "postalCode": "12345-123",
+                            "city": "Recife"
+                        };
+                        address2 = {
+                            "street": "Rua y",
+                            "number": "83",
+                            "postalCode": "12335-123",
+                            "city": "Recife"
+                        };
+                        address3 = {
+                            "street": "Rua Beco do Batman",
+                            "number": "233",
+                            "postalCode": "81811-123",
+                            "city": "Jaboatão dos Guararapes"
+                        };
+                        address4 = {
+                            "street": "Av. Marginal Tietê",
+                            "number": "212",
+                            "postalCode": "12121-009",
+                            "city": "Jaboatão dos Guararapes"
+                        };
+                        address5 = {
+                            "street": "Av. Agamenon Magalhães",
+                            "number": "1080",
+                            "postalCode": "50600-099",
+                            "city": "Recife"
+                        };
+                        _a.label = 1;
                     case 1:
-                        institutionById = _a.sent();
-                        //console.log(institutionByName);
-                        return [2 /*return*/, res.send(institutionById)];
+                        _a.trys.push([1, 7, , 8]);
+                        newAddress1 = new AddressModel_1.Address(address1);
+                        return [4 /*yield*/, newAddress1.save()];
                     case 2:
-                        err_3 = _a.sent();
-                        Sentry.captureException(err_3);
-                        console.log("Erro: Instituição não encontrada");
-                        return [2 /*return*/, res.send(err_3)];
-                    case 3: return [2 /*return*/];
+                        createdAddress1 = _a.sent();
+                        newAddress2 = new AddressModel_1.Address(address2);
+                        return [4 /*yield*/, newAddress2.save()];
+                    case 3:
+                        createdAddress2 = _a.sent();
+                        newAddress3 = new AddressModel_1.Address(address3);
+                        return [4 /*yield*/, newAddress3.save()];
+                    case 4:
+                        createdAddress3 = _a.sent();
+                        newAddress4 = new AddressModel_1.Address(address4);
+                        return [4 /*yield*/, newAddress4.save()];
+                    case 5:
+                        createdAddress4 = _a.sent();
+                        newAddress5 = new AddressModel_1.Address(address5);
+                        return [4 /*yield*/, newAddress5.save()];
+                    case 6:
+                        createdAddress5 = _a.sent();
+                        addressesList = {
+                            address1: address1, address2: address2, address3: address3, address4: address4, address5: address5
+                        };
+                        return [2 /*return*/, res.send(newAddress5)];
+                    case 7:
+                        err_2 = _a.sent();
+                        Sentry.captureException(err_2);
+                        console.log("Erro: Endereço não criado");
+                        return [2 /*return*/, res.send(err_2)];
+                    case 8: return [2 /*return*/];
                 }
             });
         });
     };
-    return InstitutionsController;
+    return AddressesController;
 }());
-exports.default = new InstitutionsController();
+exports.default = new AddressesController();

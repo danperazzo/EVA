@@ -1,7 +1,7 @@
 import mongoose, { model } from 'mongoose';
 import {Address} from './AddressModel';
 
-const OccurenceSchema = new mongoose.Schema({
+const OccurrenceSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true,
@@ -39,11 +39,11 @@ const OccurenceSchema = new mongoose.Schema({
   
   });
 
-  const Occurence = mongoose.model('Occurence', OccurenceSchema);
+  const Occurrence = mongoose.model('Occurrence', OccurrenceSchema);
   const ObjectId = mongoose.Types.ObjectId;
   
   
 
 export {
-  Occurence, OccurenceSchema
+  Occurrence, OccurrenceSchema
 }; 

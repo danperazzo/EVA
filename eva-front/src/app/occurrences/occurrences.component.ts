@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Occurrence, Institution} from '../../../../common/models'
 
 @Component({
-  selector: 'app-occurences',
-  templateUrl: './occurences.component.html',
-  styleUrls: ['./occurences.component.css']
+  selector: 'app-occurrences',
+  templateUrl: './occurrences.component.html',
+  styleUrls: ['./occurrences.component.css']
 })
-export class OccurencesComponent implements OnInit {
+export class OccurrencesComponent implements OnInit {
 
   constructor() { }
 
