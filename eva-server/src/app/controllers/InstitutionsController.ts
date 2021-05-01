@@ -4,14 +4,80 @@ import mongoose from "mongoose";
 import { Request, Response } from "express";
 import * as Sentry from "@sentry/node";
 import { Institution } from "../schemas/InstitutionsModel";
+import { Occurrence } from "../schemas/OccurrencesModel";
 
 class InstitutionsController {
   async index(req: Request, res: Response) {
     try {
-      const institutionList = await Institution.find({})
-        .select("name email phoneNumber type address")
-        .sort({ name: "asc" });
+        const institutionList = await Institution.find({  
+        })
+        .select('name email phoneNumber type address')
+        .sort({ name: 'asc' });
+        
+        return res.send(institutionList);
+      
+      } catch (err) {
+        Sentry.captureException(err);
+        console.log("Erro: Instituição não pode ser listada");
+        return res.send(err);
+    }
+  }
 
+  async filterInstitutionsOc(req: Request, res: Response) {
+
+    console.log("estou filtrando!")
+
+    const {
+      date,
+      needsMedicalAssistance,
+      needsSecurityAssistance,
+      needsPsychologicalAssistance,
+      urgencyLevel,
+      city
+    } = req.body;
+
+    const data = {
+      date,
+      needsMedicalAssistance,
+      needsSecurityAssistance,
+      needsPsychologicalAssistance,
+      urgencyLevel,
+      city
+    };
+
+    const newOccurrence = new Occurrence(data);
+
+    const createdInstitution = await newOccurrence.save();
+
+    var to_filter = [];
+    console.log(data.needsSecurityAssistance)
+
+    if (needsPsychologicalAssistance){
+      to_filter.push({type:"Psi"});
+    }
+
+    if(needsMedicalAssistance){
+      to_filter.push({type:"Medic"});
+    }
+
+    if(needsSecurityAssistance){
+      to_filter.push({type:"Police"})
+    }
+
+
+    try {
+      const institutionList = await Institution.find({
+        //type: "Psi" 
+        $or: to_filter 
+        
+      })
+      .find({
+        
+        //address.city : "122"
+      })
+      .select('name email phoneNumber type address')
+      .sort({ name: 'asc' });
+      
       return res.send(institutionList);
     } catch (err) {
       Sentry.captureException(err);
