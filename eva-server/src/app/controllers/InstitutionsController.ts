@@ -20,8 +20,53 @@ class InstitutionsController {
         Sentry.captureException(err);
         console.log("Erro: Instituição não pode ser listada");
         return res.send(err);
-      }
     }
+  }
+
+  async filterInstitutionsOc(req: Request, res: Response) {
+
+    console.log("estou filtrando!")
+
+    const {
+      needs_psycho, 
+      needs_med,
+      needs_police
+      } = req.body;
+
+    var to_filter = [];
+
+    if (needs_psycho){
+      to_filter.push({type:"psy"});
+    }
+
+    if(needs_med){
+      to_filter.push({type:"medic"});
+    }
+
+    if(needs_police){
+      to_filter.push({type:"police"})
+    }
+
+    console.log(to_filter)
+
+    try {
+      const institutionList = await Institution.find({
+        // $or: [] 
+        
+      })
+      .select('name email phoneNumber type address')
+      .sort({ name: 'asc' });
+      
+      return res.send(institutionList);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituição não pode ser listada");
+      return res.send(err);
+  }
+
+
+  }
 
 
   async store(req: Request, res: Response) {
@@ -63,7 +108,7 @@ class InstitutionsController {
       "name": "Psicologo 1",
       "email": "psi@data.com",
       "phoneNumber": "12345-1223",
-      "type": "Psi",
+      "type": "psy",
       "address":"608d6697c6a99357d790420b",
     }
 
@@ -71,7 +116,7 @@ class InstitutionsController {
       "name": "Psicologo 2",
       "email": "psi@data.com",
       "phoneNumber": "12345-1223",
-      "type": "Psi",
+      "type": "medic",
       "address":"608d6697c6a99357d790420b",
     }
 
@@ -79,7 +124,7 @@ class InstitutionsController {
       "name": "Psicologo 3",
       "email": "psi@data.com",
       "phoneNumber": "12345-1223",
-      "type": "Psi",
+      "type": "police",
       "address":"608d6697c6a99357d790420b",
     }
 
