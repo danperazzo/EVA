@@ -14,10 +14,10 @@ routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData)
 // routes.get('/institutions/find/:id', InstitutionsController.findOne);
 
-//occurences routes 
-routes.get('/occurences', OccurrencesController.index);
-routes.post('/occurences', OccurrencesController.store);
-routes.get('/occurences/:id', OccurrencesController.getById);
+//occurrences routes 
+routes.post('/occurrencesMocks', OccurrencesController.store);
+routes.get('/occurrences', OccurrencesController.index);
+// routes.get('/occurrences/:id', OccurrencesController.getById);
 
 //address routes
 //create 5 addresses
