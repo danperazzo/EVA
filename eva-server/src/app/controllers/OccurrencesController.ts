@@ -106,6 +106,44 @@ class OccurrencesController {
       return res.send(err);
     }
   }
+
+  async countByTypeInYear(req: Request, res: Response){
+
+    try {
+      const yearFilter: Number = parseInt(req.query.yearFilter as string);
+
+      const occurrencesAggregated = await Occurrence.aggregate([
+        {
+          $project: {
+            year: { $year: "$date" },
+            typePsy: "$needsPsychologicalAssistance",
+            typePol: "$needsSecurityAssistance",
+            typeMed: "$needsMedicalAssistance"
+          }
+        },
+        {
+          $match: {
+            year: yearFilter
+          }
+        },
+        {
+          $group: {
+            _id: "$year",
+            countMedOccurrences: { $sum : { $cond: ["$typeMed", 1, 0]} },
+            countPolOccurrences: { $sum : { $cond: ["$typePol", 1, 0]} },
+            countPsyOccurrences: { $sum : { $cond: ["$typePsy", 1, 0]} }
+          }
+        }
+      ])
+      
+      return res.send(occurrencesAggregated);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro ao agregar ocorrências por ano!\n" + err);
+      return res.send(err);
+    }
+  }
   
 }
 
