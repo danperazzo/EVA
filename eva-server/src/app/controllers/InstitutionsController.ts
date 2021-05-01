@@ -55,6 +55,56 @@ class InstitutionsController {
       console.log("Erro: Instituição não criada");
       return res.send(err);
     }
+  }
+
+  async storeMockedData(req: Request, res: Response) {
+
+    const inst1 = {
+      "name": "Psicologo 1",
+      "email": "psi@data.com",
+      "phoneNumber": "12345-1223",
+      "type": "Psi",
+      "address":"608d6697c6a99357d790420b",
+    }
+
+    const inst2 = {
+      "name": "Psicologo 2",
+      "email": "psi@data.com",
+      "phoneNumber": "12345-1223",
+      "type": "Psi",
+      "address":"608d6697c6a99357d790420b",
+    }
+
+    const inst3 = {
+      "name": "Psicologo 3",
+      "email": "psi@data.com",
+      "phoneNumber": "12345-1223",
+      "type": "Psi",
+      "address":"608d6697c6a99357d790420b",
+    }
+
+    try {
+
+      const newInst1 = new Institution(inst1);
+      const createdInstitution1 = await newInst1.save();
+
+      const newInst2 = new Institution(inst2);
+      const createdInstitution2 = await newInst2.save();
+
+      const newInst3 = new Institution(inst3);
+      const createdInstitution3 = await newInst3.save();
+
+      const institutionList = {
+        inst1, inst2, inst3
+      }
+      
+      return res.send(createdInstitution3);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituições não criada");
+      return res.send(err);
+    }
   } 
 
 
@@ -73,7 +123,24 @@ class InstitutionsController {
       console.log("Erro: Instituição não encontrada");
       return res.send(err);
     }
-  } 
+  }
+  
+  async getByOcurrence(req: Request, res: Response) {
+    //const { id } = req.params.id;
+    try {
+      
+      const institutionById = await Institution.findOne({
+        _id:req.params.id
+      });
+      //console.log(institutionByName);
+      
+      return res.send(institutionById);
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituição não encontrada");
+      return res.send(err);
+    }
+  }
 }
 
 export default new InstitutionsController();
