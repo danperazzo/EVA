@@ -21,7 +21,7 @@ class OccurrencesController {
       
       } catch (err) {
         Sentry.captureException(err);
-        console.log("Erro: Ocorrência não criada");
+        console.log("Erro ao listar ocorrências!\n" + err);
         return res.send(err);
       }
     }
@@ -41,7 +41,7 @@ class OccurrencesController {
     
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Ocorrência não criada");
+      console.log("Erro ao inserir ocorrências!\n" + err);
       return res.send(err);
     }
   } 
@@ -60,18 +60,18 @@ class OccurrencesController {
                       "date": "$date" 
               } 
             },
-            urgencyLevel: '$urgencyLevel',
-            date: '$date'
+            urgencyLevel: "$urgencyLevel",
+            date: "$date"
           }
         },
         {
           $match: {
             date_str: dateFilter
-            }
-          },
+          }
+        },
         {
           $group: {
-            _id: '$urgencyLevel',
+            _id: "$urgencyLevel",
             countOccurrences: { $sum : 1 }
           }
         }
@@ -81,7 +81,7 @@ class OccurrencesController {
     
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Ocorrência não criada");
+      console.log("Erro ao agregar ocorrências por data!\n" + err);
       return res.send(err);
     }
   }
@@ -102,12 +102,11 @@ class OccurrencesController {
     
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Ocorrência não criada");
+      console.log("Erro ao filtrar ocorrências por datas!\n" + err);
       return res.send(err);
     }
   }
-
-
+  
 }
 
 export default new OccurrencesController();
