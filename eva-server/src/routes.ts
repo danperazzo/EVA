@@ -10,11 +10,12 @@ const routes = Router();
 routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
 routes.get('/institutions/:id', InstitutionsController.getById);
+routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData)
 
-//occurrences routes 
-routes.post('/occurrences', OccurrencesController.store);
-routes.get('/occurrences', OccurrencesController.index);
-// routes.get('/occurrences/:id', OccurrencesController.getById);
+//occurences routes 
+routes.get('/occurences', OccurrencesController.index);
+routes.post('/occurences', OccurrencesController.store);
+routes.get('/occurences/:id', OccurrencesController.getById);
 
 //address routes
 //create 5 addresses
