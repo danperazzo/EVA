@@ -13,8 +13,10 @@ export class OccurencesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  findInstitutions(occurrence: Occurrence): void {}
-  addOccurrence(occurence: Occurrence): void {}
-  showLocationOnMap(institution: Institution): void {}
+  addOccurrence(occurence: Occurrence) {}
+
+  filterOccurrencesByYear(year: number) {}
+  filterOccurrenceByDateRange(from: Date, to: Date) {}
+  filterOcurrencesByUrgencyLevel(urgencyLevel: number) {}
 
 }

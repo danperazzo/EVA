@@ -1,1 +1,24 @@
-<p>institutions works!</p>
+<html>
+    
+    <form [formGroup]="ocurrenceForm" (ngSubmit)="findInstitution()">
+
+        <div>
+            <label for="location">
+                Localização
+            </label>
+            <input id="location" type="text" formControlName="location">
+        </div>
+
+        <div>
+            <label for="urgencyLevel">
+                Nível de urgência
+            </label>
+            <input id="urgencyLevel" type="number" formControlName="urgencyLevel">
+        </div>
+
+        <button class="button" type="submit">Submeter</button>
+      
+      
+    </form>
+     
+</html>

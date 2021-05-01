@@ -60,7 +60,7 @@ export class Occurrence {
   needsSecurityAssistance: boolean;
   needsPsychologicalAssistance: boolean;
   urgencyLevel: number;
-  location: Address;
+  location: string;
 
   constructor(
   date: Date,
@@ -68,12 +68,9 @@ export class Occurrence {
   needsSecurityAssistance: boolean,
   needsPsychologicalAssistance: boolean,
   urgencyLevel: number,
-  street: string,
-  number: string,
-  postalCode: string,
-  city: string) {
+  location: string) {
 
-    this.location = new Address(street, number, postalCode,city);
+    this.location = location;
     this.date = date;
     this.needsMedicalAssistance = needsMedicalAssistance;
     this.needsSecurityAssistance = needsSecurityAssistance;

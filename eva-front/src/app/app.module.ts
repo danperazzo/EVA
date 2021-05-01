@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { InstitutionsComponent } from './institutions/institutions.component';
 import { OccurencesComponent } from './occurences/occurences.component';
 import { SafePipe } from './safe.pipe';
+import {ReactiveFormsModule} from '@angular/forms'
 
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -19,6 +20,7 @@ import { MapsComponent } from './maps/maps.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     MenuModule,
     MenubarModule,
     InputTextModule,

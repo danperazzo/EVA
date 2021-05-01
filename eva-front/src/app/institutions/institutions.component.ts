@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder } from '@angular/forms';
+
 //import { AdminServices } from "../admin.service";
 import {
   Institution,
   Address,
   InstitutionType,
+  Occurrence,
 } from "../../../../common/models";
 //import "./userWithoutOcurrence.service";
 
@@ -13,9 +16,22 @@ import {
   styleUrls: ["./institutions.component.css"],
 })
 export class InstitutionsComponent implements OnInit {
+  
   institutions: Institution[] = [];
+  ocurrenceForm = this.formBuilder.group({
+    location: '',
+    urgencyLevel: ''
+  });
+
+  occurrence: Occurrence = new Occurrence(new Date(),
+                                          true,
+                                          true,
+                                          true,
+                                          0,
+                                          "");
 
 //  constructor(private adminService: AdminServices) {}
+  constructor(private formBuilder: FormBuilder,) {}
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
@@ -68,4 +84,11 @@ export class InstitutionsComponent implements OnInit {
   showLocationOnMap(institution: Institution) {}
 
   ngOnInit(): void {}
+
+
+  findInstitution(){
+
+    console.log('Procurandooo');
+
+  }
 }
