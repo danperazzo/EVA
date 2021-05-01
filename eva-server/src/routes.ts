@@ -12,9 +12,9 @@ routes.post('/institutions', InstitutionsController.store);
 routes.get('/institutions/:id', InstitutionsController.getById);
 
 //occurrences routes 
+routes.post('/occurrencesMocks', OccurrencesController.store);
 routes.get('/occurrences', OccurrencesController.index);
-routes.post('/occurrences', OccurrencesController.store);
-routes.get('/occurrences/:id', OccurrencesController.getById);
+// routes.get('/occurrences/:id', OccurrencesController.getById);
 
 //address routes
 //create 5 addresses
