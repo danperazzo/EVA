@@ -46,16 +46,38 @@ class OccurrencesController {
     }
   } 
 
-  async getByUrgencyLevel(req: Request, res: Response){
+  async countByUrgencyInDate(req: Request, res: Response){
 
     try {
-      const urgencyLevel: string = req.query.urgencyLevel as string
+      const dateFilter: string = req.query.dateFilter as string;
 
-      const occurrencesFiltered = await Occurrence.find( { urgencyLevel: urgencyLevel } )
-      .select('_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel city')
-      .sort({ date: 'desc' });
+      const occurrencesAggregated = await Occurrence.aggregate([
+        {
+          $project: {
+            "date_str": { 
+              "$dateToString": { 
+                      "format": "%Y-%m-%d", 
+                      "date": "$date" 
+              } 
+            },
+            urgencyLevel: '$urgencyLevel',
+            date: '$date'
+          }
+        },
+        {
+          $match: {
+            date_str: dateFilter
+            }
+          },
+        {
+          $group: {
+            _id: '$urgencyLevel',
+            countOccurrences: { $sum : 1 }
+          }
+        }
+      ])
       
-      return res.send(occurrencesFiltered);
+      return res.send(occurrencesAggregated);
     
     } catch (err) {
       Sentry.captureException(err);
@@ -63,22 +85,6 @@ class OccurrencesController {
       return res.send(err);
     }
   }
-  // async getById(req: Request, res: Response) {
-  //   //const { id } = req.params.id;
-  //   try {
-      
-  //     const occurrenceById = await Occurrence.findOne({
-  //       _id:req.params.id
-  //     });
-  //     //console.log(occurrenceById);
-      
-  //     return res.send(occurrenceById);
-  //   } catch (err) {
-  //     Sentry.captureException(err);
-  //     console.log("Erro: Ocorrência não encontrada");
-  //     return res.send(err);
-  //   }
-  // } 
 }
 
 export default new OccurrencesController();

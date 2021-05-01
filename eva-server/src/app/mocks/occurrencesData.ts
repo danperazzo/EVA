@@ -51,10 +51,10 @@
   }
 
   const occurrence8 = {
-    "date": "2021-02-10T12:42:07.193Z",
-    "needsSecurityAssistance": "true",
+    "date": "2021-02-10T22:42:07.193Z",
+    "needsPsychologicalAssistance": "true",
     "urgencyLevel": "4",
-    "city": "Olinda"
+    "city": "Recife"
   }
 
   const occurrence9 = {
