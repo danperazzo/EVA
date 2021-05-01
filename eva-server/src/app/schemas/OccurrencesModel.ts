@@ -23,7 +23,7 @@ const OccurrenceSchema = new mongoose.Schema({
       default: false
     },
     urgencyLevel: {
-        type: Boolean,
+        type: Number,
         required: true,
         default: false
       },
