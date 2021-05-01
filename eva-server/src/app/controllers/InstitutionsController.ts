@@ -1,13 +1,12 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 //import _ from 'lodash';
-import mongoose from 'mongoose';
-import { Request, Response } from 'express';
-import * as Sentry from '@sentry/node';
-import  {Institution} from '../schemas/InstitutionsModel';
+import mongoose from "mongoose";
+import { Request, Response } from "express";
+import * as Sentry from "@sentry/node";
+import { Institution } from "../schemas/InstitutionsModel";
 
 class InstitutionsController {
   async index(req: Request, res: Response) {
-
     try {
         const institutionList = await Institution.find({  
         })
@@ -51,7 +50,7 @@ class InstitutionsController {
 
     try {
       const institutionList = await Institution.find({
-        // $or: [] 
+         $or: to_filter 
         
       })
       .select('name email phoneNumber type address')
@@ -68,22 +67,16 @@ class InstitutionsController {
 
   }
 
-
   async store(req: Request, res: Response) {
-    const {
-      name, 
-      email,
-      phoneNumber,
-      type,
-      address
-      } = req.body;
+    const { name, email, phoneNumber, type, address } = req.body;
 
     const data = {
-      name, 
+      name,
       email,
       phoneNumber,
       type,
-      address};
+      address,
+    };
     //console.log(data);
 
     try {
@@ -92,9 +85,8 @@ class InstitutionsController {
 
       const createdInstitution = await newInstitution.save();
       //console.log(createdInstitution);
-      
+
       return res.send(createdInstitution);
-    
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro: Instituição não criada");
@@ -103,33 +95,32 @@ class InstitutionsController {
   }
 
   async storeMockedData(req: Request, res: Response) {
-
+    
     const inst1 = {
       "name": "Psicologo 1",
-      "email": "psi@data.com",
-      "phoneNumber": "12345-1223",
+      "email": "psi1@data.com",
+      "phoneNumber": "312345-1223",
       "type": "psy",
       "address":"608d6697c6a99357d790420b",
     }
 
     const inst2 = {
-      "name": "Psicologo 2",
-      "email": "psi@data.com",
-      "phoneNumber": "12345-1223",
+      "name": "Medic 2",
+      "email": "psi2@data.com",
+      "phoneNumber": "212345-1223",
       "type": "medic",
       "address":"608d6697c6a99357d790420b",
     }
 
     const inst3 = {
-      "name": "Psicologo 3",
-      "email": "psi@data.com",
-      "phoneNumber": "12345-1223",
+      "name": "Police 3",
+      "email": "psi2@data.com",
+      "phoneNumber": "112345-1223",
       "type": "police",
       "address":"608d6697c6a99357d790420b",
     }
 
     try {
-
       const newInst1 = new Institution(inst1);
       const createdInstitution1 = await newInst1.save();
 
@@ -140,28 +131,27 @@ class InstitutionsController {
       const createdInstitution3 = await newInst3.save();
 
       const institutionList = {
-        inst1, inst2, inst3
-      }
-      
+        inst1,
+        inst2,
+        inst3,
+      };
+
       return res.send(createdInstitution3);
-    
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro: Instituições não criada");
       return res.send(err);
     }
-  } 
-
+  }
 
   async getById(req: Request, res: Response) {
     //const { id } = req.params.id;
     try {
-      
       const institutionById = await Institution.findOne({
-        _id:req.params.id
+        _id: req.params.id,
       });
       //console.log(institutionByName);
-      
+
       return res.send(institutionById);
     } catch (err) {
       Sentry.captureException(err);
@@ -169,21 +159,48 @@ class InstitutionsController {
       return res.send(err);
     }
   }
-  
+
   async getByOcurrence(req: Request, res: Response) {
     //const { id } = req.params.id;
     try {
-      
       const institutionById = await Institution.findOne({
-        _id:req.params.id
+        _id: req.params.id,
       });
       //console.log(institutionByName);
-      
+
       return res.send(institutionById);
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro: Instituição não encontrada");
       return res.send(err);
+    }
+  }
+
+  async findOne(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      console.log(id);
+
+      const data = await Institution.findById(id).exec();
+
+      return res.json({ id: id, data });
+    } catch (err) {
+      return res.status(400).send(err);
+    }
+  }
+
+  async findByType(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      console.log(id);
+
+      const data = await Institution.find({
+        type: "Psi",
+      }).exec();
+
+      return res.json({ id: id, data });
+    } catch (err) {
+      return res.status(400).send(err);
     }
   }
 }
