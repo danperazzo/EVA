@@ -9,8 +9,10 @@ const routes = Router();
 //institutions routes 
 routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
-routes.get('/institutions/:id', InstitutionsController.getById);
+routes.get('/institutions/:id', InstitutionsController.findOne);
+routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData)
+// routes.get('/institutions/find/:id', InstitutionsController.findOne);
 
 //occurences routes 
 routes.get('/occurences', OccurrencesController.index);

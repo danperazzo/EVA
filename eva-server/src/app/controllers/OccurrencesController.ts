@@ -156,22 +156,22 @@ class OccurrencesController {
   } 
 
 
-  // async getById(req: Request, res: Response) {
-  //   //const { id } = req.params.id;
-  //   try {
+  async getById(req: Request, res: Response) {
+    //const { id } = req.params.id;
+    try {
       
-  //     const occurrenceById = await Occurrence.findOne({
-  //       _id:req.params.id
-  //     });
-  //     //console.log(occurrenceById);
+      const occurrenceById = await Occurrence.findOne({
+        _id:req.params.id
+      });
+      //console.log(occurrenceById);
       
-  //     return res.send(occurrenceById);
-  //   } catch (err) {
-  //     Sentry.captureException(err);
-  //     console.log("Erro: Ocorrência não encontrada");
-  //     return res.send(err);
-  //   }
-  // } 
+      return res.send(occurrenceById);
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Ocorrência não encontrada");
+      return res.send(err);
+    }
+  } 
 }
 
 export default new OccurrencesController();
