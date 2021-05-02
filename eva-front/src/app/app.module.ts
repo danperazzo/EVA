@@ -16,6 +16,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapsComponent } from './maps/maps.component';
 import { Institutions2Component } from './institutions2/institutions2.component';
 import { OrderListModule } from 'primeng/orderlist';
+import {ListboxModule} from 'primeng/listbox';
+import { CheckboxModule } from 'primeng/checkbox';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { OrderListModule } from 'primeng/orderlist';
     ButtonModule,
     BrowserAnimationsModule,
     OrderListModule,
+    CheckboxModule,
+    FormsModule,
+    ListboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
