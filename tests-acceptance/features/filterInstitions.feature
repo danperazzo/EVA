@@ -10,6 +10,7 @@ Feature: Mostrar instituições filtradas para a vítima
 
 Scenario: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma mensagem de erro.
 
-    Given O sistema possui "1" instituições "Médica" situadas em "Recife"
+    Given O sistema não possui ocorrências situadas em "Recife"
     When Eu registro minha ocorrência situada em "Recife"
-    Then O sistema retorna "1" instituição "Médica"
+    Then O sistema possui alguma ocorrência situada em "Recife"
+
