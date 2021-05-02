@@ -6,11 +6,14 @@
                     <span>Visão Mensal</span>
                 </ng-template>
                 <div>
-                    <input [(ngModel)]="dateFilter" type="text" pInputText placeholder="date" />
+                    <!-- <input [(ngModel)]="dateFilter" type="text" pInputText placeholder="date" /> -->
+              
+                    <p-calendar [(ngModel)]="rangeDates" [showIcon]="true" icon="pi pi-calendar" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
+          
                     <p-button
-                        label="List Occurrences"
-                        icon="pi pi-power-off"
-                        (onClick)="countOccurrencesByUrgencyInDate(dateFilter)"
+                        label="Filter"
+                        icon="pi pi-filter"
+                        (onClick)="countOccurrencesByUrgencyInDate()"
                     ></p-button>
                 </div>
                 <div class="card">

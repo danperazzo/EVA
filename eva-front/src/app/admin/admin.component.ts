@@ -10,7 +10,7 @@ import { AdminServices } from '../admin.service';
 export class AdminComponent implements OnInit {
   
   activeIndex: number = 0;
-  dateFilter: string = "2021-02-10";
+  rangeDates: Date[] = [new Date(), new Date()];
   occurrenceList = [];
   labels = [];
   values = [];
@@ -18,9 +18,11 @@ export class AdminComponent implements OnInit {
   
   constructor(private adminServices: AdminServices) {}
 
-  countOccurrencesByUrgencyInDate(date: string){
+  countOccurrencesByUrgencyInDate(){
 
-    this.adminServices.countOccurrencesByUrgencyInDate(this.dateFilter).then(response => {
+    let dateFilter = this.rangeDates[0].toISOString().split("T")[0];
+
+    this.adminServices.countOccurrencesByUrgencyInDate(dateFilter).then(response => {
       this.occurrenceList = response;
 
       this.labels = [];
@@ -29,7 +31,7 @@ export class AdminComponent implements OnInit {
         this.labels[i] = this.occurrenceList[i]["_id"];
         this.values[i] = this.occurrenceList[i]["countOccurrences"];
       }
-  
+      
       this.pieData = {
         labels: this.labels,
         datasets: [
@@ -55,6 +57,6 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countOccurrencesByUrgencyInDate(this.dateFilter);
+    this.countOccurrencesByUrgencyInDate();
   }
 }
