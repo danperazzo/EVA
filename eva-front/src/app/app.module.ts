@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapsComponent } from './maps/maps.component';
 import { Institutions2Component } from './institutions2/institutions2.component';
 import { OrderListModule } from 'primeng/orderlist';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { OrderListModule } from 'primeng/orderlist';
   ],
   imports: [
     BrowserModule,
+    CalendarModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MenuModule,

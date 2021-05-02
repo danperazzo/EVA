@@ -1,5 +1,9 @@
 <html>
-
+    
+    <div class="p-field p-col-12 p-md-4">
+        <label for="icon">Data da Ocorrência</label>
+        <p-calendar [(ngModel)]="dateOccurrence" [showIcon]="true" inputId="icon"></p-calendar>
+    </div>
     
     <div class="p-field-checkbox">
         <p-checkbox [(ngModel)]="needsPsyHelp" [binary]="true"></p-checkbox>
@@ -36,5 +40,6 @@
       
       
     </form>
+
      
 </html>

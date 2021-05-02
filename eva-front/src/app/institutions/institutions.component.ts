@@ -30,6 +30,7 @@ export class InstitutionsComponent implements OnInit {
   needsPsyHelp: boolean = false;
   needsMedHelp:boolean = false;
   needsSecHelp:boolean = false;
+  dateOccurrence: Date = new Date();
   
 
   occurrence: Occurrence = new Occurrence(new Date(),
