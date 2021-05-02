@@ -18,7 +18,7 @@ routes.post('/institutions_filter',InstitutionsController.filterInstitutionsOc )
 //occurrences routes 
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);
 routes.get('/occurrences', OccurrencesController.index);
-routes.get('/occurrences/countByUrgencyInDate', OccurrencesController.countByUrgencyInDate);
+routes.get('/occurrences/countByUrgencyInDateRange', OccurrencesController.countByUrgencyInDateRange);
 routes.get('/occurrences/filterByDateRange', OccurrencesController.filterByDateRange);
 routes.get('/occurrences/countByTypeInYear', OccurrencesController.countByTypeInYear);
 

@@ -11,25 +11,30 @@ export class AdminComponent implements OnInit {
   
   activeIndex: number = 0;
   rangeDates: Date[] = [new Date(), new Date()];
-  occurrenceList = [];
+  occurrencesFiltered = [];
+  occurrencesQtyPerUrgency = [];
   labels = [];
   values = [];
   pieData: any;
   
   constructor(private adminServices: AdminServices) {}
 
-  countOccurrencesByUrgencyInDate(){
+  countOccurrencesByUrgencyInDateRange(){
 
-    let dateFilter = this.rangeDates[0].toISOString().split("T")[0];
+    let dateStart = this.rangeDates[0].toISOString().split("T")[0];
+    let dateEnd = this.rangeDates[1].toISOString().split("T")[0];
 
-    this.adminServices.countOccurrencesByUrgencyInDate(dateFilter).then(response => {
-      this.occurrenceList = response;
+    console.log("date star = " + dateStart);
 
+    this.adminServices.countOccurrencesByUrgencyInDateRange(dateStart, dateEnd).then(response => {
+      this.occurrencesQtyPerUrgency = response;
+
+      console.log("this.occurrencesQtyPerUrgency =" + JSON.stringify(this.occurrencesQtyPerUrgency));
       this.labels = [];
       this.values = [];
-      for (let i = 0; i < this.occurrenceList.length; i++) {
-        this.labels[i] = this.occurrenceList[i]["_id"];
-        this.values[i] = this.occurrenceList[i]["countOccurrences"];
+      for (let i = 0; i < this.occurrencesQtyPerUrgency.length; i++) {
+        this.labels[i] = this.occurrencesQtyPerUrgency[i]["_id"];
+        this.values[i] = this.occurrencesQtyPerUrgency[i]["countOccurrences"];
       }
       
       this.pieData = {
@@ -56,7 +61,9 @@ export class AdminComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
-    this.countOccurrencesByUrgencyInDate();
+    this.countOccurrencesByUrgencyInDateRange();
   }
+
 }
