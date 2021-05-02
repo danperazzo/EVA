@@ -51,7 +51,6 @@ class InstitutionsController {
     const createdInstitution = await newOccurrence.save();
 
     var to_filter = [];
-    console.log(data.needsSecurityAssistance);
 
     if (needsPsychologicalAssistance) {
       to_filter.push("Psi");
@@ -65,24 +64,17 @@ class InstitutionsController {
       to_filter.push("Pol");
     }
 
+    console.log("to filter")
     console.log(to_filter);
 
-    var id_adresses = await Address.find({ city: city }).select("adress_id");
 
-    var id_addresses_name = [];
-    for (var dict_name of id_adresses) {
-      id_addresses_name.push(dict_name.get("adress_id"));
-    }
-
-    console.log(id_addresses_name);
     try {
       const institutionList = await Institution.find({
         type: { $in: to_filter },
-        adress_id: { $in: id_addresses_name },
+        "address.city": city,
       })
-        .select("name email phoneNumber type adress_id")
-        .sort({ name: "asc" });
-
+      
+      console.log("lista")
       console.log(institutionList);
 
       return res.send(institutionList);
@@ -126,8 +118,8 @@ class InstitutionsController {
       type: "Psi",
       // adress_id: "1",
       address: {
-        name: "teste",
-        number: "123-a",
+        street: "Rua das Pernambucanas",
+        number: "407",
         city: "Recife",
       },
     };
@@ -139,8 +131,8 @@ class InstitutionsController {
       type: "Med",
       // adress_id: "2",
       address: {
-        name: "teste",
-        number: "123-a",
+        street: "Rua Dr. Arthur Gonçalves",
+        number: "46",
         city: "Recife",
       },
     };
@@ -152,9 +144,9 @@ class InstitutionsController {
       type: "Pol",
       // adress_id: "3",
       address: {
-        name: "teste",
-        number: "123-a",
-        city: "Recife",
+        street: "Rua Beco do Batman",
+        number: "233",
+        city: "Jaboatão dos Guararapes",
       },
     };
 
@@ -165,9 +157,9 @@ class InstitutionsController {
       type: "Psi",
       // adress_id: "4",
       address: {
-        name: "teste",
-        number: "123-a",
-        city: "Recife",
+        street: "Galeria Cordeiro - Praça Doze de Março",
+        number: "23",
+        city: "Olinda",
       },
     };
 
@@ -178,9 +170,9 @@ class InstitutionsController {
       type: "Med",
       // adress_id: "5",
       address: {
-        name: "teste",
-        number: "123-a",
-        city: "Recife",
+        street: "Av. Pres. Getúlio Vargas",
+        number: "999",
+        city: "Olinda",
       },
     };
 

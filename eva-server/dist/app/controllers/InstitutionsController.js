@@ -58,7 +58,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Sentry = __importStar(require("@sentry/node"));
 var InstitutionsModel_1 = require("../schemas/InstitutionsModel");
 var OccurrencesModel_1 = require("../schemas/OccurrencesModel");
-var AddressModel_1 = require("../schemas/AddressModel");
 var InstitutionsController = /** @class */ (function () {
     function InstitutionsController() {
     }
@@ -70,10 +69,13 @@ var InstitutionsController = /** @class */ (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, InstitutionsModel_1.Institution.find({})
-                                .select('name email phoneNumber type adress_id')
-                                .sort({ name: 'asc' })];
+                            // .select("name email phoneNumber type adress_id")
+                            // .sort({ name: "asc" });
+                        ];
                     case 1:
                         institutionList = _a.sent();
+                        // .select("name email phoneNumber type adress_id")
+                        // .sort({ name: "asc" });
                         return [2 /*return*/, res.send(institutionList)];
                     case 2:
                         err_1 = _a.sent();
@@ -87,7 +89,7 @@ var InstitutionsController = /** @class */ (function () {
     };
     InstitutionsController.prototype.filterInstitutionsOc = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, city, date, needsMedicalAssistance, needsSecurityAssistance, needsPsychologicalAssistance, urgencyLevel, data, newOccurrence, createdInstitution, to_filter, id_adresses, id_addresses_name, _i, id_adresses_1, dict_name, institutionList, err_2;
+            var _a, city, date, needsMedicalAssistance, needsSecurityAssistance, needsPsychologicalAssistance, urgencyLevel, data, newOccurrence, createdInstitution, to_filter, institutionList, err_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -101,7 +103,7 @@ var InstitutionsController = /** @class */ (function () {
                             needsSecurityAssistance: needsSecurityAssistance,
                             needsPsychologicalAssistance: needsPsychologicalAssistance,
                             urgencyLevel: urgencyLevel,
-                            city: city
+                            city: city,
                         };
                         console.log(data);
                         newOccurrence = new OccurrencesModel_1.Occurrence(data);
@@ -109,7 +111,6 @@ var InstitutionsController = /** @class */ (function () {
                     case 1:
                         createdInstitution = _b.sent();
                         to_filter = [];
-                        console.log(data.needsSecurityAssistance);
                         if (needsPsychologicalAssistance) {
                             to_filter.push("Psi");
                         }
@@ -119,36 +120,28 @@ var InstitutionsController = /** @class */ (function () {
                         if (needsSecurityAssistance) {
                             to_filter.push("Pol");
                         }
+                        console.log("to filter");
                         console.log(to_filter);
-                        return [4 /*yield*/, AddressModel_1.Address.find({ city: city }).select('adress_id')];
+                        _b.label = 2;
                     case 2:
-                        id_adresses = _b.sent();
-                        id_addresses_name = [];
-                        for (_i = 0, id_adresses_1 = id_adresses; _i < id_adresses_1.length; _i++) {
-                            dict_name = id_adresses_1[_i];
-                            id_addresses_name.push(dict_name.get('adress_id'));
-                        }
-                        console.log(id_addresses_name);
-                        _b.label = 3;
-                    case 3:
-                        _b.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, InstitutionsModel_1.Institution
-                                .find({
+                        _b.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, InstitutionsModel_1.Institution.find({
                                 type: { $in: to_filter },
-                                adress_id: { $in: id_addresses_name }
+                                address: { city: "Recife" },
                             })
-                                .select('name email phoneNumber type adress_id')
-                                .sort({ name: 'asc' })];
-                    case 4:
+                                .select("name email phoneNumber type address")
+                                .sort({ name: "asc" })];
+                    case 3:
                         institutionList = _b.sent();
+                        console.log("lista");
                         console.log(institutionList);
                         return [2 /*return*/, res.send(institutionList)];
-                    case 5:
+                    case 4:
                         err_2 = _b.sent();
                         Sentry.captureException(err_2);
                         console.log("Erro: Instituição não pode ser listada");
                         return [2 /*return*/, res.send(err_2)];
-                    case 6: return [2 /*return*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -192,39 +185,64 @@ var InstitutionsController = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         inst1 = {
-                            "name": "Psicologo 1",
-                            "email": "psi@data.com",
-                            "phoneNumber": "312345-1223",
-                            "type": "Psi",
-                            "adress_id": "1",
+                            name: "Psicologo 1",
+                            email: "psi@data.com",
+                            phoneNumber: "312345-1223",
+                            type: "Psi",
+                            // adress_id: "1",
+                            address: {
+                                name: "teste",
+                                number: "123-a",
+                                city: "Recife",
+                            },
                         };
                         inst2 = {
-                            "name": "Medic 1",
-                            "email": "med@data.com",
-                            "phoneNumber": "212345-1223",
-                            "type": "Med",
-                            "adress_id": "2",
+                            name: "Medic 1",
+                            email: "med@data.com",
+                            phoneNumber: "212345-1223",
+                            type: "Med",
+                            // adress_id: "2",
+                            address: {
+                                name: "teste",
+                                number: "123-a",
+                                city: "Recife",
+                            },
                         };
                         inst3 = {
-                            "name": "Delegacia De Polícia Varadouro",
-                            "email": "pol2@data.com",
-                            "phoneNumber": "112345-1223",
-                            "type": "Pol",
-                            "adress_id": "3",
+                            name: "Delegacia De Polícia Varadouro",
+                            email: "pol2@data.com",
+                            phoneNumber: "112345-1223",
+                            type: "Pol",
+                            // adress_id: "3",
+                            address: {
+                                name: "teste",
+                                number: "123-a",
+                                city: "Recife",
+                            },
                         };
                         inst4 = {
-                            "name": "Psicologo 2",
-                            "email": "psi2@data.com",
-                            "phoneNumber": "31312122345-1223",
-                            "type": "Psi",
-                            "adress_id": "4",
+                            name: "Psicologo 2",
+                            email: "psi2@data.com",
+                            phoneNumber: "31312122345-1223",
+                            type: "Psi",
+                            // adress_id: "4",
+                            address: {
+                                name: "teste",
+                                number: "123-a",
+                                city: "Recife",
+                            },
                         };
                         inst5 = {
-                            "name": "PartMed Saúde",
-                            "email": "med2@data.com",
-                            "phoneNumber": "212142345-1223",
-                            "type": "Med",
-                            "adress_id": "5",
+                            name: "PartMed Saúde",
+                            email: "med2@data.com",
+                            phoneNumber: "212142345-1223",
+                            type: "Med",
+                            // adress_id: "5",
+                            address: {
+                                name: "teste",
+                                number: "123-a",
+                                city: "Recife",
+                            },
                         };
                         _a.label = 1;
                     case 1:
@@ -254,7 +272,7 @@ var InstitutionsController = /** @class */ (function () {
                             inst2: inst2,
                             inst3: inst3,
                             inst4: inst4,
-                            inst5: inst5
+                            inst5: inst5,
                         };
                         return [2 /*return*/, res.send(createdInstitution5)];
                     case 7:

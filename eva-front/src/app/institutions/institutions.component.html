@@ -44,7 +44,10 @@
                 <th>Email</th>
                 <th>Telefone</th>
                 <th>Tipo</th>
-                <th>Endereço</th>
+                <th>Cidade</th>
+                <th>Rua</th>
+                <th>Numero</th>
+
 
             </tr>
         </ng-template>
@@ -54,7 +57,10 @@
                 <td>{{institutuion.email}}</td>
                 <td>{{institutuion.phoneNumber}}</td>
                 <td>{{institutuion.type}}</td>
-                <td>{{institutuion.adress_id}}</td>
+                <td>{{institutuion.address.city}}</td>
+                <td>{{institutuion.address.street}}</td>
+                <td>{{institutuion.address.number}}</td>
+
             </tr>
         </ng-template>
     </p-table>
