@@ -31,4 +31,29 @@
   </span>
 
   <p-button label="Submeter" (onClick)="filterInstitutions()"></p-button>
+
+  <p-table [value]="filteredInst">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Tipo</th>
+        <th>Cidade</th>
+        <th>Rua</th>
+        <th>Numero</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-institutuion>
+      <tr>
+        <td>{{ institutuion.name }}</td>
+        <td>{{ institutuion.email }}</td>
+        <td>{{ institutuion.phoneNumber }}</td>
+        <td>{{ institutuion.type }}</td>
+        <td>{{ institutuion.address.city }}</td>
+        <td>{{ institutuion.address.street }}</td>
+        <td>{{ institutuion.address.number }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
 </div>
