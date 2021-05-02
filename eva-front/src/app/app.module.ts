@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { InstitutionsComponent } from './institutions/institutions.component';
 import { OccurrencesComponent } from './occurrences/occurrences.component';
 import { SafePipe } from './safe.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule  } from '@angular/forms';
+import {CheckboxModule} from 'primeng/checkbox';
 
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -36,6 +37,8 @@ import { OrderListModule } from 'primeng/orderlist';
     ButtonModule,
     BrowserAnimationsModule,
     OrderListModule,
+    CheckboxModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

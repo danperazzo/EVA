@@ -1,4 +1,20 @@
 <html>
+
+    
+    <div class="p-field-checkbox">
+        <p-checkbox [(ngModel)]="needsPsyHelp" [binary]="true"></p-checkbox>
+        <label>Ajuda Psicológica</label>
+    </div>
+
+    <div class="p-field-checkbox">
+        <p-checkbox [(ngModel)]="needsMedHelp" [binary]="true"></p-checkbox>
+        <label>Ajuda Médica</label>
+    </div>
+
+    <div class="p-field-checkbox">
+        <p-checkbox [(ngModel)]="needsSecHelp" [binary]="true"></p-checkbox>
+        <label>Ajuda Policial</label>
+    </div>
     
     <form [formGroup]="ocurrenceForm" (ngSubmit)="findInstitution()">
 

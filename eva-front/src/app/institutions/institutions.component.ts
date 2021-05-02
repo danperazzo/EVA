@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder } from '@angular/forms';
+import { MenuItem } from "primeng/api";
+import {CheckboxModule} from 'primeng/checkbox';
+
+
 
 //import { AdminServices } from "../admin.service";
 import {
@@ -22,6 +26,11 @@ export class InstitutionsComponent implements OnInit {
     location: '',
     urgencyLevel: ''
   });
+
+  needsPsyHelp: boolean = false;
+  needsMedHelp:boolean = false;
+  needsSecHelp:boolean = false;
+  
 
   occurrence: Occurrence = new Occurrence(new Date(),
                                           true,
@@ -89,6 +98,11 @@ export class InstitutionsComponent implements OnInit {
   findInstitution(){
 
     console.log('Procurandooo');
-
+    if(this.needsPsyHelp){
+      console.log("precisa")
+    }
+    else{
+      console.log("nao")
+    }
   }
 }
