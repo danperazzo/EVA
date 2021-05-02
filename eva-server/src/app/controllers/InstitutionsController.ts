@@ -23,9 +23,6 @@ class InstitutionsController {
   }
 
   async filterInstitutionsOc(req: Request, res: Response) {
-    console.log("estou filtrando!");
-    console.log(req.body);
-
     const {
       city,
       date,
@@ -34,7 +31,6 @@ class InstitutionsController {
       needsPsychologicalAssistance,
       urgencyLevel,
     } = req.body;
-    console.log("passei");
 
     const data = {
       date,
@@ -44,7 +40,6 @@ class InstitutionsController {
       urgencyLevel,
       city,
     };
-    console.log(data);
 
     const newOccurrence = new Occurrence(data);
 
@@ -64,8 +59,6 @@ class InstitutionsController {
       to_filter.push("Pol");
     }
 
-    console.log("to filter")
-    console.log(to_filter);
 
 
     try {
@@ -74,13 +67,9 @@ class InstitutionsController {
         "address.city": city,
       })
       
-      console.log("lista")
-      console.log(institutionList);
-
       return res.send(institutionList);
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Instituição não pode ser listada");
       return res.send(err);
     }
   }
