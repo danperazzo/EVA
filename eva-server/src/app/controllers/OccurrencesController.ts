@@ -21,7 +21,7 @@ class OccurrencesController {
       
       } catch (err) {
         Sentry.captureException(err);
-        console.log("Erro: Ocorrência não criada");
+        console.log("Erro ao listar ocorrências!\n" + err);
         return res.send(err);
       }
     }
@@ -41,44 +41,110 @@ class OccurrencesController {
     
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Ocorrência não criada");
+      console.log("Erro ao inserir ocorrências!\n" + err);
       return res.send(err);
     }
   } 
 
-  async getByUrgencyLevel(req: Request, res: Response){
+  async countByUrgencyInDate(req: Request, res: Response){
 
     try {
-      const urgencyLevel: string = req.query.urgencyLevel as string
+      const dateFilter: string = req.query.dateFilter as string;
 
-      const occurrencesFiltered = await Occurrence.find( { urgencyLevel: urgencyLevel } )
-      .select('_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel city')
-      .sort({ date: 'desc' });
+      const occurrencesAggregated = await Occurrence.aggregate([
+        {
+          $project: {
+            "date_str": { 
+              "$dateToString": { 
+                      "format": "%Y-%m-%d", 
+                      "date": "$date" 
+              } 
+            },
+            urgencyLevel: "$urgencyLevel",
+            date: "$date"
+          }
+        },
+        {
+          $match: {
+            date_str: dateFilter
+          }
+        },
+        {
+          $group: {
+            _id: "$urgencyLevel",
+            countOccurrences: { $sum : 1 }
+          }
+        }
+      ])
       
-      return res.send(occurrencesFiltered);
+      return res.send(occurrencesAggregated);
     
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Ocorrência não criada");
+      console.log("Erro ao agregar ocorrências por data!\n" + err);
       return res.send(err);
     }
   }
-  // async getById(req: Request, res: Response) {
-  //   //const { id } = req.params.id;
-  //   try {
+
+  async filterByDateRange(req: Request, res: Response){
+    try {
+      const startDate: Date = new Date(req.query.startDate as string);
+      const endDate: Date = new Date(req.query.endDate as string);
+
+      const occurrenceFiltered = await Occurrence.find({  
+        "date": {
+          $gte: startDate,
+          $lt: endDate,      
+        }
+      });
       
-  //     const occurrenceById = await Occurrence.findOne({
-  //       _id:req.params.id
-  //     });
-  //     //console.log(occurrenceById);
+      return res.send(occurrenceFiltered);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro ao filtrar ocorrências por datas!\n" + err);
+      return res.send(err);
+    }
+  }
+
+  async countByTypeInYear(req: Request, res: Response){
+
+    try {
+      const yearFilter: Number = parseInt(req.query.yearFilter as string);
+
+      const occurrencesAggregated = await Occurrence.aggregate([
+        {
+          $project: {
+            year: { $year: "$date" },
+            typePsy: "$needsPsychologicalAssistance",
+            typePol: "$needsSecurityAssistance",
+            typeMed: "$needsMedicalAssistance"
+          }
+        },
+        {
+          $match: {
+            year: yearFilter
+          }
+        },
+        {
+          $group: {
+            _id: "$year",
+            countMedOccurrences: { $sum : { $cond: ["$typeMed", 1, 0]} },
+            countPolOccurrences: { $sum : { $cond: ["$typePol", 1, 0]} },
+            countPsyOccurrences: { $sum : { $cond: ["$typePsy", 1, 0]} }
+          }
+        }
+      ])
       
-  //     return res.send(occurrenceById);
-  //   } catch (err) {
-  //     Sentry.captureException(err);
-  //     console.log("Erro: Ocorrência não encontrada");
-  //     return res.send(err);
-  //   }
-  // } 
+      return res.send(occurrencesAggregated);
+    
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro ao agregar ocorrências por ano!\n" + err);
+      return res.send(err);
+    }
+  }
+  
 }
 
 export default new OccurrencesController();
