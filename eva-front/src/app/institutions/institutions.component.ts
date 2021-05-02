@@ -31,15 +31,10 @@ export class InstitutionsComponent implements OnInit {
   needsMedHelp:boolean = false;
   needsSecHelp:boolean = false;
   dateOccurrence: Date = new Date();
-  urgLevel:number = 2
+  urgLevel:number = 2;
+  location:string = "";
   
 
-  occurrence: Occurrence = new Occurrence(new Date(),
-                                          true,
-                                          true,
-                                          true,
-                                          0,
-                                          "");
 
 //  constructor(private adminService: AdminServices) {}
   constructor(private formBuilder: FormBuilder,) {}
@@ -108,5 +103,6 @@ export class InstitutionsComponent implements OnInit {
     }
 
     console.log(this.urgLevel)
+    console.log(this.location)
   }
 }
