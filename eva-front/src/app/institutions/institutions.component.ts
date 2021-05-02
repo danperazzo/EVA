@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from '@angular/forms';
+import { MenuItem } from "primeng/api";
+import {CheckboxModule} from 'primeng/checkbox';
+import {OccurrenceService} from '../ocurrence.service'
+
 
 //import { AdminServices } from "../admin.service";
 import {
@@ -8,7 +11,6 @@ import {
   InstitutionType,
   Occurrence,
 } from "../../../../common/models";
-//import "./userWithoutOcurrence.service";
 
 @Component({
   selector: "institutions",
@@ -18,20 +20,17 @@ import {
 export class InstitutionsComponent implements OnInit {
   
   institutions: Institution[] = [];
-  ocurrenceForm = this.formBuilder.group({
-    location: '',
-    urgencyLevel: ''
-  });
 
-  occurrence: Occurrence = new Occurrence(new Date(),
-                                          true,
-                                          true,
-                                          true,
-                                          0,
-                                          "");
+  needsPsyHelp: boolean = false;
+  needsMedHelp:boolean = false;
+  needsSecHelp:boolean = false;
+  dateOccurrence: Date = new Date();
+  urgLevel:number = 2;
+  location:string = "";
+  
 
-//  constructor(private adminService: AdminServices) {}
-  constructor(private formBuilder: FormBuilder,) {}
+
+  constructor(private occurrenceService: OccurrenceService) {}
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
@@ -86,9 +85,12 @@ export class InstitutionsComponent implements OnInit {
   ngOnInit(): void {}
 
 
-  findInstitution(){
+  filterInstitutions(){
+    
 
-    console.log('Procurandooo');
+
+    
+
 
   }
 }

@@ -6,13 +6,13 @@ import { retry, map } from "rxjs/operators";
 import { Occurrence, Institution } from "../../../common/models";
 
 @Injectable()
-export class AdminServices {
+export class OccurrenceService {
   private headers = new HttpHeaders({ "Content-Type": "application/json" });
   private taURL = "http://localhost:3000/occurrences";
 
   constructor(private http: HttpClient) {}
 
-  findInstitutions(occurrence: Occurrence): void {}
+  filterInstitutions(occurrence: Occurrence): void {}
   addOccurrence(occurence: Occurrence): void {}
   showLocationOnMap(institution: Institution): void {}
 }
