@@ -104,7 +104,7 @@ export class InstitutionsComponent implements OnInit {
       .then((response) => {
         this.filteredInst = response.map((institution: any) => {
           const addressString = `${institution.address.street} ${institution.address.number}, ${institution.address.city}`;
-          const mapsUrl = `maps/${addressString}`;
+          const mapsUrl = `maps/${institution.name} ${addressString}`;
           return { ...institution, addressString, mapsUrl };
         });
 
