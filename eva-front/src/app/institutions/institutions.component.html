@@ -19,7 +19,17 @@
         <p-checkbox [(ngModel)]="needsSecHelp" [binary]="true"></p-checkbox>
         <label>Ajuda Policial</label>
     </div>
+
+
+    <div class="p-field p-col-12 p-md-3">
+        <label for="minmax-buttons">Nível de Urgência</label>
+        <p-inputNumber [(ngModel)]="urgLevel" mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="5">
+        </p-inputNumber>
+    </div>
     
+
+
+
     <form [formGroup]="ocurrenceForm" (ngSubmit)="filterInstitutions()">
 
         <div>

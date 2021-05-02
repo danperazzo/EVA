@@ -18,6 +18,7 @@ import { MapsComponent } from './maps/maps.component';
 import { Institutions2Component } from './institutions2/institutions2.component';
 import { OrderListModule } from 'primeng/orderlist';
 import {CalendarModule} from 'primeng/calendar';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {CalendarModule} from 'primeng/calendar';
     BrowserAnimationsModule,
     OrderListModule,
     CheckboxModule,
-    FormsModule
+    FormsModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent],

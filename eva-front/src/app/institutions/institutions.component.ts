@@ -31,6 +31,7 @@ export class InstitutionsComponent implements OnInit {
   needsMedHelp:boolean = false;
   needsSecHelp:boolean = false;
   dateOccurrence: Date = new Date();
+  urgLevel:number = 2
   
 
   occurrence: Occurrence = new Occurrence(new Date(),
@@ -105,5 +106,7 @@ export class InstitutionsComponent implements OnInit {
     else{
       console.log("nao")
     }
+
+    console.log(this.urgLevel)
   }
 }
