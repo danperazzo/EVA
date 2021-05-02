@@ -28,7 +28,6 @@ export class AdminServices {
 
   countOccurrencesByUrgencyInDate(date: string) {
     let param = new HttpParams().set("dateFilter", date);
-    console.log("param =" + param); 
     return this.http.get(this.serverURL + "/occurrences/countByUrgencyInDate", {headers: this.headers, params: param})
              .toPromise()
              .then(res => res)

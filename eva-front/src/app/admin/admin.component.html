@@ -13,6 +13,22 @@
                         (onClick)="countOccurrencesByUrgencyInDate(dateFilter)"
                     ></p-button>
                 </div>
+                <div class="card">
+                    <h5>Quantidade de Ocorrências por Nível de Urgência</h5>
+                    <!-- <table>
+                        <tr *ngIf="alunos.length > 0">
+                           <th>Nome</th>
+                           <th>CPF</th>
+                           <th>e-mail</th>
+                        </tr>
+                        <tr *ngFor="let a of alunos" name="alunolist">
+                           <td name="nomelist">{{a.nome}}</td>
+                           <td name="cpflist">{{a.cpf}}</td>
+                           <td>{{a.email}}</td>
+                        </tr>
+                    </table> -->
+                    <p-chart type="doughnut" [data]="pieData"></p-chart>
+                </div>
             </p-tabPanel>
             <p-tabPanel header="Header II">
                 <ng-template pTemplate = "header">
