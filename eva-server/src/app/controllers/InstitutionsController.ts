@@ -7,35 +7,29 @@ import { Institution } from "../schemas/InstitutionsModel";
 import { Occurrence } from "../schemas/OccurrencesModel";
 import { Address } from "../schemas/AddressModel";
 
-
 class InstitutionsController {
   async index(req: Request, res: Response) {
     try {
-        const institutionList = await Institution.find({  
-        })
-        .select('name email phoneNumber type adress_id')
-        .sort({ name: 'asc' });
-        
-        return res.send(institutionList);
-      
-      } catch (err) {
-        Sentry.captureException(err);
-        console.log("Erro: Instituição não pode ser listada");
-        return res.send(err);
+      const institutionList = await Institution.find({})
+        // .select("name email phoneNumber type adress_id")
+        // .sort({ name: "asc" });
+
+      return res.send(institutionList);
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituição não pode ser listada");
+      return res.send(err);
     }
   }
 
   async filterInstitutionsOc(req: Request, res: Response) {
-
-    console.log("estou filtrando!")
-
     const {
+      city,
       date,
       needsMedicalAssistance,
       needsSecurityAssistance,
       needsPsychologicalAssistance,
       urgencyLevel,
-      city
     } = req.body;
 
     const data = {
@@ -44,7 +38,7 @@ class InstitutionsController {
       needsSecurityAssistance,
       needsPsychologicalAssistance,
       urgencyLevel,
-      city
+      city,
     };
 
     const newOccurrence = new Occurrence(data);
@@ -52,49 +46,32 @@ class InstitutionsController {
     const createdInstitution = await newOccurrence.save();
 
     var to_filter = [];
-    console.log(data.needsSecurityAssistance)
 
-    if (needsPsychologicalAssistance){
+    if (needsPsychologicalAssistance) {
       to_filter.push("Psi");
     }
 
-    if(needsMedicalAssistance){
-      to_filter.push("Medic");
+    if (needsMedicalAssistance) {
+      to_filter.push("Med");
     }
 
-    if(needsSecurityAssistance){
-      to_filter.push("Police")
+    if (needsSecurityAssistance) {
+      to_filter.push("Pol");
     }
 
-    console.log(to_filter)
 
-    var id_adresses = await Address.find({city: city}).select('adress_id');
 
-    var id_addresses_name = [];
-    for (var dict_name of id_adresses) {
-      id_addresses_name.push(dict_name.get('adress_id'))
-    }
-
-    console.log(id_addresses_name)
     try {
-      const institutionList = await Institution
-      .find({
-        type: {$in: to_filter },
-        adress_id: {$in: id_addresses_name}
-
+      const institutionList = await Institution.find({
+        type: { $in: to_filter },
+        "address.city": city,
       })
-      .select('name email phoneNumber type adress_id')
-      .sort({ name: 'asc' });
       
       return res.send(institutionList);
-    
     } catch (err) {
       Sentry.captureException(err);
-      console.log("Erro: Instituição não pode ser listada");
       return res.send(err);
     }
-
-
   }
 
   async store(req: Request, res: Response) {
@@ -123,46 +100,70 @@ class InstitutionsController {
   }
 
   async storeMockedData(req: Request, res: Response) {
-    
     const inst1 = {
-      "name": "Psicologo 1",
-      "email": "psi@data.com",
-      "phoneNumber": "312345-1223",
-      "type": "Psi",
-      "adress_id": "1",
-      }
+      name: "Psicologo 1",
+      email: "psi@data.com",
+      phoneNumber: "312345-1223",
+      type: "Psi",
+      // adress_id: "1",
+      address: {
+        street: "Rua das Pernambucanas",
+        number: "407",
+        city: "Recife",
+      },
+    };
 
     const inst2 = {
-      "name": "Medic 1",
-      "email": "med@data.com",
-      "phoneNumber": "212345-1223",
-      "type": "Med",
-      "adress_id": "2",
-    }         
+      name: "Medic 1",
+      email: "med@data.com",
+      phoneNumber: "212345-1223",
+      type: "Med",
+      // adress_id: "2",
+      address: {
+        street: "Rua Dr. Arthur Gonçalves",
+        number: "46",
+        city: "Recife",
+      },
+    };
 
     const inst3 = {
-      "name": "Delegacia De Polícia Varadouro",
-      "email": "pol2@data.com",
-      "phoneNumber": "112345-1223",
-      "type": "Pol",
-      "adress_id": "3",
-    }
+      name: "Delegacia De Polícia Varadouro",
+      email: "pol2@data.com",
+      phoneNumber: "112345-1223",
+      type: "Pol",
+      // adress_id: "3",
+      address: {
+        street: "Rua Beco do Batman",
+        number: "233",
+        city: "Jaboatão dos Guararapes",
+      },
+    };
 
     const inst4 = {
-      "name": "Psicologo 2",
-      "email": "psi2@data.com",
-      "phoneNumber": "31312122345-1223",
-      "type": "Psi",
-      "adress_id": "4",
-    }
+      name: "Psicologo 2",
+      email: "psi2@data.com",
+      phoneNumber: "31312122345-1223",
+      type: "Psi",
+      // adress_id: "4",
+      address: {
+        street: "Galeria Cordeiro - Praça Doze de Março",
+        number: "23",
+        city: "Olinda",
+      },
+    };
 
     const inst5 = {
-      "name": "PartMed Saúde",
-      "email": "med2@data.com",
-      "phoneNumber": "212142345-1223",
-      "type": "Med",
-      "adress_id": "5",
-    }
+      name: "PartMed Saúde",
+      email: "med2@data.com",
+      phoneNumber: "212142345-1223",
+      type: "Med",
+      // adress_id: "5",
+      address: {
+        street: "Av. Pres. Getúlio Vargas",
+        number: "999",
+        city: "Olinda",
+      },
+    };
 
     try {
       const newInst1 = new Institution(inst1);
@@ -185,7 +186,7 @@ class InstitutionsController {
         inst2,
         inst3,
         inst4,
-        inst5
+        inst5,
       };
 
       return res.send(createdInstitution5);

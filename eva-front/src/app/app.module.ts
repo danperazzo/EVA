@@ -25,6 +25,8 @@ import { AdminComponent } from './admin/admin.component';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { AdminServices } from './admin.service';
+import { ChartModule } from 'primeng/chart';
+
 
 
 
@@ -54,6 +56,7 @@ import { AdminServices } from './admin.service';
     HttpClientModule,
     TabViewModule,
     TableModule,
+    ChartModule,
   ],
   providers: [OccurrenceService, AdminServices],
   bootstrap: [AppComponent],

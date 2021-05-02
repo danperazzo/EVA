@@ -14,19 +14,16 @@ export let config: Config = {
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
     specs: [
-        '../../features/*.feature'
+        '../../features/filterInstitions.feature'
     ],
 
     onPrepare: () => {
-
-        browser.ignoreSynchronization = true;
-        browser.manage().window().maximize();
 
     },
     cucumberOpts: {
         compiler: "ts:ts-node/register",
         strict: true,
         format: ['pretty'],
-        require: ['../../stepdefinitions/*.ts'],
+        require: ['../../stepdefinitions/filterInstitions.ts'],
     }
 };

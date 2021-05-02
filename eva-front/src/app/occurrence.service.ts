@@ -5,14 +5,35 @@ import { retry, map } from "rxjs/operators";
 
 import { Occurrence, Institution } from "../../../common/models";
 
+
 @Injectable()
 export class OccurrenceService {
+  
   private headers = new HttpHeaders({ "Content-Type": "application/json" });
-  private taURL = "http://localhost:3000/occurrences";
+  private serverURL = "http://localhost:3333";
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'my-auth-token'
+    })
+  };
+  
 
   constructor(private http: HttpClient) {}
 
-  filterInstitutions(occurrence: Occurrence): void {}
   addOccurrence(occurence: Occurrence): void {}
   showLocationOnMap(institution: Institution): void {}
+  filterInstitutions(occurrence: Occurrence){
+
+    return this.http.post<Occurrence>(this.serverURL + "/institutions_filter", occurrence)
+             .toPromise()
+             .then(res => res)
+             .catch(this.tratarErro);
+  }
+
+  private tratarErro(erro: any): Promise<any>{
+    console.error('Acesso mal sucedido ao serviço de ocorrências',erro);
+    return Promise.reject(erro.message || erro);
+  }
+  
 }
