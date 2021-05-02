@@ -39,20 +39,18 @@
         <th>Email</th>
         <th>Telefone</th>
         <th>Tipo</th>
-        <th>Cidade</th>
-        <th>Rua</th>
-        <th>Numero</th>
+        <th>Endereço</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-institutuion>
+    <ng-template pTemplate="body" let-institution>
       <tr>
-        <td>{{ institutuion.name }}</td>
-        <td>{{ institutuion.email }}</td>
-        <td>{{ institutuion.phoneNumber }}</td>
-        <td>{{ institutuion.type }}</td>
-        <td>{{ institutuion.address.city }}</td>
-        <td>{{ institutuion.address.street }}</td>
-        <td>{{ institutuion.address.number }}</td>
+        <td>{{ institution.name }}</td>
+        <td>{{ institution.email }}</td>
+        <td>{{ institution.phoneNumber }}</td>
+        <td>{{ institution.type }}</td>
+        <a [href]="institution.mapsUrl">
+          <td>{{ institution.addressString }}</td>
+        </a>
       </tr>
     </ng-template>
   </p-table>
