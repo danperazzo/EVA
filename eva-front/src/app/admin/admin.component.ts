@@ -24,12 +24,9 @@ export class AdminComponent implements OnInit {
     let dateStart = this.rangeDates[0].toISOString().split("T")[0];
     let dateEnd = this.rangeDates[1].toISOString().split("T")[0];
 
-    console.log("date star = " + dateStart);
-
     this.adminServices.countOccurrencesByUrgencyInDateRange(dateStart, dateEnd).then(response => {
       this.occurrencesQtyPerUrgency = response;
 
-      console.log("this.occurrencesQtyPerUrgency =" + JSON.stringify(this.occurrencesQtyPerUrgency));
       this.labels = [];
       this.values = [];
       for (let i = 0; i < this.occurrencesQtyPerUrgency.length; i++) {
@@ -61,9 +58,22 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  filterOccurrenceByDateRange() {
+    let  dateStart = this.rangeDates[0].toISOString().split("T")[0];
+    let dateEnd = this.rangeDates[1].toISOString().split("T")[0];
+
+    this.adminServices.filterOccurrenceByDateRange(dateStart, dateEnd).then(response => {
+      this.occurrencesFiltered = response;
+    });
+  }
+
+  updateViews(){
+    this.countOccurrencesByUrgencyInDateRange();
+    this.filterOccurrenceByDateRange();
+  }
 
   ngOnInit(): void {
-    this.countOccurrencesByUrgencyInDateRange();
+    this.updateViews();
   }
 
 }

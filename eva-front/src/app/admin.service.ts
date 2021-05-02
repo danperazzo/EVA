@@ -18,7 +18,13 @@ export class AdminServices {
              .catch(this.tratarErro);
   }
 
-  filterOccurrenceByDateRange(from: string, to: string) {}
+  filterOccurrenceByDateRange(from: string, to: string) {
+      let param = new HttpParams().set("startDate", from).set("endDate", to);
+      return this.http.get(this.serverURL + "/occurrences/filterByDateRange", {headers: this.headers, params: param})
+               .toPromise()
+               .then(res => res)
+               .catch(this.tratarErro);
+    }
 
   filterOcurrencesByUrgencyLevel(urgencyLevel: number) {}
 

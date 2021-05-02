@@ -16,3 +16,17 @@
     line-height: 1.5;
     margin: 0;
 }
+
+:host ::ng-deep .p-table {
+    margin-block-start: 100px;
+    margin-block-end: 100px;
+    margin-right: 20px;
+    padding: 15px;
+    text-align: center;
+}
+
+:host ::ng-deep {
+    margin-block-start: 100px;
+    margin-block-end: 100px;
+}
+

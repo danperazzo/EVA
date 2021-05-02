@@ -1,11 +1,11 @@
-<div class="card">
+<div class="host">
         <p-tabView styleClass="tabview-custom">
             <p-tabPanel>
                 <ng-template pTemplate = "header">
                     <i class="pi pi-chart-line"></i>
                     <span>Visão Mensal</span>
                 </ng-template>
-                <div>
+                <div class="host">
                     <!-- <input [(ngModel)]="dateFilter" type="text" pInputText placeholder="date" /> -->
               
                     <p-calendar [(ngModel)]="rangeDates" [showIcon]="true" icon="pi pi-calendar" selectionMode="range" [readonlyInput]="true" inputId="range"></p-calendar>
@@ -13,8 +13,32 @@
                     <p-button
                         label="Filter"
                         icon="pi pi-filter"
-                        (onClick)="countOccurrencesByUrgencyInDateRange()"
+                        (onClick)="updateViews()"
                     ></p-button>
+                </div>
+                <div class="host">
+                    <p-table [value]="occurrencesFiltered">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Date</th>
+                                <th>Needs Medical Assistence</th>
+                                <th>Needs Security Assistence</th>
+                                <th>Needs Psychological Assistence</th>
+                                <th>Urgency Level</th>
+                                <th>City</th>                
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-occurrence>
+                            <tr>
+                                <td>{{occurrence.date}}</td>
+                                <td>{{occurrence.needsMedicalAssistance}}</td>
+                                <td>{{occurrence.needsSecurityAssistance}}</td>
+                                <td>{{occurrence.needsPsychologicalAssistance}}</td>
+                                <td>{{occurrence.urgencyLevel}}</td>
+                                <td>{{occurrence.city}}</td>                
+                            </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
                 <div class="card">
                     <h5>Quantidade de Ocorrências por Nível de Urgência</h5>
