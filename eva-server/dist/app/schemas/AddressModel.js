@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddressSchema = exports.Address = void 0;
 var mongoose_1 = __importDefault(require("mongoose"));
 var AddressSchema = new mongoose_1.default.Schema({
+    adress_id: String,
     street: {
         type: String,
         required: true,

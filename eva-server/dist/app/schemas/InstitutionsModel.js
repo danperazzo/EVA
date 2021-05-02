@@ -22,11 +22,7 @@ var InstitutionSchema = new mongoose_1.default.Schema({
         type: String,
         required: true
     },
-    address: {
-        type: mongoose_1.default.Schema.Types.ObjectId,
-        ref: 'Address',
-        required: true
-    },
+    adress_id: String,
     createdAt: {
         type: Date,
         required: true,

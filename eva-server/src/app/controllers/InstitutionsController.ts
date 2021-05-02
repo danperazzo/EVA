@@ -28,16 +28,18 @@ class InstitutionsController {
   async filterInstitutionsOc(req: Request, res: Response) {
 
     console.log("estou filtrando!")
-
+    console.log(req.body)
+    
     const {
+      city,
       date,
       needsMedicalAssistance,
       needsSecurityAssistance,
       needsPsychologicalAssistance,
       urgencyLevel,
-      city
     } = req.body;
-
+    console.log("passei")
+    
     const data = {
       date,
       needsMedicalAssistance,
@@ -46,7 +48,8 @@ class InstitutionsController {
       urgencyLevel,
       city
     };
-
+    console.log(data)
+    
     const newOccurrence = new Occurrence(data);
 
     const createdInstitution = await newOccurrence.save();
@@ -59,11 +62,11 @@ class InstitutionsController {
     }
 
     if(needsMedicalAssistance){
-      to_filter.push("Medic");
+      to_filter.push("Med");
     }
 
     if(needsSecurityAssistance){
-      to_filter.push("Police")
+      to_filter.push("Pol")
     }
 
     console.log(to_filter)
@@ -85,6 +88,8 @@ class InstitutionsController {
       })
       .select('name email phoneNumber type adress_id')
       .sort({ name: 'asc' });
+
+      console.log(institutionList)
       
       return res.send(institutionList);
     

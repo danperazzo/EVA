@@ -21,16 +21,23 @@ export class InstitutionsComponent implements OnInit {
   
   institutions: Institution[] = [];
 
-  needsPsyHelp: boolean = false;
+  needsPsyHelp: boolean = true;
   needsMedHelp:boolean = false;
   needsSecHelp:boolean = false;
   dateOccurrence: Date = new Date();
-  urgLevel:number = 2;
-  location:string = "";
-  
+  urgLevel:number;
+  location:string;
+  filteredInst:Institution[] = []  
 
 
-  constructor(private occurrenceService: OccurrenceService) {}
+  constructor(private occurrenceService: OccurrenceService) {
+    this.needsPsyHelp = true;
+    this.needsMedHelp = false;
+    this.needsSecHelp = false;
+    this.dateOccurrence = new Date();
+    this.urgLevel = 2;
+    this.location= "Recife";
+  }
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
@@ -84,8 +91,26 @@ export class InstitutionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
   filterInstitutions(){
+
+    var occurrence = new Occurrence(this.dateOccurrence,
+      this.needsMedHelp,
+      this.needsSecHelp,
+      this.needsPsyHelp,
+      this.urgLevel,
+      this.location);
+    console.log(occurrence);
+    
+    this.occurrenceService.filterInstitutions(occurrence)
+    .then(response => {const json =response;
+                        console.log("dentro da promise")
+                        this.filteredInst = json;
+                        console.log(this.filteredInst)
+                      })
+    .catch(erro => alert(erro));
+    
+
+
     
 
 
