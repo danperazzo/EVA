@@ -45,28 +45,29 @@ export class OccurrencesController {
       return res.send(err);
     }
   } 
-
-  async countByUrgencyInDate(req: Request, res: Response){
+  
+  async countByUrgencyInDateRange(req: Request, res: Response){
 
     try {
-      const dateFilter: string = req.query.dateFilter as string;
+      let startDate_str = req.query.startDate as string + "T00:00:00.000+0000";
+      let endDate_str = req.query.endDate as string + "T23:59:59.999+0000";
+
+      const startDate: Date = new Date(Date.parse(startDate_str));
+      const endDate: Date = new Date(Date.parse(endDate_str));
 
       const occurrencesAggregated = await Occurrence.aggregate([
         {
           $project: {
-            "date_str": { 
-              "$dateToString": { 
-                      "format": "%Y-%m-%d", 
-                      "date": "$date" 
-              } 
-            },
             urgencyLevel: "$urgencyLevel",
             date: "$date"
           }
         },
         {
           $match: {
-            date_str: dateFilter
+            date: {
+              $gte: startDate,
+              $lt: endDate     
+            }
           }
         },
         {
@@ -76,9 +77,8 @@ export class OccurrencesController {
           }
         }
       ])
-      
       return res.send(occurrencesAggregated);
-    
+      
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro ao agregar ocorrências por data!\n" + err);

@@ -10,26 +10,30 @@ import { AdminServices } from '../admin.service';
 export class AdminComponent implements OnInit {
   
   activeIndex: number = 0;
-  dateFilter: string = "2021-02-10";
-  occurrenceList = [];
+  rangeDates: Date[] = [new Date(), new Date()];
+  occurrencesFiltered = [];
+  occurrencesQtyPerUrgency = [];
   labels = [];
   values = [];
   pieData: any;
   
   constructor(private adminServices: AdminServices) {}
 
-  countOccurrencesByUrgencyInDate(date: string){
+  countOccurrencesByUrgencyInDateRange(){
 
-    this.adminServices.countOccurrencesByUrgencyInDate(this.dateFilter).then(response => {
-      this.occurrenceList = response;
+    let dateStart = this.rangeDates[0].toISOString().split("T")[0];
+    let dateEnd = this.rangeDates[1].toISOString().split("T")[0];
+
+    this.adminServices.countOccurrencesByUrgencyInDateRange(dateStart, dateEnd).then(response => {
+      this.occurrencesQtyPerUrgency = response;
 
       this.labels = [];
       this.values = [];
-      for (let i = 0; i < this.occurrenceList.length; i++) {
-        this.labels[i] = this.occurrenceList[i]["_id"];
-        this.values[i] = this.occurrenceList[i]["countOccurrences"];
+      for (let i = 0; i < this.occurrencesQtyPerUrgency.length; i++) {
+        this.labels[i] = this.occurrencesQtyPerUrgency[i]["_id"];
+        this.values[i] = this.occurrencesQtyPerUrgency[i]["countOccurrences"];
       }
-  
+      
       this.pieData = {
         labels: this.labels,
         datasets: [
@@ -54,7 +58,22 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.countOccurrencesByUrgencyInDate(this.dateFilter);
+  filterOccurrenceByDateRange() {
+    let  dateStart = this.rangeDates[0].toISOString().split("T")[0];
+    let dateEnd = this.rangeDates[1].toISOString().split("T")[0];
+
+    this.adminServices.filterOccurrenceByDateRange(dateStart, dateEnd).then(response => {
+      this.occurrencesFiltered = response;
+    });
   }
+
+  updateViews(){
+    this.countOccurrencesByUrgencyInDateRange();
+    this.filterOccurrenceByDateRange();
+  }
+
+  ngOnInit(): void {
+    this.updateViews();
+  }
+
 }
