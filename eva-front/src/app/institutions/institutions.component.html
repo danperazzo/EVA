@@ -1,42 +1,34 @@
-<html>
-    
-    <div class="p-field p-col-12 p-md-4">
-        <label for="icon">Data da Ocorrência</label>
-        <p-calendar [(ngModel)]="dateOccurrence" [showIcon]="true" inputId="icon"></p-calendar>
-    </div>
-    
-    <div class="p-field-checkbox">
-        <p-checkbox [(ngModel)]="needsPsyHelp" [binary]="true"></p-checkbox>
-        <label>Ajuda Psicológica</label>
-    </div>
+<div class="all">
+  <h1>Cadastrar ocorrência</h1>
+  <div class="p-field p-col-12 p-md-4">
+    <label for="icon">Data da Ocorrência </label>
+    <p-calendar
+      [(ngModel)]="dateOccurrence"
+      [showIcon]="true"
+      inputId="icon"
+    ></p-calendar>
+  </div>
 
-    <div class="p-field-checkbox">
-        <p-checkbox [(ngModel)]="needsMedHelp" [binary]="true"></p-checkbox>
-        <label>Ajuda Médica</label>
-    </div>
+  <div class="p-field-checkbox">
+    <p-checkbox [(ngModel)]="needsPsyHelp" [binary]="true"></p-checkbox>
+    <label> Precisa de ajuda psicológica</label>
+  </div>
 
-    <div class="p-field-checkbox">
-        <p-checkbox [(ngModel)]="needsSecHelp" [binary]="true"></p-checkbox>
-        <label>Ajuda Policial</label>
-    </div>
+  <div class="p-field-checkbox">
+    <p-checkbox [(ngModel)]="needsMedHelp" [binary]="true"></p-checkbox>
+    <label> Precisa de ajuda médica</label>
+  </div>
 
+  <div class="p-field-checkbox">
+    <p-checkbox [(ngModel)]="needsSecHelp" [binary]="true"></p-checkbox>
+    <label> Precisa de ajuda policial</label>
+  </div>
 
-    <div class="p-field p-col-12 p-md-3">
-        <label for="minmax-buttons">Nível de Urgência</label>
-        <p-inputNumber [(ngModel)]="urgLevel" mode="decimal" [showButtons]="true" inputId="minmax-buttons" [min]="0" [max]="5">
-        </p-inputNumber>
-    </div>
+  <h5>Local da ocorrência</h5>
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText [(ngModel)]="location" />
+    <label for="float-input">Local da ocorrência</label>
+  </span>
 
-    <h5>Local da ocorrência</h5>
-    <span class="p-float-label">
-        <input id="float-input" type="text" pInputText [(ngModel)]="location"> 
-        <label for="float-input">Local da ocorrência</label>
-    </span>
-    
-
-    <p-button label="Submeter"  (onClick)="filterInstitutions()"></p-button>
-
-    
-
-     
-</html>
+  <p-button label="Submeter" (onClick)="filterInstitutions()"></p-button>
+</div>
