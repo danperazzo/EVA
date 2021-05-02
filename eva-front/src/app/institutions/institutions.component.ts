@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuItem } from "primeng/api";
 import {CheckboxModule} from 'primeng/checkbox';
-import {OccurrenceService} from '../ocurrence.service'
+import {OccurrenceService} from '../occurrence.service'
 
 
 //import { AdminServices } from "../admin.service";

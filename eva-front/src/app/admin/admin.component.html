@@ -5,9 +5,14 @@
                     <i class="pi pi-list"></i>
                     <span>Visão Mensal</span>
                 </ng-template>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>  
+                <div>
+                    <input [(ngModel)]="dateFilter" type="text" pInputText placeholder="date" />
+                    <p-button
+                        label="List Occurrences"
+                        icon="pi pi-power-off"
+                        (onClick)="countOccurrencesByUrgencyInDate(dateFilter)"
+                    ></p-button>
+                </div>
             </p-tabPanel>
             <p-tabPanel header="Header II">
                 <ng-template pTemplate = "header">

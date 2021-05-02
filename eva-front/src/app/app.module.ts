@@ -9,7 +9,7 @@ import { InstitutionsComponent } from './institutions/institutions.component';
 import { OccurrencesComponent } from './occurrences/occurrences.component';
 import { SafePipe } from './safe.pipe';
 import { ReactiveFormsModule,FormsModule  } from '@angular/forms';
-import {CheckboxModule} from 'primeng/checkbox';
+import { CheckboxModule } from 'primeng/checkbox';
 
 import { MenubarModule } from 'primeng/menubar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -19,12 +19,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MapsComponent } from './maps/maps.component';
 import { Institutions2Component } from './institutions2/institutions2.component';
 import { OrderListModule } from 'primeng/orderlist';
-import {CalendarModule} from 'primeng/calendar';
-import {InputNumberModule} from 'primeng/inputnumber';
-import {OccurrenceService} from './occurrence.service'
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { OccurrenceService } from './occurrence.service'
 import { AdminComponent } from './admin/admin.component';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
+import { AdminServices } from './admin.service';
 
 
 
@@ -56,7 +57,7 @@ import { TabViewModule } from 'primeng/tabview';
     TabViewModule,
     TableModule,
   ],
-  providers: [OccurrenceService],
+  providers: [OccurrenceService, AdminServices],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
