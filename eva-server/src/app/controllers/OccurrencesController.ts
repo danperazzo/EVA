@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/node';
 import  {Occurrence} from '../schemas/OccurrencesModel';
 import {occurrencesList} from '../mocks/occurrencesData';
 
-class OccurrencesController {
+export class OccurrencesController {
 
 /* lista todos as ocorrencias */
   async index(req: Request, res: Response) {
