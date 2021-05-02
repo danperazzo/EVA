@@ -1,8 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { MenuItem } from "primeng/api";
-import {CheckboxModule} from 'primeng/checkbox';
-import {OccurrenceService} from '../occurrence.service'
-
+import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { CheckboxModule } from 'primeng/checkbox';
+import { OccurrenceService } from '../occurrence.service';
 
 //import { AdminServices } from "../admin.service";
 import {
@@ -10,25 +9,23 @@ import {
   Address,
   InstitutionType,
   Occurrence,
-} from "../../../../common/models";
+} from '../../../../common/models';
 
 @Component({
-  selector: "institutions",
-  templateUrl: "./institutions.component.html",
-  styleUrls: ["./institutions.component.css"],
+  selector: 'institutions',
+  templateUrl: './institutions.component.html',
+  styleUrls: ['./institutions.component.css'],
 })
 export class InstitutionsComponent implements OnInit {
-  
   institutions: Institution[] = [];
 
   needsPsyHelp: boolean = true;
-  needsMedHelp:boolean = false;
-  needsSecHelp:boolean = false;
+  needsMedHelp: boolean = false;
+  needsSecHelp: boolean = false;
   dateOccurrence: Date = new Date();
-  urgLevel:number;
-  location:string;
-  filteredInst:Institution[] = []  
-
+  urgLevel: number;
+  location: string;
+  filteredInst: Institution[] = [];
 
   constructor(private occurrenceService: OccurrenceService) {
     this.needsPsyHelp = true;
@@ -36,19 +33,19 @@ export class InstitutionsComponent implements OnInit {
     this.needsSecHelp = false;
     this.dateOccurrence = new Date();
     this.urgLevel = 2;
-    this.location= "Recife";
+    this.location = 'Recife';
   }
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
-      "Hospital das Freiras",
-      "hospitaldasfreiras@gmail.com",
-      "8199999912",
-      "medico",
-      "Rua falsa",
-      "123",
-      "123654-3",
-      "Recife"
+      'Hospital das Freiras',
+      'hospitaldasfreiras@gmail.com',
+      '8199999912',
+      'medico',
+      'Rua falsa',
+      '123',
+      '123654-3',
+      'Recife'
     );
   }
 
@@ -91,31 +88,28 @@ export class InstitutionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  filterInstitutions(){
-
-    var occurrence = new Occurrence(this.dateOccurrence,
+  filterInstitutions() {
+    var occurrence = new Occurrence(
+      this.dateOccurrence,
       this.needsMedHelp,
       this.needsSecHelp,
       this.needsPsyHelp,
       this.urgLevel,
-      this.location);
+      this.location
+    );
     console.log(occurrence);
-    
-    this.occurrenceService.filterInstitutions(occurrence)
-    .then(response => {const json =response;
-                        console.log("dentro da promise")
-                        this.filteredInst = json;
-                        console.log(this.filteredInst)
-                      })
-    .catch(erro => alert(erro));
-    
 
+    this.occurrenceService
+      .filterInstitutions(occurrence)
+      .then((response) => {
+        this.filteredInst = response.map((institution: any) => {
+          const addressString = `${institution.address.street} ${institution.address.number}, ${institution.address.city}`;
+          const mapsUrl = `maps/${institution.name} ${addressString}`;
+          return { ...institution, addressString, mapsUrl };
+        });
 
-    
-
-
-    
-
-
+        console.log(this.filteredInst);
+      })
+      .catch((erro) => alert(erro));
   }
 }
