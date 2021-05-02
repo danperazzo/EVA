@@ -95,7 +95,7 @@ export class InstitutionsComponent implements OnInit {
   ngOnInit(): void {}
 
 
-  findInstitution(){
+  filterInstitutions(){
 
     console.log('Procurandooo');
     if(this.needsPsyHelp){
