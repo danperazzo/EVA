@@ -1,3 +1,5 @@
+
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -19,6 +21,8 @@ import { Institutions2Component } from './institutions2/institutions2.component'
 import { OrderListModule } from 'primeng/orderlist';
 import {CalendarModule} from 'primeng/calendar';
 import {InputNumberModule} from 'primeng/inputnumber';
+
+import {OccurrenceService} from './ocurrence.service'
 
 @NgModule({
   declarations: [
@@ -42,9 +46,10 @@ import {InputNumberModule} from 'primeng/inputnumber';
     OrderListModule,
     CheckboxModule,
     FormsModule,
-    InputNumberModule
+    InputNumberModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [OccurrenceService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

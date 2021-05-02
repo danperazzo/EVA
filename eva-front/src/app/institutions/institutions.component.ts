@@ -1,8 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from '@angular/forms';
 import { MenuItem } from "primeng/api";
 import {CheckboxModule} from 'primeng/checkbox';
-
+import {OccurrenceService} from '../ocurrence.service'
 
 
 //import { AdminServices } from "../admin.service";
@@ -12,7 +11,6 @@ import {
   InstitutionType,
   Occurrence,
 } from "../../../../common/models";
-//import "./userWithoutOcurrence.service";
 
 @Component({
   selector: "institutions",
@@ -22,10 +20,6 @@ import {
 export class InstitutionsComponent implements OnInit {
   
   institutions: Institution[] = [];
-  ocurrenceForm = this.formBuilder.group({
-    location: '',
-    urgencyLevel: ''
-  });
 
   needsPsyHelp: boolean = false;
   needsMedHelp:boolean = false;
@@ -36,8 +30,7 @@ export class InstitutionsComponent implements OnInit {
   
 
 
-//  constructor(private adminService: AdminServices) {}
-  constructor(private formBuilder: FormBuilder,) {}
+  constructor(private occurrenceService: OccurrenceService) {}
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
@@ -93,16 +86,11 @@ export class InstitutionsComponent implements OnInit {
 
 
   filterInstitutions(){
+    
 
-    console.log('Procurandooo');
-    if(this.needsPsyHelp){
-      console.log("precisa")
-    }
-    else{
-      console.log("nao")
-    }
 
-    console.log(this.urgLevel)
-    console.log(this.location)
+    
+
+
   }
 }
