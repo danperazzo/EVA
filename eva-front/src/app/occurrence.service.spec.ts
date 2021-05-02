@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OcurrenceService } from './ocurrence.service';
+import { OccurrenceService } from './occurrence.service';
 
 describe('OcurrenceService', () => {
-  let service: OcurrenceService;
+  let service: OccurrenceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(OcurrenceService);
+    service = TestBed.inject(OccurrenceService);
   });
 
   it('should be created', () => {

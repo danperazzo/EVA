@@ -21,8 +21,12 @@ import { Institutions2Component } from './institutions2/institutions2.component'
 import { OrderListModule } from 'primeng/orderlist';
 import {CalendarModule} from 'primeng/calendar';
 import {InputNumberModule} from 'primeng/inputnumber';
+import {OccurrenceService} from './occurrence.service'
+import { AdminComponent } from './admin/admin.component';
+import { TableModule } from 'primeng/table';
+import { TabViewModule } from 'primeng/tabview';
 
-import {OccurrenceService} from './ocurrence.service'
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import {OccurrenceService} from './ocurrence.service'
     SafePipe,
     MapsComponent,
     Institutions2Component,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,9 @@ import {OccurrenceService} from './ocurrence.service'
     CheckboxModule,
     FormsModule,
     InputNumberModule,
-    HttpClientModule
+    HttpClientModule,
+    TabViewModule,
+    TableModule,
   ],
   providers: [OccurrenceService],
   bootstrap: [AppComponent],
