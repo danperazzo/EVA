@@ -1,7 +1,6 @@
-<html>
-  <div class="all">
-
-    <p-menubar [model]="items" class= "menu-bar">
+<div class="all">
+  <p-menubar [model]="items">
+    <div>
       <form class = "form" [formGroup]="ocurrenceForm" (ngSubmit)="findInstitution()">
 
         <div>
@@ -23,19 +22,17 @@
       
       </form>
       
+      <button
+        class="btn"
+        type="button"
+        pButton
+        label="LogIn"
+        icon="pi pi-power-off"
+        style="margin-left: 0.25em"
+        [routerLink]="'/admin/analytics'"
+      ></button>
+    </div>
+  </p-menubar>
 
-    </p-menubar>
-  
-    <li>
-      <a [routerLink]="mapsUrl" teste='oi' routerLinkActive="active">Ir para mapa</a>
-    </li>
-    <li>
-      <a routerLink="/maps" routerLinkActive="active">Adicinoar ocorrência</a>
-    </li>
-  
-    <institutions></institutions>
-    <router-outlet></router-outlet>
-  </div>
-
-</html>
-
+  <router-outlet></router-outlet>
+</div>

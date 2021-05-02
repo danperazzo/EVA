@@ -8,32 +8,33 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var InstitutionSchema = new mongoose_1.default.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
     },
     phoneNumber: {
         type: String,
-        required: true
+        required: true,
     },
     type: {
         type: String,
-        required: true
+        required: true,
     },
+    // adress_id: String,
     address: {
-        type: mongoose_1.default.Schema.Types.ObjectId,
-        ref: 'Address',
-        required: true
+        street: String,
+        number: String,
+        city: String,
     },
     createdAt: {
         type: Date,
         required: true,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 });
 exports.InstitutionSchema = InstitutionSchema;
-var Institution = mongoose_1.default.model('Institution', InstitutionSchema);
+var Institution = mongoose_1.default.model("Institution", InstitutionSchema);
 exports.Institution = Institution;
 var ObjectId = mongoose_1.default.Types.ObjectId;

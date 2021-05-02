@@ -15,7 +15,7 @@ export class OccurrencesComponent implements OnInit {
 
   addOccurrence(occurence: Occurrence) {}
 
-  filterOccurrencesByYear(year: number) {}
+  countOccurrencesByYear(year: number) {}
   filterOccurrenceByDateRange(from: Date, to: Date) {}
   filterOcurrencesByUrgencyLevel(urgencyLevel: number) {}
 

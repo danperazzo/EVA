@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+import { CheckboxModule } from 'primeng/checkbox';
+import { OccurrenceService } from '../occurrence.service';
 
 //import { AdminServices } from "../admin.service";
 import {
@@ -7,42 +9,43 @@ import {
   Address,
   InstitutionType,
   Occurrence,
-} from "../../../../common/models";
-//import "./userWithoutOcurrence.service";
+} from '../../../../common/models';
 
 @Component({
-  selector: "institutions",
-  templateUrl: "./institutions.component.html",
-  styleUrls: ["./institutions.component.css"],
+  selector: 'institutions',
+  templateUrl: './institutions.component.html',
+  styleUrls: ['./institutions.component.css'],
 })
 export class InstitutionsComponent implements OnInit {
-  
   institutions: Institution[] = [];
-  ocurrenceForm = this.formBuilder.group({
-    location: '',
-    urgencyLevel: ''
-  });
 
-  occurrence: Occurrence = new Occurrence(new Date(),
-                                          true,
-                                          true,
-                                          true,
-                                          0,
-                                          "");
+  needsPsyHelp: boolean = true;
+  needsMedHelp: boolean = false;
+  needsSecHelp: boolean = false;
+  dateOccurrence: Date = new Date();
+  urgLevel: number;
+  location: string;
+  filteredInst: Institution[] = [];
 
-//  constructor(private adminService: AdminServices) {}
-  constructor(private formBuilder: FormBuilder,) {}
+  constructor(private occurrenceService: OccurrenceService) {
+    this.needsPsyHelp = true;
+    this.needsMedHelp = false;
+    this.needsSecHelp = false;
+    this.dateOccurrence = new Date();
+    this.urgLevel = 2;
+    this.location = 'Recife';
+  }
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
-      "Hospital das Freiras",
-      "hospitaldasfreiras@gmail.com",
-      "8199999912",
-      "medico",
-      "Rua falsa",
-      "123",
-      "123654-3",
-      "Recife"
+      'Hospital das Freiras',
+      'hospitaldasfreiras@gmail.com',
+      '8199999912',
+      'medico',
+      'Rua falsa',
+      '123',
+      '123654-3',
+      'Recife'
     );
   }
 
@@ -85,10 +88,28 @@ export class InstitutionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  filterInstitutions() {
+    var occurrence = new Occurrence(
+      this.dateOccurrence,
+      this.needsMedHelp,
+      this.needsSecHelp,
+      this.needsPsyHelp,
+      this.urgLevel,
+      this.location
+    );
+    console.log(occurrence);
 
-  findInstitution(){
+    this.occurrenceService
+      .filterInstitutions(occurrence)
+      .then((response) => {
+        this.filteredInst = response.map((institution: any) => {
+          const addressString = `${institution.address.street} ${institution.address.number}, ${institution.address.city}`;
+          const mapsUrl = `maps/${institution.name} ${addressString}`;
+          return { ...institution, addressString, mapsUrl };
+        });
 
-    console.log('Procurandooo');
-
+        console.log(this.filteredInst);
+      })
+      .catch((erro) => alert(erro));
   }
 }
