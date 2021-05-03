@@ -115,6 +115,5 @@ defineSupportCode(function ({ Given, When, Then }) {
 
   Then(/^Eu visualizo "([^\"]*)"$/, async (name: string) => {
     await assertElementsWithSameName(1, name);
-    await browser.sleep(3000)
   });
 });

@@ -6,7 +6,7 @@ Feature: Mostrar instituições filtradas para a vítima
 
 ############################## GUI Scenario ##############################
 
-Scenario: Uma vítima cadastra sua ocorrência em Recife e precisa de atendimento para uma necessidade médica e psicológica. 
+Scenario: Uma vítima cadastra sua ocorrência em Olinda e precisa de atendimento para uma necessidade médica e psicológica. O sistema retorna uma psicologa 
 
     Given Eu estou no menu inicial
     When Eu adiciono que preciso de "Precisa de ajuda psicológica" e "Precisa de ajuda policial"

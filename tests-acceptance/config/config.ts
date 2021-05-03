@@ -14,7 +14,7 @@ export let config: Config = {
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
     specs: [
-        '../../../features/filterInstitions.feature'
+        '../../../features/createOccurrence.feature'
     ],
 
     onPrepare: () => {
@@ -24,6 +24,6 @@ export let config: Config = {
         compiler: "ts:ts-node/register",
         strict: true,
         format: ['pretty'],
-        require: ['../../../stepdefinitions/filterInstitions.ts'],
+        require: ['../../../stepdefinitions/createOccurrence.ts'],
     }
 };
