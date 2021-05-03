@@ -6,9 +6,12 @@ Feature: Mostrar instituições filtradas para a vítima
 
 ############################## GUI Scenario ##############################
 
+Scenario: Uma vítima cadastra sua ocorrência em Recife e precisa de atendimento para uma necessidade médica e psicológica. 
+
+    Given O usuário está no menu inicial
 ############################## Service Scenario ##############################
 
-Scenario: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma mensagem de erro.
+Scenario: O sistema não possui ocorrência em Recife. É realizada uma postagem de uma ocorrência em Recife
 
     Given O sistema não possui ocorrências situadas em "Recife"
     When Eu registro minha ocorrência situada em "Recife"

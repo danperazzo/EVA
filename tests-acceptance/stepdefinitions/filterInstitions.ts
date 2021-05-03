@@ -42,4 +42,12 @@ defineSupportCode(function ({ Given, When, Then }) {
                     expect(body.includes('"city":"Recife"')).to.equal(true));
     });
 
+
+    Given(/^O usuário está no menu inicial$/, async () => {
+        await browser.get("http://localhost:4200/");
+        await expect(browser.getTitle()).to.eventually.equal('EVAGui');
+    })
+
+
+
 })
