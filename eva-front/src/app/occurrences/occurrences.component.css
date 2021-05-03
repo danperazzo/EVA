@@ -1,0 +1,14 @@
+.all {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .p-field-checkbox {
+    margin-top: 10px;
+  }
+  
+  p-button {
+    margin-top: 10px;
+  }
+  

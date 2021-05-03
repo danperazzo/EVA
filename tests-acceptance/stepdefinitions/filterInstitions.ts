@@ -29,7 +29,7 @@ defineSupportCode(function ({ Given, When, Then }) {
             "city": city
         }
 
-        var options:any = {method: 'POST', uri: (base_url + "institutions_filter"), body:occurrence, json: true};
+        var options:any = {method: 'POST', uri: (base_url + "occurrence/postOccurrence"), body:occurrence, json: true};
 
         await request(options)
               .then();

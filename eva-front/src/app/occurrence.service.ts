@@ -23,9 +23,9 @@ export class OccurrenceService {
 
   addOccurrence(occurence: Occurrence): void {}
   showLocationOnMap(institution: Institution): void {}
-  filterInstitutions(occurrence: Occurrence){
+  postOccurrence(occurrence: Occurrence){
 
-    return this.http.post<Occurrence>(this.serverURL + "/institutions_filter", occurrence)
+    return this.http.post<Occurrence>(this.serverURL + "/occurrence/postOccurrence", occurrence)
              .toPromise()
              .then(res => res)
              .catch(this.tratarErro);

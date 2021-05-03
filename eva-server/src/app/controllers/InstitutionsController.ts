@@ -22,58 +22,6 @@ class InstitutionsController {
     }
   }
 
-  async filterInstitutionsOc(req: Request, res: Response) {
-    const {
-      city,
-      date,
-      needsMedicalAssistance,
-      needsSecurityAssistance,
-      needsPsychologicalAssistance,
-      urgencyLevel,
-    } = req.body;
-
-    const data = {
-      date,
-      needsMedicalAssistance,
-      needsSecurityAssistance,
-      needsPsychologicalAssistance,
-      urgencyLevel,
-      city,
-    };
-
-    const newOccurrence = new Occurrence(data);
-
-    const createdInstitution = await newOccurrence.save();
-
-    var to_filter = [];
-
-    if (needsPsychologicalAssistance) {
-      to_filter.push("Psi");
-    }
-
-    if (needsMedicalAssistance) {
-      to_filter.push("Med");
-    }
-
-    if (needsSecurityAssistance) {
-      to_filter.push("Pol");
-    }
-
-
-
-    try {
-      const institutionList = await Institution.find({
-        type: { $in: to_filter },
-        "address.city": city,
-      })
-      
-      return res.send(institutionList);
-    } catch (err) {
-      Sentry.captureException(err);
-      return res.send(err);
-    }
-  }
-
   async store(req: Request, res: Response) {
     const { name, email, phoneNumber, type, address } = req.body;
 

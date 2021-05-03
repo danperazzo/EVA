@@ -89,27 +89,5 @@ export class InstitutionsComponent implements OnInit {
   ngOnInit(): void {}
 
   filterInstitutions() {
-    var occurrence = new Occurrence(
-      this.dateOccurrence,
-      this.needsMedHelp,
-      this.needsSecHelp,
-      this.needsPsyHelp,
-      this.urgLevel,
-      this.location
-    );
-    console.log(occurrence);
-
-    this.occurrenceService
-      .filterInstitutions(occurrence)
-      .then((response) => {
-        this.filteredInst = response.map((institution: any) => {
-          const addressString = `${institution.address.street} ${institution.address.number}, ${institution.address.city}`;
-          const mapsUrl = `maps/${institution.name} ${addressString}`;
-          return { ...institution, addressString, mapsUrl };
-        });
-
-        console.log(this.filteredInst);
-      })
-      .catch((erro) => alert(erro));
-  }
+    }
 }
