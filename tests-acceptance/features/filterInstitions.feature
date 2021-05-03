@@ -8,7 +8,11 @@ Feature: Mostrar instituições filtradas para a vítima
 
 Scenario: Uma vítima cadastra sua ocorrência em Recife e precisa de atendimento para uma necessidade médica e psicológica. 
 
-    Given O usuário está no menu inicial
+    Given Eu estou no menu inicial
+    When Eu adiciono que preciso de "Precisa de ajuda psicológica" e "Precisa de ajuda médica"
+    And Eu insiro que estou em "Recife"
+    And Clico em "Submeter"
+
 ############################## Service Scenario ##############################
 
 Scenario: O sistema não possui ocorrência em Recife. É realizada uma postagem de uma ocorrência em Recife

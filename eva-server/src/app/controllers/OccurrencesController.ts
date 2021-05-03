@@ -20,6 +20,7 @@ export class OccurrencesController {
       needsPsychologicalAssistance,
       urgencyLevel,
     } = req.body;
+    console.log(req.body)
 
     const data = {
       date,

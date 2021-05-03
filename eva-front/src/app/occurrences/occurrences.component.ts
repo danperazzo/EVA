@@ -17,21 +17,21 @@ import {
   styleUrls: ['./occurrences.component.css'],
 })
 export class OccurrencesComponent implements OnInit {
-  needsPsyHelp: boolean = true;
-  needsMedHelp: boolean = false;
-  needsSecHelp: boolean = false;
-  dateOccurrence: Date = new Date();
+  needsPsyHelp: boolean;
+  needsMedHelp: boolean;
+  needsSecHelp: boolean;
+  dateOccurrence: Date;
   urgLevel: number;
   location: string;
   filteredInst: Institution[] = [];
 
   constructor(private occurrenceService: OccurrenceService) {
-    this.needsPsyHelp = true;
+    this.needsPsyHelp = false;
     this.needsMedHelp = false;
     this.needsSecHelp = false;
     this.dateOccurrence = new Date();
     this.urgLevel = 2;
-    this.location = 'Recife';
+    this.location = '';
   }
 
   ngOnInit(): void {}
