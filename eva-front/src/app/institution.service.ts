@@ -9,9 +9,12 @@ export class InstitutionsService {
 
   get(id: string) {
     return this.http
-      .get(this.serverURL + '/institution/608efde269bb833ae07a3d89')
+      .get('http://localhost:3333/institutions/608efde269bb833ae07a3d89')
       .toPromise()
-      .then((res) => res)
+      .then((res) => {
+        console.log(res);
+        return res;
+      })
       .catch((err) => {
         console.log(err);
         return err;

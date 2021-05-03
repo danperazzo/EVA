@@ -21,7 +21,11 @@ export class MapsComponent implements OnInit {
     this._Activatedroute.paramMap.subscribe((params) => {
       let id: any = params.get('id');
       console.log(this.institutions.show());
-      this.mapsURL = `https://maps.google.com/maps?q=${id}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+
+      this.institutions.get('123').then((response) => {
+        const addressUrl = `${response.name} ${response.address.street} ${response.address.number} ${response.address.city}`;
+        this.mapsURL = `https://maps.google.com/maps?q=${addressUrl}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+      });
     });
   }
 }

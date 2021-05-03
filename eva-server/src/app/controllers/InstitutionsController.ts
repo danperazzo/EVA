@@ -180,11 +180,11 @@ class InstitutionsController {
   async findOne(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      console.log(id);
+      console.log('sending institution', id);
 
       const data = await Institution.findById(id).exec();
 
-      return res.json({ id: id, data });
+      return res.json({ data });
     } catch (err) {
       return res.status(400).send(err);
     }
