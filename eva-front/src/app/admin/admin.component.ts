@@ -8,7 +8,8 @@ import { AdminServices } from '../admin.service';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  activeIndex: number = 0;
+  index: number = 0;
+  yearFilter: string = "";
   rangeDates: Date[] = [new Date(), new Date()];
   occurrencesFiltered = [];
   occurrencesQtyPerUrgency = [];
@@ -19,6 +20,10 @@ export class AdminComponent implements OnInit {
   constructor(private adminServices: AdminServices) {
     this.rangeDates[0].setHours(0);
     this.rangeDates[1].setHours(23);
+  }
+
+  handleChange(e:any) {
+    this.index = e.index;
   }
 
   countOccurrencesByUrgencyInDateRange() {
@@ -79,12 +84,29 @@ export class AdminComponent implements OnInit {
       });
   }
 
-  updateViews() {
+  countOccurrencesByTypeInYear(){
+    this.adminServices
+      .countOccurrencesByTypeInYear(this.yearFilter)
+      .then((response) => {
+        this.occurrencesFiltered = response;
+        console.log(
+          'occurrences ->>>',
+          this.occurrencesFiltered,
+          this.yearFilter)
+      });
+    
+  }
+
+  updateMonthViews() {
     this.countOccurrencesByUrgencyInDateRange();
     this.filterOccurrenceByDateRange();
   }
 
+  updateYearViews(){
+    this.countOccurrencesByTypeInYear();
+  }
+
   ngOnInit(): void {
-    this.updateViews();
+    this.updateMonthViews();
   }
 }

@@ -32,7 +32,17 @@ export class AdminServices {
       .catch(this.tratarErro);
   }
 
-  filterOcurrencesByUrgencyLevel(urgencyLevel: number) {}
+  countOccurrencesByTypeInYear(year: string) {
+    let param = new HttpParams().set('yearFilter', year);
+    return this.http
+    .get(this.serverURL + '/occurrences/countByTypeInYear', {
+      headers: this.headers,
+      params: param,
+    })
+    .toPromise()
+    .then((res) => res)
+    .catch(this.tratarErro);   
+  }
 
   private tratarErro(erro: any): Promise<any> {
     console.error('Acesso mal sucedido ao serviço de ocorrências', erro);

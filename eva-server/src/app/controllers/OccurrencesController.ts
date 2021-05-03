@@ -195,7 +195,7 @@ export class OccurrencesController {
           $project: {
             year: { $year: "$date" },
             typePsy: "$needsPsychologicalAssistance",
-            typePol: "$needsSecurityAssistance",
+            typeSec: "$needsSecurityAssistance",
             typeMed: "$needsMedicalAssistance",
           },
         },
@@ -208,7 +208,7 @@ export class OccurrencesController {
           $group: {
             _id: "$year",
             countMedOccurrences: { $sum: { $cond: ["$typeMed", 1, 0] } },
-            countPolOccurrences: { $sum: { $cond: ["$typePol", 1, 0] } },
+            countSecOccurrences: { $sum: { $cond: ["$typeSec", 1, 0] } },
             countPsyOccurrences: { $sum: { $cond: ["$typePsy", 1, 0] } },
           },
         },
