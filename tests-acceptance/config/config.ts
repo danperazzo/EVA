@@ -7,14 +7,14 @@ export let config: Config = {
     SELENIUM_PROMISE_MANAGER: false,
 
     capabilities: {
-        browserName: 'firefox'
+        browserName: 'chrome'
     },
 
     framework: 'custom',
     frameworkPath: require.resolve('protractor-cucumber-framework'),
 
     specs: [
-        '../../features/filterInstitions.feature'
+        '../../features/filterOccurrencesByTime.feature'
     ],
 
     onPrepare: () => {
@@ -24,6 +24,6 @@ export let config: Config = {
         compiler: "ts:ts-node/register",
         strict: true,
         format: ['pretty'],
-        require: ['../../stepdefinitions/filterInstitions.ts'],
+        require: ['../../stepdefinitions/filterOccurrencesByTime.ts'],
     }
 };
