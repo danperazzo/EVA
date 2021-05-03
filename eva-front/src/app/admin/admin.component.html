@@ -5,21 +5,18 @@
         <i class="pi pi-chart-line"></i>
         <span>Visão Mensal</span>
       </ng-template>
-      <div class="host">
-        <p-calendar
-          [(ngModel)]="rangeDates"
-          [showIcon]="true"
-          icon="pi pi-calendar"
-          selectionMode="range"
-          [readonlyInput]="true"
-          inputId="range"
-        ></p-calendar>
+      <div class="card">
+          <label for="icon">From</label>
+          <p-calendar name="starDate" [(ngModel)]="startDate" [showIcon]="true" inputId="icon"></p-calendar>
 
-        <p-button
-          label="Filter"
-          icon="pi pi-filter"
-          (onClick)="updateMonthViews()"
-        ></p-button>
+          <label for="icon">To</label>
+          <p-calendar name="endDate"  [(ngModel)]="endDate" [showIcon]="true" inputId="icon"></p-calendar>
+
+          <p-button
+            label="Filter"
+            icon="pi pi-filter"
+            (onClick)="updateMonthViews()"
+          ></p-button>
       </div>
       <div class="card">
         <p-table [value]="occurrencesFiltered">

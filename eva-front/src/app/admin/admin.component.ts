@@ -10,7 +10,9 @@ import { AdminServices } from '../admin.service';
 export class AdminComponent implements OnInit {
   index: number = 0;
   yearFilter: string = "";
-  rangeDates: Date[] = [new Date(), new Date()];
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+
   occurrencesFiltered = [];
   occurrencesQtyPerUrgency = [];
   labels = [];
@@ -18,8 +20,14 @@ export class AdminComponent implements OnInit {
   pieData: any;
 
   constructor(private adminServices: AdminServices) {
-    this.rangeDates[0].setHours(0);
-    this.rangeDates[1].setHours(23);
+    let today = new Date();
+    let month = today.getMonth();
+
+    this.startDate.setDate(1);
+    this.startDate.setHours(0);
+    this.endDate.setMonth(month + 1);
+    this.endDate.setDate(0);
+    this.endDate.setHours(23);
   }
 
   handleChange(e:any) {
@@ -27,8 +35,8 @@ export class AdminComponent implements OnInit {
   }
 
   countOccurrencesByUrgencyInDateRange() {
-    let dateStart = this.rangeDates[0].toISOString().split('T')[0];
-    let dateEnd = this.rangeDates[1].toISOString().split('T')[0];
+    let dateStart = (this.startDate as Date).toISOString().split('T')[0];
+    let dateEnd = (this.endDate as Date).toISOString().split('T')[0];
 
     this.adminServices
       .countOccurrencesByUrgencyInDateRange(dateStart, dateEnd)
@@ -68,8 +76,8 @@ export class AdminComponent implements OnInit {
   }
 
   filterOccurrenceByDateRange() {
-    let dateStart = this.rangeDates[0].toISOString().split('T')[0];
-    let dateEnd = this.rangeDates[1].toISOString().split('T')[0];
+    let dateStart = (this.startDate as Date).toISOString().split('T')[0];
+    let dateEnd = (this.endDate as Date).toISOString().split('T')[0];
 
     this.adminServices
       .filterOccurrenceByDateRange(dateStart, dateEnd)
