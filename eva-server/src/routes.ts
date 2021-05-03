@@ -17,6 +17,8 @@ routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
 
 //occurrences routes 
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);
+routes.post('/occurrences', OccurrencesController.store);
+routes.delete('/occurrences', OccurrencesController.dropTable);
 routes.get('/occurrences', OccurrencesController.index);
 routes.get('/occurrences/countByUrgencyInDateRange', OccurrencesController.countByUrgencyInDateRange);
 routes.get('/occurrences/filterByDateRange', OccurrencesController.filterByDateRange);

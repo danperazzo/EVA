@@ -171,3 +171,4 @@ Feature: Visualizar ocorrências por tempo
         ocorrência no período avaliado com os valores "Fevereiro, 417, 17 - 
         22, Policial" para o email "nss2@cin.ufpe.br"
         And o sistema emite uma mensagem de sucesso
+

@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 //import _ from 'lodash';
 import mongoose from 'mongoose';
 import { Request, Response } from 'express';
@@ -64,25 +64,23 @@ export class OccurrencesController {
   }
 
   async index(req: Request, res: Response) {
-
     try {
-        const occurrenceList = await Occurrence.find({  
-        })
-        .select('_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel city')
-        .sort({ date: 'desc' });
-        
-        return res.send(occurrenceList);
-      
-      } catch (err) {
-        Sentry.captureException(err);
-        console.log("Erro ao listar ocorrências!\n" + err);
-        return res.send(err);
-      }
+      const occurrenceList = await Occurrence.find({})
+        .select(
+          "_id date needsMedicalAssistance needsSecurityAssistance needsPsychologicalAssistance urgencyLevel city"
+        )
+        .sort({ date: "desc" });
+
+      return res.send(occurrenceList);
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro ao listar ocorrências!\n" + err);
+      return res.send(err);
     }
+  }
 
-/* Inicializa o DB com dados mockados de ocorrências */
+  /* Inicializa o DB com dados mockados de ocorrências */
   async storeMocks(req: Request, res: Response) {
-
     try {
       let newOccurrence;
       occurrencesList.map(async (occurrence) => {
@@ -90,21 +88,50 @@ export class OccurrencesController {
 
         newOccurrence = new Occurrence(occurrence);
         let createOccurrence = await newOccurrence.save();
-      })
+      });
       return res.send(newOccurrence);
-    
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro ao inserir ocorrências!\n" + err);
       return res.send(err);
     }
-  } 
-  
-  async countByUrgencyInDateRange(req: Request, res: Response){
+  }
 
+  async store(req: Request, res: Response) {
     try {
-      let startDate_str = req.query.startDate as string + "T00:00:00.000+0000";
-      let endDate_str = req.query.endDate as string + "T23:59:59.999+0000";
+      let receivedOccurrence;
+      let receivedOccurrences = req.body;
+      receivedOccurrences.map(async (occurrence: any) => {
+        receivedOccurrence = new Occurrence(occurrence);
+        let createOccurrence = await receivedOccurrence.save();
+      });
+      return res.send(receivedOccurrence);
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro ao inserir ocorrênfcias!\n" + err);
+      return res.send(err);
+    }
+  }
+
+  async dropTable(req: Request, res: Response) {
+    try {
+      const tableDeleted = await Occurrence.remove({}, function (err) {
+        console.log("collection removed");
+      });
+
+      return res.send(tableDeleted);
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro ao deletar a tabela!\n" + err);
+      return res.send(err);
+    }
+  }
+
+  async countByUrgencyInDateRange(req: Request, res: Response) {
+    try {
+      let startDate_str =
+        (req.query.startDate as string) + "T00:00:00.000+0000";
+      let endDate_str = (req.query.endDate as string) + "T23:59:59.999+0000";
 
       const startDate: Date = new Date(Date.parse(startDate_str));
       const endDate: Date = new Date(Date.parse(endDate_str));
@@ -113,26 +140,25 @@ export class OccurrencesController {
         {
           $project: {
             urgencyLevel: "$urgencyLevel",
-            date: "$date"
-          }
+            date: "$date",
+          },
         },
         {
           $match: {
             date: {
               $gte: startDate,
-              $lt: endDate     
-            }
-          }
+              $lt: endDate,
+            },
+          },
         },
         {
           $group: {
             _id: "$urgencyLevel",
-            countOccurrences: { $sum : 1 }
-          }
-        }
-      ])
+            countOccurrences: { $sum: 1 },
+          },
+        },
+      ]);
       return res.send(occurrencesAggregated);
-      
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro ao agregar ocorrências por data!\n" + err);
@@ -140,20 +166,19 @@ export class OccurrencesController {
     }
   }
 
-  async filterByDateRange(req: Request, res: Response){
+  async filterByDateRange(req: Request, res: Response) {
     try {
       const startDate: Date = new Date(req.query.startDate as string);
       const endDate: Date = new Date(req.query.endDate as string);
 
-      const occurrenceFiltered = await Occurrence.find({  
-        "date": {
+      const occurrenceFiltered = await Occurrence.find({
+        date: {
           $gte: startDate,
-          $lt: endDate,      
-        }
+          $lt: endDate,
+        },
       });
-      
+
       return res.send(occurrenceFiltered);
-    
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro ao filtrar ocorrências por datas!\n" + err);
@@ -161,8 +186,7 @@ export class OccurrencesController {
     }
   }
 
-  async countByTypeInYear(req: Request, res: Response){
-
+  async countByTypeInYear(req: Request, res: Response) {
     try {
       const yearFilter: Number = parseInt(req.query.yearFilter as string);
 
@@ -172,33 +196,31 @@ export class OccurrencesController {
             year: { $year: "$date" },
             typePsy: "$needsPsychologicalAssistance",
             typePol: "$needsSecurityAssistance",
-            typeMed: "$needsMedicalAssistance"
-          }
+            typeMed: "$needsMedicalAssistance",
+          },
         },
         {
           $match: {
-            year: yearFilter
-          }
+            year: yearFilter,
+          },
         },
         {
           $group: {
             _id: "$year",
-            countMedOccurrences: { $sum : { $cond: ["$typeMed", 1, 0]} },
-            countPolOccurrences: { $sum : { $cond: ["$typePol", 1, 0]} },
-            countPsyOccurrences: { $sum : { $cond: ["$typePsy", 1, 0]} }
-          }
-        }
-      ])
-      
+            countMedOccurrences: { $sum: { $cond: ["$typeMed", 1, 0] } },
+            countPolOccurrences: { $sum: { $cond: ["$typePol", 1, 0] } },
+            countPsyOccurrences: { $sum: { $cond: ["$typePsy", 1, 0] } },
+          },
+        },
+      ]);
+
       return res.send(occurrencesAggregated);
-    
     } catch (err) {
       Sentry.captureException(err);
       console.log("Erro ao agregar ocorrências por ano!\n" + err);
       return res.send(err);
     }
   }
-  
 }
 
 export default new OccurrencesController();
