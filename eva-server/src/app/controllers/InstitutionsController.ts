@@ -184,7 +184,7 @@ class InstitutionsController {
 
       const data = await Institution.findById(id).exec();
 
-      return res.json({ data });
+      return res.json(data);
     } catch (err) {
       return res.status(400).send(err);
     }

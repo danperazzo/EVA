@@ -9,7 +9,7 @@ import { InstitutionsService } from '../institution.service';
 })
 export class MapsComponent implements OnInit {
   name = '';
-  city = '';
+  addressFront = '';
   mapsURL = `https://maps.google.com/maps?q=recife&t=&z=13&ie=UTF8&iwloc=&output=embed`;
 
   constructor(
@@ -20,9 +20,11 @@ export class MapsComponent implements OnInit {
   ngOnInit(): void {
     this._Activatedroute.paramMap.subscribe((params) => {
       let id: any = params.get('id');
-      console.log(this.institutions.show());
 
-      this.institutions.get('123').then((response) => {
+      this.institutions.get(id).then((response) => {
+        console.log(response);
+        this.addressFront = `${response.address.street} ${response.address.number}, ${response.address.city}`;
+        this.name = response.name;
         const addressUrl = `${response.name} ${response.address.street} ${response.address.number} ${response.address.city}`;
         this.mapsURL = `https://maps.google.com/maps?q=${addressUrl}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
       });

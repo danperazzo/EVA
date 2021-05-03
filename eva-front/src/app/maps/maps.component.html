@@ -1,4 +1,6 @@
 <div class="all">
+  <p>{{ name }}</p>
+
   <iframe
     [src]="mapsURL | safe"
     width="600"
@@ -8,5 +10,5 @@
   >
   </iframe>
 
-  <p>{{ name }}, {{ city }}</p>
+  <p>{{ addressFront }}</p>
 </div>
