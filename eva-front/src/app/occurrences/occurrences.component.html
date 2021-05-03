@@ -29,7 +29,11 @@
   </div>
 
   <div class="p-field-checkbox">
-    <p-checkbox [(ngModel)]="needsSecHelp" [binary]="true"></p-checkbox>
+    <p-checkbox
+      name="polhelp"
+      [(ngModel)]="needsSecHelp"
+      [binary]="true"
+    ></p-checkbox>
     <label> Precisa de ajuda policial</label>
   </div>
 
@@ -45,7 +49,11 @@
     <label for="float-input">Local da ocorrência</label>
   </span>
 
-  <p-button label="Submeter" (onClick)="postOccurrence()" name="submitButton"></p-button>
+  <p-button
+    label="Submeter"
+    (click)="postOccurrence()"
+    name="botaosubmeter"
+  ></p-button>
 
   <p-table [value]="filteredInst">
     <ng-template pTemplate="header">
@@ -58,9 +66,9 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-institution>
-      <tr>
-        <td>{{ institution.name }}</td>
-        <td>{{ institution.email }}</td>
+      <tr   name="institutionlist">
+        <td name = "institutionsName">{{ institution.name }}</td>
+        <td name = "institutionsEmail">{{ institution.email }}</td>
         <td>{{ institution.phoneNumber }}</td>
         <td>{{ institution.type }}</td>
         <a [href]="institution.mapsUrl">
