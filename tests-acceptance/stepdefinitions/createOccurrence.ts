@@ -18,7 +18,6 @@ let sameName = (elem, name) =>
     .element(by.name("institutionsName"))
     .getText()
     .then((text) => {
-      console.log(text);
       return text === name;
     });
 
