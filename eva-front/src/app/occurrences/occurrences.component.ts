@@ -11,14 +11,12 @@ import {
   Occurrence,
 } from '../../../../common/models';
 
-
 @Component({
   selector: 'app-occurrences',
   templateUrl: './occurrences.component.html',
-  styleUrls: ['./occurrences.component.css']
+  styleUrls: ['./occurrences.component.css'],
 })
 export class OccurrencesComponent implements OnInit {
-
   needsPsyHelp: boolean = true;
   needsMedHelp: boolean = false;
   needsSecHelp: boolean = false;
@@ -36,8 +34,7 @@ export class OccurrencesComponent implements OnInit {
     this.location = 'Recife';
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   addOccurrence(occurence: Occurrence) {}
 
@@ -61,7 +58,7 @@ export class OccurrencesComponent implements OnInit {
       .then((response) => {
         this.filteredInst = response.map((institution: any) => {
           const addressString = `${institution.address.street} ${institution.address.number}, ${institution.address.city}`;
-          const mapsUrl = `maps/${institution.name} ${addressString}`;
+          const mapsUrl = `maps/${institution._id}`;
           return { ...institution, addressString, mapsUrl };
         });
 
@@ -69,6 +66,4 @@ export class OccurrencesComponent implements OnInit {
       })
       .catch((erro) => alert(erro));
   }
-
-
 }

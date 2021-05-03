@@ -9,55 +9,44 @@ import {
   Address,
   InstitutionType,
   Occurrence,
-} from "../../../common/models";
+} from '../../../common/models';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css',
-],
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   mapsUrl: string = '/maps/hospital&das&clinicas';
-  items: MenuItem[] =[];
+  items: MenuItem[] = [];
 
   institutions: Institution[] = [];
   ocurrenceForm = this.formBuilder.group({
     location: '',
-    urgencyLevel: ''
+    urgencyLevel: '',
   });
 
-  
+  occurrence: Occurrence = new Occurrence(new Date(), true, true, true, 0, '');
 
-  occurrence: Occurrence = new Occurrence(new Date(),
-                                          true,
-                                          true,
-                                          true,
-                                          0,
-                                          "");
-
-//  constructor(private adminService: AdminServices) {}
-  constructor(private formBuilder: FormBuilder,) {}
+  //  constructor(private adminService: AdminServices) {}
+  constructor(private formBuilder: FormBuilder) {}
 
   addInstitution(institution: Institution): Institution {
     return new Institution(
-      "Hospital das Freiras",
-      "hospitaldasfreiras@gmail.com",
-      "8199999912",
-      "medico",
-      "Rua falsa",
-      "123",
-      "123654-3",
-      "Recife"
+      'Hospital das Freiras',
+      'hospitaldasfreiras@gmail.com',
+      '8199999912',
+      'medico',
+      'Rua falsa',
+      '123',
+      '123654-3',
+      'Recife'
     );
   }
 
-  findInstitution(){
-
+  findInstitution() {
     console.log('Procurandooo');
-
   }
-      
 
   ngOnInit() {
     this.items = [
@@ -69,7 +58,7 @@ export class AppComponent {
       {
         label: 'Filters',
         icon: 'pi pi-fw pi-filter',
-      }
+      },
     ];
   }
 }

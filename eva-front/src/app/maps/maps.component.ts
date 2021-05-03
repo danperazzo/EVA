@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { InstitutionsService } from '../institution.service';
 
 @Component({
   selector: 'app-maps',
@@ -11,15 +12,16 @@ export class MapsComponent implements OnInit {
   city = '';
   mapsURL = `https://maps.google.com/maps?q=recife&t=&z=13&ie=UTF8&iwloc=&output=embed`;
 
-  constructor(private _Activatedroute: ActivatedRoute) {}
+  constructor(
+    private _Activatedroute: ActivatedRoute,
+    private institutions: InstitutionsService
+  ) {}
 
   ngOnInit(): void {
     this._Activatedroute.paramMap.subscribe((params) => {
-      let address: any = params.get('address');
-
-      address = address?.split('&').join('%20');
-
-      this.mapsURL = `https://maps.google.com/maps?q=${address}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+      let id: any = params.get('id');
+      console.log(this.institutions.show());
+      this.mapsURL = `https://maps.google.com/maps?q=${id}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
     });
   }
 }

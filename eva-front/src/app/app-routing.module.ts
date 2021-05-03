@@ -9,7 +9,7 @@ import { OccurrencesComponent } from './occurrences/occurrences.component';
 const routes: Routes = [
   // { path: 'maps/:name/:city/:street/:number', component: MapsComponent },
   { path: '', component: OccurrencesComponent },
-  { path: 'maps/:address', component: MapsComponent },
+  { path: 'maps/:id', component: MapsComponent },
   { path: 'admin/analytics', component: AdminComponent },
 ];
 

@@ -88,6 +88,5 @@ export class InstitutionsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  filterInstitutions() {
-    }
+  filterInstitutions() {}
 }
