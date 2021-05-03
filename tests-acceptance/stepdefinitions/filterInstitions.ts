@@ -8,20 +8,30 @@ import { Occurrence } from "../../common/models";
 
 var base_url = "http://localhost:3333/";
 
-let sameName = ((elem, name) => elem.element(by.name('institutionsName')).getText().then(text => {
-    console.log(text);
-            return text === name;}))
-
-
-
-async function assertTamanhoEqual(set,n) {
-    await set.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(n));
+async function clickButtonName(name) {
+  var but_pol = element.all(by.name(name)).get(0);
+  await but_pol.click();
 }
 
-async function assertElementsWithSameName(n,name) {
-    var allalunos : ElementArrayFinder = element.all(by.name('institutionlist'));
-    var samenames = allalunos.filter(elem => sameName(elem,name));
-    await assertTamanhoEqual(samenames,n); 
+let sameName = (elem, name) =>
+  elem
+    .element(by.name("institutionsName"))
+    .getText()
+    .then((text) => {
+      console.log(text);
+      return text === name;
+    });
+
+async function assertTamanhoEqual(set, n) {
+  await set.then((elems) =>
+    expect(Promise.resolve(elems.length)).to.eventually.equal(n)
+  );
+}
+
+async function assertElementsWithSameName(n, name) {
+  var allalunos: ElementArrayFinder = element.all(by.name("institutionlist"));
+  var samenames = allalunos.filter((elem) => sameName(elem, name));
+  await assertTamanhoEqual(samenames, n);
 }
 
 defineSupportCode(function ({ Given, When, Then }) {
@@ -47,25 +57,28 @@ defineSupportCode(function ({ Given, When, Then }) {
     }
   );
 
-  When(/^Eu envio para o sistema minha ocorrência situada em "([^\"]*)"$/, async (city) => {
-    let occurrence = {
-      needsMedicalAssistance: false,
-      needsSecurityAssistance: false,
-      needsPsychologicalAssistance: true,
-      urgencyLevel: 2,
-      date: "2021-05-02T18:44:55.576Z",
-      city: city,
-    };
+  When(
+    /^Eu envio para o sistema minha ocorrência situada em "([^\"]*)"$/,
+    async (city) => {
+      let occurrence = {
+        needsMedicalAssistance: false,
+        needsSecurityAssistance: false,
+        needsPsychologicalAssistance: true,
+        urgencyLevel: 2,
+        date: "2021-05-02T18:44:55.576Z",
+        city: city,
+      };
 
-    var options: any = {
-      method: "POST",
-      uri: base_url + "occurrence/postOccurrence",
-      body: occurrence,
-      json: true,
-    };
+      var options: any = {
+        method: "POST",
+        uri: base_url + "occurrence/postOccurrence",
+        body: occurrence,
+        json: true,
+      };
 
-    await request(options).then();
-  });
+      await request(options).then();
+    }
+  );
 
   Then(
     /^O sistema possui alguma ocorrência situada em "([^\"]*)"$/,
@@ -86,11 +99,8 @@ defineSupportCode(function ({ Given, When, Then }) {
   When(
     /^Eu adiciono que preciso de "([^\"]*)" e "([^\"]*)"$/,
     async (checkbox1: string, checkbox2: string) => {
-      var but_pol = element.all(by.name("polhelp")).get(0);
-      await but_pol.click();
-
-      var but_psi = element.all(by.name("psihelp")).get(0);
-      await but_psi.click();
+      await clickButtonName("polhelp");
+      await clickButtonName("psihelp");
     }
   );
 
@@ -100,16 +110,10 @@ defineSupportCode(function ({ Given, When, Then }) {
   });
 
   When(/^Clico em "([^\"]*)"$/, async (botao: string) => {
-    var but_send = element.all(by.name("botaosubmeter")).get(0);
-    await but_send.click();
+    await clickButtonName("botaosubmeter");
   });
 
-  Then(
-    /^Eu visualizo "([^\"]*)"$/,
-    async (name: string) => {
-
-        
-        await assertElementsWithSameName(1,name);
-    }
-  );
+  Then(/^Eu visualizo "([^\"]*)"$/, async (name: string) => {
+    await assertElementsWithSameName(1, name);
+  });
 });
