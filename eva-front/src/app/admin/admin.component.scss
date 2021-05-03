@@ -17,6 +17,38 @@
     margin: 0;
 }
 
+.divMonthFilter {
+    height: 55px;
+    width: 57%;
+    top: 50%;
+    padding: 0.5rem;
+    padding-left: 15px;
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    border-radius: 3px
+}
+
+.divYearFilter {
+    background-color: #f8f9fa;
+    height: 55px;
+    width: 27%;
+    top: 50%;
+    padding: 0.5rem;
+    padding-left: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 3px
+}
+
+.pieChart {
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 3px
+}
+
 :host ::ng-deep .p-table {
     margin-block-start: 100px;
     margin-block-end: 100px;
