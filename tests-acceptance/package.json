@@ -3,6 +3,7 @@
   "description": "Testes de aceitação do teaching assistant",
   "scripts": {
     "tsc": "./node_modules/typescript/bin/tsc",
+    "testCreateOccurrence": "npm run tsc && protractor compiledCode/tests-acceptance/config/configCreateOccurrence.js",
     "test": "npm run tsc && protractor compiledCode/tests-acceptance/config/config.js",
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "webdriver-manager start"
