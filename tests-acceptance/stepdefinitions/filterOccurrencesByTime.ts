@@ -4,7 +4,7 @@ let chai = require("chai").use(require("chai-as-promised"));
 let expect = chai.expect;
 import request = require("request-promise");
 
-var serverURL = "http://localhost:3333";
+var serverURL = "http://localhost:3333/occurrences";
 var responseServer;
 
 defineSupportCode(function ({ Given, When, Then }) {
@@ -24,13 +24,12 @@ defineSupportCode(function ({ Given, When, Then }) {
           date: "2021-04-28T10:45:28.934Z",
           needsPsychologicalAssistance: "true",
           urgencyLevel: 5,
-        },
+        }
       ];
-      var url = serverURL + "/occurrences";
-      var delete_options: any = { method: "DELETE", uri: url, json: true };
+      var delete_options: any = { method: "DELETE", uri: serverURL, json: true };
       var post_options: any = {
         method: "POST",
-        uri: url,
+        uri: serverURL,
         body: occurrences,
         json: true,
       };
@@ -45,12 +44,34 @@ defineSupportCode(function ({ Given, When, Then }) {
     }
   );
 
+  Given(
+    /^O sistema possui armazenada "(\d*)" ocorrências na data "([^\"]*)"$/,
+    async (numOccurrences, date) => {
+        var occurrence = [{
+            city: "Olinda",
+            date: date + "T11:45:28.934Z",
+            needsSecurityAssistance: "true",
+            urgencyLevel: 3,
+        }]
+        var post_options: any = {
+            method: "POST",
+            uri: serverURL,
+            body: occurrence,
+            json: true,
+          };
+
+        await request(post_options).then((response) =>
+            console.log(response.body)
+        );
+    
+    });
+
   When(
     /^O usuário solicita as ocorrências entre as datas "([^\"]*)" e "([^\"]*)"$/,
     async (startDate, endDate) => {
       var url =
         serverURL +
-        "/occurrences/filterByDateRange?startDate=" +
+        "/filterByDateRange?startDate=" +
         startDate +
         "&endDate=" +
         endDate;

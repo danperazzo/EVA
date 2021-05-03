@@ -12,5 +12,6 @@ Feature: Visualizar ocorrências por tempo
     ############################### Service Scenario ###############################
     Scenario: seleção bem sucedida das ocorrências em um intervalo de datas
         Given O sistema possui "2" ocorrências armazenadas entre as datas "2021-04-24" e "2021-04-30"
+        And O sistema possui armazenada "1" ocorrências na data "2021-04-20"
         When O usuário solicita as ocorrências entre as datas "2021-04-24" e "2021-04-30"
         Then O sistema retorna uma lista com "2" ocorrências
