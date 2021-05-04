@@ -9,8 +9,10 @@ const routes = Router();
 //institutions routes 
 routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
-//routes.get('/institutions/:id', InstitutionsController.findOne);
-routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
+routes.get('/institutions/:id', InstitutionsController.findOne);
+
+// TODO: remove this route on refactor!!
+// routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
 
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
 routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
