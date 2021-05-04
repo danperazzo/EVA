@@ -24,7 +24,7 @@ Feature: Mostrar instituições filtradas para a vítima e cadastrar ocorrência
 
 
 
-    Scenario: A vítima necessita de atendimento médico e o nome de um hospital em sua cidade junto com seu endereço é informado
+    Scenario: A vítima necessita de atendimento médico e o nome de um hospital em Recife junto com seu endereço é informado
 
         Given Eu, uma vítima utilizando o sistema
         When Eu registro que moro em "Recife"
@@ -32,25 +32,26 @@ Feature: Mostrar instituições filtradas para a vítima e cadastrar ocorrência
         And Eu submeto a resposta
         Then o sistema mostra uma lista com "Hospital da Restauração" com o endereço "Av. Gov. Agamenon Magalhães, 55, Recife"
 
-    Scenario: A vítima precisa de ajuda policial e uma delegacia em sua cidade é indicada
+    Scenario: A vítima situada em Recife precisa de ajuda policial e uma delegacia em Recife é indicada
 
         Given Eu, uma vítima utilizando
         When Eu "submeto" minha resposta
         And Eu indico que "Preciso de ajuda policial"
+        And Eu indico que moro em "Recife"
         Then o sistema mostra uma lista com "Delegacia da Mulher" com o endereço "Praça do Campo Santo, 55 Recife"
 
 
-    Scenario: A vítima  precisa de ajuda psicológica e o nome de um psicólogo que resida na mesma cidade da vítima é indicado junto com seu número
+    Scenario: A vítima  precisa de ajuda psicológica e o nome de um psicólogo que resida na mesma cidade, Recife, da vítima é indicado junto com seu endereço
 
 
         Given Eu, uma vítima utilizando o sistema
         And Eu indico que necessito de "Atendimento psicológico"
-        When Eu "submeto" minha resposta
         And Eu informo que moro em "Recife"
+        When Eu "submeto" minha resposta
         Then o sistema mostra uma lista com "Cliníca psicológica Dra. Simone Paraíso" com o endereço "Av. Conselheiro Rosa e Silva, 670" e situada em "Recife"
 
 
-    Scenario: A vítima precisa de ajuda médica porém não existe um hospital para sua necessidade na sua cidade. O sistema retornará uma lista vazia.
+    Scenario: A vítima precisa de ajuda médica porém não existe uma instituição médica para sua necessidade na sua cidade, Paulista. O sistema retornará uma lista vazia.
 
         Given Eu, uma vítima utilizando o sistema
         And o sistema não possui instituições "médicas" em "Paulista"
@@ -59,13 +60,13 @@ Feature: Mostrar instituições filtradas para a vítima e cadastrar ocorrência
         When Eu "submeto" minha resposta
         Then o sistema retorna uma lista vazia
 
-    Scenario: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade. O sistema retorna uma lista vazia
+    Scenario: A vítima precisa de ajuda psicológica porém não existem psicólogos que residam em sua cidade, Paulista. O sistema retorna uma lista vazia
 
         Given Eu, uma vítima utilizando o sistema
+        And o sistema não possui psicólogos em "Paulista"
         When eu indico que estou situada em "Paulista"
         And Eu indico que necessito de "Atendimento psicológico"
         And Eu "submeto" minha resposta
-        And o sistema não possui psicólogos em "Paulista"
         Then o sistema retorna uma lista vazia
 
 
