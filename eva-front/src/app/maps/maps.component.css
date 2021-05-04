@@ -10,6 +10,10 @@ iframe {
   margin: 50px;
 }
 
+h1 {
+  align-self: center;
+}
+
 p {
   size: 100px;
   font-family: Arial, Helvetica, sans-serif;
