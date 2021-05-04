@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserWithoutOcurrenceService } from './user-without-ocurrence.service';
+import { UserWithoutOcurrence } from './user-without-ocurrence.service';
 
 describe('UserWithoutOcurrenceService', () => {
-  let service: UserWithoutOcurrenceService;
+  let service: UserWithoutOcurrence;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserWithoutOcurrenceService);
+    service = TestBed.inject(UserWithoutOcurrence);
   });
 
   it('should be created', () => {

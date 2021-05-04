@@ -25,8 +25,11 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { AdminServices } from './admin.service';
 import { ChartModule } from 'primeng/chart';
-
 import { InstitutionsService } from './institution.service';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import { UserWithoutOcurrence } from './user-without-ocurrence.service';
 
 @NgModule({
   declarations: [
@@ -55,8 +58,11 @@ import { InstitutionsService } from './institution.service';
     TabViewModule,
     TableModule,
     ChartModule,
+    DropdownModule,
+    InputTextareaModule,
+    InputSwitchModule
   ],
-  providers: [OccurrenceService, AdminServices, InstitutionsService],
+  providers: [OccurrenceService, AdminServices, InstitutionsService, UserWithoutOcurrence],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

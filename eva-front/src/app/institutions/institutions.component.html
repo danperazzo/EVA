@@ -1,4 +1,4 @@
-<div class="all">
+<!-- <div class="all">
   <h1>Cadastrar ocorrência</h1>
   <div class="p-field p-col-12 p-md-4">
     <label for="icon">Data da Ocorrência </label>
@@ -54,4 +54,56 @@
       </tr>
     </ng-template>
   </p-table>
+</div> -->
+<html>
+<div class="body">
+<div class="p-d-flex p-flex-column " style="height:150px">
+  
+    <div class="card" >
+      <div class="p-formgroup-inline">
+        <div class="p-field " style="margin-bottom: 15px;">
+          <input id="institutionname" type="username" placeholder="Digite uma instituição" aria-describedby="username1-help" pInputText [(ngModel)]="institutionName" />
+        </div>
+        <div class="p-field "  style="margin-bottom: 15px;">
+          <p-dropdown
+            (onChange)="handleChange($event)" 
+            inputId="city"
+            [options]="citys"
+            [(ngModel)]="selectedCity"
+            placeholder="Selecione uma cidade"
+            optionLabel="name"
+          ></p-dropdown>
+        </div>
+        <h5>
+        <p-inputSwitch [(ngModel)]="checkedFilter" (onChange)="handleChange($event)" ></p-inputSwitch>
+        On/Off
+        </h5>
+
+      </div>
+    </div>
+
+    <div class="p-ac-center" style="height:100px">
+      <div class="p-text-center" [(ngModel)]="institutions">{{institutions}}</div>
+    </div>
 </div>
+<p-table [value]="receivedInstitutions">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Name</th>
+          <th>email</th>
+          <th>Phone</th>
+          <th>City</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-institutions>
+    <tr>
+        <td>{{institutions.name}}</td>
+        <td>{{institutions.email}}</td>
+        <td>{{institutions.phoneNumber}}</td>
+        <td>{{institutions.city}}</td>
+    </tr>
+</ng-template>
+</p-table>
+
+</div>
+</html>
