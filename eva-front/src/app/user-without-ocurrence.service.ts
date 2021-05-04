@@ -27,7 +27,7 @@ export class UserWithoutOcurrence {
   filterInstitutionByName(name:string) {
     //let param = new HttpParams().set("id", name);
     let param = "?id="+ name;
-    return this.http.get<Institution>(this.serverURL + "/institutions/findbyname" + param)
+    return this.http.get<Institution>(this.serverURL + "/institutions_name/findbyname" + param)
              .toPromise()
              .then(res => res)
              .catch(this.erro);
@@ -36,7 +36,7 @@ export class UserWithoutOcurrence {
   filterInstitutionByNameByCity(name:string, cityName: string) {
   //  let param = new HttpParams().set("id", name).set("city", cityName);?id=Psi&city=Recife
     let param = "?id="+ name + "&city=" + cityName;
-    return this.http.get<Institution>(this.serverURL + "/institutions/findbyname/findbycity" + param)
+    return this.http.get<Institution>(this.serverURL + "/institutions_name/findbyname/findbycity" + param)
              .toPromise()
              .then(res => res)
              .catch(this.erro);

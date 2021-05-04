@@ -244,10 +244,34 @@ class InstitutionsController {
         const institutions = await Institution.find()
         .and([{name: new RegExp(id, 'i')},{ "address.city": city}]);  
           
-          
           return res.json({ institutions: institutions });
         }
 
+
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituição não pode ser listada");
+      return res.send(err);
+    }
+  }
+
+  async deleteByCity(req: Request, res: Response) {
+    try {
+      //const { id, city } = req.params;
+     // console.log("id", id);
+     // console.log("city", city);
+     console.log("entrei aqui")
+      const city = req.query.city?.toString();
+
+      if(city != undefined){
+        const institutions = await Institution.deleteMany(
+        {"address.city": city});
+        
+        console.log("Deleted Institutions", institutions);
+        
+          
+          return res.json({ institutions: institutions });
+        }
 
     } catch (err) {
       Sentry.captureException(err);

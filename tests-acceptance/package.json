@@ -4,7 +4,7 @@
   "scripts": {
     "tsc": "./node_modules/typescript/bin/tsc",
     "testCreateOccurrence": "npm run tsc && protractor compiledCode/tests-acceptance/config/configCreateOccurrence.js",
-    "test": "npm run tsc && protractor compiledCode/tests-acceptance/config/config.js",
+    "test": "npx tsc && protractor compiledCode/tests-acceptance/config/configFilterInstitutions.js",
     "webdriver-update": "webdriver-manager update",
     "webdriver-start": "webdriver-manager start"
   },
@@ -25,5 +25,8 @@
     "request": "^2.34",
     "request-promise": "^4.2.2",
     "@types/request-promise": "^4.1.38"
+  },
+  "dependencies": {
+    "yarn": "^1.22.10"
   }
 }
