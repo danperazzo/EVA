@@ -16,8 +16,8 @@ routes.get('/institutions/:id', InstitutionsController.findOne);
 
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
 routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
-routes.get('/institutions/findbyname', InstitutionsController.filterByName);
-routes.get('/institutions/findbyname/findbycity', InstitutionsController.filterByNameByCity);
+routes.get('/institutions_name/findbyname', InstitutionsController.filterByName);
+routes.get('/institutions_name/findbyname/findbycity', InstitutionsController.filterByNameByCity);
 
 //occurrences routes 
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);
