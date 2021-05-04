@@ -9,6 +9,7 @@ import { AdminServices } from '../admin.service';
 })
 export class AdminComponent implements OnInit {
   index: number = 0;
+  
   yearFilter: string = "";
   startDate: Date = new Date();
   endDate: Date = new Date();
@@ -16,9 +17,10 @@ export class AdminComponent implements OnInit {
   occurrencesFiltered = [];
   occurrencesQtyPerType: any;
   occurrencesQtyPerUrgency = [];
+
+  pieChart: any;
   labels = [];
   values = [];
-  pieData: any;
 
   constructor(private adminServices: AdminServices) {
     let today = new Date();
@@ -26,6 +28,7 @@ export class AdminComponent implements OnInit {
 
     this.startDate.setDate(1);
     this.startDate.setHours(0);
+
     this.endDate.setMonth(month + 1);
     this.endDate.setDate(0);
     this.endDate.setHours(23);
@@ -42,61 +45,20 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  countOccurrencesByUrgencyInDateRange() {
-    let dateStart = (this.startDate as Date).toISOString().split('T')[0];
-    let dateEnd = (this.endDate as Date).toISOString().split('T')[0];
-
+  countOccurrencesByUrgencyInDateRange(dateStart: string, dateEnd: string) {
     this.adminServices
       .countOccurrencesByUrgencyInDateRange(dateStart, dateEnd)
       .then((response) => {
         this.occurrencesQtyPerUrgency = response;
-
-        this.labels = [];
-        this.values = [];
-        for (let i = 0; i < this.occurrencesQtyPerUrgency.length; i++) {
-          this.labels[i] = this.occurrencesQtyPerUrgency[i]['_id'];
-          this.values[i] = this.occurrencesQtyPerUrgency[i]['countOccurrences'];
-        }
-
-        this.pieData = {
-          labels: this.labels,
-          datasets: [
-            {
-              data: this.values,
-              backgroundColor: [
-                '#d892a4',
-                '#d892c6',
-                '#9e80bc',
-                '#837fbc',
-                '#8a98c1',
-              ],
-              hoverBackgroundColor: [
-                '#e4b4c0',
-                '#e4b4d8',
-                '#8a98c1',
-                '#9e9bca',
-                '#abb5d3',
-              ],
-            },
-          ],
-        };
-      });
+        this.updateChart();
+      }); 
   }
 
-  filterOccurrenceByDateRange() {
-    let dateStart = (this.startDate as Date).toISOString().split('T')[0];
-    let dateEnd = (this.endDate as Date).toISOString().split('T')[0];
-
+  filterOccurrenceByDateRange(dateStart: string, dateEnd: string) {
     this.adminServices
       .filterOccurrenceByDateRange(dateStart, dateEnd)
       .then((response) => {
         this.occurrencesFiltered = response;
-        console.log(
-          'occurrences ->>>',
-          this.occurrencesFiltered,
-          dateStart,
-          dateEnd
-        );
       });
   }
 
@@ -105,17 +67,48 @@ export class AdminComponent implements OnInit {
       .countOccurrencesByTypeInYear(this.yearFilter)
       .then((response) => {
         this.occurrencesQtyPerType = response;
-        console.log(
-          'occurrences ->>>',
-          this.occurrencesQtyPerType,
-          this.yearFilter)
       });
     
   }
 
+  updateChart(){
+    this.labels = [];
+    this.values = [];
+    for (let i = 0; i < this.occurrencesQtyPerUrgency.length; i++) {
+      this.labels[i] = this.occurrencesQtyPerUrgency[i]['_id'];
+      this.values[i] = this.occurrencesQtyPerUrgency[i]['countOccurrences'];
+    }
+
+    this.pieChart = {
+      labels: this.labels,
+      datasets: [
+        {
+          data: this.values,
+          backgroundColor: [
+            '#d892a4',
+            '#d892c6',
+            '#9e80bc',
+            '#837fbc',
+            '#8a98c1',
+          ],
+          hoverBackgroundColor: [
+            '#e4b4c0',
+            '#e4b4d8',
+            '#8a98c1',
+            '#9e9bca',
+            '#abb5d3',
+          ],
+        },
+      ],
+    };
+  }
+
   updateMonthViews() {
-    this.countOccurrencesByUrgencyInDateRange();
-    this.filterOccurrenceByDateRange();
+    let dateStart = (this.startDate as Date).toISOString().split('T')[0];
+    let dateEnd = (this.endDate as Date).toISOString().split('T')[0];
+
+    this.countOccurrencesByUrgencyInDateRange(dateStart, dateEnd);
+    this.filterOccurrenceByDateRange(dateStart, dateEnd);
   }
 
   updateYearViews(){

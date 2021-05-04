@@ -147,14 +147,14 @@ defineSupportCode(function ({ Given, When, Then }) {
       }
       expect(occurrences.length).to.equal(expectedNumOccurrences);
 
-      await request(delete_options).then((response) =>
-        console.log(response.body)
-      );
+      await request(delete_options).then((response) => {
+        expect(response["ok"]).to.equal(1);
+      });
 
       post_options["body"] = occurrences;
-      await request(post_options).then((response) =>
-        console.log(response.body)
-      );
+      await request(post_options).then(response => {
+        expect(Array(response).length).to.equal(1);
+      });
     }
   );
 
