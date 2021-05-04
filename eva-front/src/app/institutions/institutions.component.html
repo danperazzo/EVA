@@ -57,14 +57,14 @@
 </div> -->
 <html>
 <div class="body">
-<div class="p-d-flex p-flex-column " style="height:150px">
+<div class="p-d-flex p-flex-column " style="height: 180px;">
   
     <div class="card" >
-      <div class="p-formgroup-inline">
+      <div class="p-fluid" style="padding-top: 20px;">
         <div class="p-field " style="margin-bottom: 15px;">
           <input id="institutionname" type="username" placeholder="Digite uma instituição" aria-describedby="username1-help" pInputText [(ngModel)]="institutionName" />
         </div>
-        <div class="p-field "  style="margin-bottom: 15px;">
+        <div class="p-field "  style="margin-bottom: 5px;">
           <p-dropdown
             (onChange)="handleChange($event)" 
             inputId="city"
@@ -74,9 +74,9 @@
             optionLabel="name"
           ></p-dropdown>
         </div>
-        <h5>
+        <h5 [ngStyle]="{color:'var(--purple-700)'}">
         <p-inputSwitch [(ngModel)]="checkedFilter" (onChange)="handleChange($event)" ></p-inputSwitch>
-        On/Off
+        Filtrar
         </h5>
 
       </div>

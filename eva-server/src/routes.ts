@@ -18,6 +18,7 @@ routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData)
 routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
 routes.get('/institutions_name/findbyname', InstitutionsController.filterByName);
 routes.get('/institutions_name/findbyname/findbycity', InstitutionsController.filterByNameByCity);
+routes.delete('/institutions_name', InstitutionsController.deleteByCity);
 
 //occurrences routes 
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);
