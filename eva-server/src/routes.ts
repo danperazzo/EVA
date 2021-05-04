@@ -9,11 +9,13 @@ const routes = Router();
 //institutions routes 
 routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
-routes.get('/institutions/:id', InstitutionsController.findOne);
+//routes.get('/institutions/:id', InstitutionsController.findOne);
 routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
 
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
 routes.post('/institutions_filter',InstitutionsController.filterInstitutionsOc );
+routes.get('/institutions/findbyname', InstitutionsController.filterByName);
+routes.get('/institutions/findbyname/findbycity', InstitutionsController.filterByNameByCity);
 
 //occurrences routes 
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);

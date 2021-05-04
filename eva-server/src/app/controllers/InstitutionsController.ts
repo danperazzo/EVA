@@ -233,6 +233,8 @@ class InstitutionsController {
     try {
       const { id } = req.params;
       console.log(id);
+      console.log('to aqui 2');
+
 
       const data = await Institution.findById(id).exec();
 
@@ -246,6 +248,7 @@ class InstitutionsController {
     try {
       const { id } = req.params;
       console.log(id);
+      console.log('to aqui');
 
       const data = await Institution.find({
         type: "Psi",
@@ -256,6 +259,60 @@ class InstitutionsController {
       return res.status(400).send(err);
     }
   }
+
+  async filterByName(req: Request, res: Response) {
+    try {
+      //const { id, city } = req.params;
+     // console.log("id", id);
+     // console.log("city", city);
+     console.log("entrei aqui")
+      const id = req.query.id?.toString();
+      console.log(id);
+      console.log(req.query)
+  
+
+      if(id != undefined){
+        const institutions = await Institution.find(
+        {name: new RegExp(id, 'i')});  
+          
+          console.log(institutions);
+          return res.json({ institutions: institutions });
+        }
+
+
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituição não pode ser listada");
+      return res.send(err);
+    }
+  }
+ 
+  async filterByNameByCity(req: Request, res: Response) {
+    try {
+      
+      const id = req.query.id?.toString();
+      const city = req.query.city?.toString();
+      console.log(city);
+      console.log(id);  
+
+      if(id != undefined){
+        const institutions = await Institution.find()
+        .and([{name: new RegExp(id, 'i')},{ "address.city": city}]);  
+          
+          
+          return res.json({ institutions: institutions });
+        }
+
+
+    } catch (err) {
+      Sentry.captureException(err);
+      console.log("Erro: Instituição não pode ser listada");
+      return res.send(err);
+    }
+  }
+
+
+
 }
 
 export default new InstitutionsController();

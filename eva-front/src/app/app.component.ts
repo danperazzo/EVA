@@ -67,8 +67,9 @@ export class AppComponent {
         routerLink: '/',
       },
       {
-        label: 'Filters',
+        label: 'Institutions',
         icon: 'pi pi-fw pi-filter',
+        routerLink: '/institutions'
       }
     ];
   }

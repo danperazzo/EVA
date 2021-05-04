@@ -12,7 +12,7 @@ export class AdminServices {
 
   countOccurrencesByUrgencyInDateRange(from: string, to: string) {
     let param = new HttpParams().set("startDate", from).set("endDate", to);
-    return this.http.get(this.serverURL + "/occurrences/countByUrgencyInDateRange", {headers: this.headers, params: param})
+    return this.http.get(this.serverURL + "/occurrences/countByUrgencyInDateRange", { params: param})
              .toPromise()
              .then(res => res)
              .catch(this.tratarErro);

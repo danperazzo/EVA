@@ -2,7 +2,6 @@ import mongoose, { model } from 'mongoose';
 import { number } from 'yup';
 
 const AddressSchema = new mongoose.Schema({
-    adress_id: String,
     street: {
         type: String,
         required: true,

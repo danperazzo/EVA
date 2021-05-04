@@ -8,7 +8,7 @@ import { InstitutionsComponent } from './institutions/institutions.component';
 
 const routes: Routes = [
   // { path: 'maps/:name/:city/:street/:number', component: MapsComponent },
-  { path: '', component: InstitutionsComponent },
+  { path: 'institutions', component: InstitutionsComponent },
   { path: 'maps/:address', component: MapsComponent },
   { path: 'admin/analytics', component: AdminComponent },
 ];
