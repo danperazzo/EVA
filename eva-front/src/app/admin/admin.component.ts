@@ -14,6 +14,7 @@ export class AdminComponent implements OnInit {
   endDate: Date = new Date();
 
   occurrencesFiltered = [];
+  occurrencesQtyPerType: any;
   occurrencesQtyPerUrgency = [];
   labels = [];
   values = [];
@@ -32,6 +33,13 @@ export class AdminComponent implements OnInit {
 
   handleChange(e:any) {
     this.index = e.index;
+    let defaultQtyPerType = [{countMedOccurrences:'-', countPsyOccurrences:'-', countSecOccurrences:'-'}];
+    if (this.index == 1){
+      this.occurrencesQtyPerType = defaultQtyPerType;
+    }
+    else {
+      this.updateMonthViews();
+    }
   }
 
   countOccurrencesByUrgencyInDateRange() {
@@ -96,10 +104,10 @@ export class AdminComponent implements OnInit {
     this.adminServices
       .countOccurrencesByTypeInYear(this.yearFilter)
       .then((response) => {
-        this.occurrencesFiltered = response;
+        this.occurrencesQtyPerType = response;
         console.log(
           'occurrences ->>>',
-          this.occurrencesFiltered,
+          this.occurrencesQtyPerType,
           this.yearFilter)
       });
     

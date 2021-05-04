@@ -66,14 +66,16 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-institution>
-      <tr   name="institutionlist">
-        <td name = "institutionsName">{{ institution.name }}</td>
-        <td name = "institutionsEmail">{{ institution.email }}</td>
+      <tr name="institutionlist">
+        <td name="institutionsName">{{ institution.name }}</td>
+        <td name="institutionsEmail">{{ institution.email }}</td>
         <td>{{ institution.phoneNumber }}</td>
         <td>{{ institution.type }}</td>
-        <a [href]="institution.mapsUrl">
-          <td>{{ institution.addressString }}</td>
-        </a>
+        <td>
+          <a [href]="institution.mapsUrl" name="institutionAddressString">
+            {{ institution.addressString }}
+          </a>
+        </td>
       </tr>
     </ng-template>
   </p-table>

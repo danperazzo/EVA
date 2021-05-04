@@ -9,13 +9,15 @@ const routes = Router();
 //institutions routes 
 routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
-//routes.get('/institutions/:id', InstitutionsController.findOne);
-routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
+routes.get('/institutions/:id', InstitutionsController.findOne);
+
+// TODO: remove this route on refactor!!
+// routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
 
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
 routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
-routes.get('/institutions/findbyname', InstitutionsController.filterByName);
-routes.get('/institutions/findbyname/findbycity', InstitutionsController.filterByNameByCity);
+routes.get('/institutions_name/findbyname', InstitutionsController.filterByName);
+routes.get('/institutions_name/findbyname/findbycity', InstitutionsController.filterByNameByCity);
 
 //occurrences routes 
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);

@@ -1,16 +1,16 @@
 <div class="host">
-  <p-tabView styleClass="tabview-custom" (onChange)="handleChange($event)" [(activeIndex)]="index">
+  <p-tabView name="tabView" styleClass="tabview-custom" (onChange)="handleChange($event)" [(activeIndex)]="index">
     <p-tabPanel>
       <ng-template pTemplate="header">
         <i class="pi pi-chart-line"></i>
-        <span>Visão Mensal</span>
+        <span name="aba0">Visão Mensal</span>
       </ng-template>
       <div class="divMonthFilter">
           <label for="icon">From</label>
-          <p-calendar name="starDate" [(ngModel)]="startDate" [showIcon]="true" inputId="icon"></p-calendar>
+          <p-calendar name="from" [(ngModel)]="startDate" [showIcon]="true" inputId="icon"></p-calendar>
 
           <label for="icon">To</label>
-          <p-calendar name="endDate" [(ngModel)]="endDate" [showIcon]="true" inputId="icon"></p-calendar>
+          <p-calendar name="to" [(ngModel)]="endDate" [showIcon]="true" inputId="icon"></p-calendar>
 
           <p-button
             label="Filter"
@@ -54,11 +54,12 @@
     <p-tabPanel header="Header II">
       <ng-template pTemplate="header">
         <i class="pi pi-chart-bar"></i>
-        <span>Visão Anual</span>
+        <span name="aba1">Visão Anual</span>
       </ng-template>
       <div class="divYearFilter">
         <input name="yearSelector" [(ngModel)]="yearFilter" type="text" pInputText placeholder="Year" />
         <p-button
+          name="yearFilterButton"
           label="Filter"
           icon="pi pi-filter"
           (onClick)="updateYearViews()"
@@ -67,7 +68,7 @@
       <div style="height: 10px;"></div>
       <div class="card">
         <h3 style="text-align: center;">Quantidade de Ocorrências por Tipo</h3>
-        <p-table [value]="occurrencesFiltered">
+        <p-table [value]="occurrencesQtyPerType">
           <ng-template pTemplate="header">
             <tr>
               <th style="text-align: center;">Médicas</th>
@@ -76,10 +77,10 @@
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-occurrence>
-            <tr>
-              <td style="text-align: center;">{{ occurrence.countMedOccurrences }}</td>
-              <td style="text-align: center;">{{ occurrence.countPsyOccurrences }}</td>
-              <td style="text-align: center;">{{ occurrence.countSecOccurrences }}</td>
+            <tr name="rows">
+              <td name="needsMedicalAssistance" style="text-align: center;">{{ occurrence.countMedOccurrences }}</td>
+              <td name="needsPsychologicalAssistance" style="text-align: center;">{{ occurrence.countPsyOccurrences }}</td>
+              <td name="needsSecurityAssistance" style="text-align: center;">{{ occurrence.countSecOccurrences }}</td>
             </tr>
           </ng-template>
         </p-table>
