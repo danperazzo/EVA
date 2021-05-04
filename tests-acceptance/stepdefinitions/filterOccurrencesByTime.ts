@@ -6,6 +6,16 @@ import request = require("request-promise");
 
 var serverURL = "http://localhost:3333/occurrences";
 var responseServer;
+var delete_options: any = {
+  method: "DELETE",
+  uri: serverURL,
+  json: true,
+};
+var post_options: any = {
+  method: "POST",
+  uri: serverURL,
+  json: true,
+};
 
 
 let sameQtyAndType = (elem, name, type: string) =>
@@ -33,43 +43,29 @@ defineSupportCode(function ({ Given, When, Then }) {
   Given(
     /^O sistema possui "(\d*)" ocorrências armazenadas entre as datas "([^\"]*)" e "([^\"]*)"$/,
     async (numOccurrences: string, startDate, endDate) => {
-      var occurrences = [
-        {
+      let numOccurr = parseInt(numOccurrences) 
+      let occurrences:any = [];
+
+      for (var i = 0; i < numOccurr; i++) {
+        occurrences[i] = {
           city: "Recife",
           date: startDate + "T18:43:15.346Z",
           needsMedicalAssistance: "true",
           needsSecurityAssistance: "true",
-          urgencyLevel: 4,
-        },
-        {
-          city: "Jaboatão do Guararapes",
-          date: startDate + "T10:45:28.934Z",
           needsPsychologicalAssistance: "true",
-          urgencyLevel: 5,
-        },
-      ];     
+          urgencyLevel: 4,
+        }
+      }   
+      expect(occurrences.length).to.equal(numOccurr);
 
-      var delete_options: any = {
-        method: "DELETE",
-        uri: serverURL,
-        json: true,
-      };
-      var post_options: any = {
-        method: "POST",
-        uri: serverURL,
-        body: occurrences,
-        json: true,
-      };
+      await request(delete_options).then((response) => {
+        expect(response["ok"]).to.equal(1);
+      });
 
-      await request(delete_options).then((response) =>
-        console.log(response.body)
-      );
-
-      await request(post_options).then((response) =>
-        console.log(response.body)
-      );
-
-      expect(occurrences.length).to.equal(parseInt(numOccurrences)); 
+      post_options["body"] = occurrences;
+      await request(post_options).then(response => {
+        expect(Array(response).length).to.equal(1);
+      });
     }
   );
 
@@ -84,18 +80,12 @@ defineSupportCode(function ({ Given, When, Then }) {
           urgencyLevel: 3,
         },
       ];
-      var post_options: any = {
-        method: "POST",
-        uri: serverURL,
-        body: occurrence,
-        json: true,
-      };
-
-      await request(post_options).then((response) =>
-        console.log(response.body)
-      );
-
       expect(occurrence.length).to.equal(parseInt(numOccurrences)); 
+
+      post_options["body"] = occurrence;
+      await request(post_options).then(response => {
+        expect(Array(response).length).to.equal(1);
+      });
     }
   );
 
@@ -155,25 +145,13 @@ defineSupportCode(function ({ Given, When, Then }) {
         }
         occurrences[index][type] = "true"
       }
-
       expect(occurrences.length).to.equal(expectedNumOccurrences);
-
-      var delete_options: any = {
-        method: "DELETE",
-        uri: serverURL,
-        json: true,
-      };
-      var post_options: any = {
-        method: "POST",
-        uri: serverURL,
-        body: occurrences,
-        json: true,
-      };
 
       await request(delete_options).then((response) =>
         console.log(response.body)
       );
 
+      post_options["body"] = occurrences;
       await request(post_options).then((response) =>
         console.log(response.body)
       );

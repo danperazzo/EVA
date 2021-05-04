@@ -115,9 +115,7 @@ export class OccurrencesController {
 
   async dropTable(req: Request, res: Response) {
     try {
-      const tableDeleted = await Occurrence.remove({}, function (err) {
-        console.log("collection removed");
-      });
+      const tableDeleted = await Occurrence.remove({}, function (err) {});
 
       return res.send(tableDeleted);
     } catch (err) {
