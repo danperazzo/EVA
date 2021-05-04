@@ -171,6 +171,7 @@ export class OccurrencesController {
       const startDate: Date = new Date(req.query.startDate as string);
       const endDate: Date = new Date(req.query.endDate as string);
 
+
       const occurrenceFiltered = await Occurrence.find({
         date: {
           $gte: startDate,
