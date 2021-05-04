@@ -5,7 +5,6 @@ import { Request, Response } from "express";
 import * as Sentry from "@sentry/node";
 import { Institution } from "../schemas/InstitutionsModel";
 import { Occurrence } from "../schemas/OccurrencesModel";
-import { Address } from "../schemas/AddressModel";
 
 class InstitutionsController {
   async index(req: Request, res: Response) {

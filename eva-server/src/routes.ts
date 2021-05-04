@@ -2,7 +2,6 @@ import { Router } from 'express';
 
 import InstitutionsController from './app/controllers/InstitutionsController';
 import OccurrencesController from  './app/controllers/OccurrencesController';
-import AddressesController from './app/controllers/AddressesController';
 
 const routes = Router();
 
@@ -15,12 +14,12 @@ routes.get('/institutions/:id', InstitutionsController.findOne);
 // routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
 
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
-routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
 routes.get('/institutions_name/findbyname', InstitutionsController.filterByName);
 routes.get('/institutions_name/findbyname/findbycity', InstitutionsController.filterByNameByCity);
 routes.delete('/institutions_name', InstitutionsController.deleteByCity);
 
 //occurrences routes 
+routes.post('/occurrence/postOccurrence',OccurrencesController.postOccurrence );
 routes.post('/occurrences/storeMocks', OccurrencesController.storeMocks);
 routes.post('/occurrences', OccurrencesController.store);
 routes.delete('/occurrences', OccurrencesController.dropTable);
@@ -31,7 +30,6 @@ routes.get('/occurrences/countByTypeInYear', OccurrencesController.countByTypeIn
 
 //address routes
 //create 5 addresses
-routes.post('/addresses', AddressesController.store);
-routes.get('/addresses', AddressesController.index);
+
 
 export default routes;

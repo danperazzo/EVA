@@ -1,5 +1,4 @@
 import mongoose, { model } from 'mongoose';
-import {Address} from './AddressModel';
 
 const OccurrenceSchema = new mongoose.Schema({
     date: {
