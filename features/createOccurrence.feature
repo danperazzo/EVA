@@ -8,7 +8,7 @@ Feature: Mostrar instituições filtradas para a vítima e cadastrar ocorrência
 
     Scenario: Uma vítima cadastra sua ocorrência em Olinda e precisa de atendimento para uma necessidade médica e psicológica. O sistema retorna uma psicologa
 
-        Given Eu estou no menu inicial
+        Given Eu estou no menu inicial e o sistema possui uma "psicóloga" em "Olinda"
         When Eu adiciono que preciso de "Precisa de ajuda psicológica" e "Precisa de ajuda policial"
         And Eu insiro que estou em "Olinda"
         And Clico em "Submeter"

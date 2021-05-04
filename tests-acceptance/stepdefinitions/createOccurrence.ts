@@ -91,7 +91,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     }
   );
 
-  Given(/^Eu estou no menu inicial$/, async () => {
+  Given(/^Eu estou no menu inicial e o sistema possui uma "([^\"]*)" em "([^\"]*)"$/, async (type,city) => {
     await browser.get("http://localhost:4200/");
     await expect(browser.getTitle()).to.eventually.equal("EVAGui");
   });
