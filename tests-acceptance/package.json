@@ -4,6 +4,7 @@
   "scripts": {
     "tsc": "./node_modules/typescript/bin/tsc",
     "testCreateOccurrence": "npm run tsc && protractor compiledCode/tests-acceptance/config/configCreateOccurrence.js",
+    "test-filter-occurrences-by-time": "npm run tsc && protractor compiledCode/tests-acceptance/config/configFilterOccurrencesByTime.js",
     "test": "npm run tsc && protractor compiledCode/tests-acceptance/config/config.js",
     "ztest": "npx tsc && protractor compiledCode/tests-acceptance/config/configShowMaps.js",
     "webdriver-update": "webdriver-manager update",
