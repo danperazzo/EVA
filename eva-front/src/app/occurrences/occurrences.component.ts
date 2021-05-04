@@ -23,7 +23,7 @@ export class OccurrencesComponent implements OnInit {
   dateOccurrence: Date;
   urgLevel: number;
   location: string;
-  filteredInst: Institution[] = [];
+  filteredInst= [];
 
   constructor(private occurrenceService: OccurrenceService) {
     this.needsPsyHelp = false;
@@ -35,13 +35,7 @@ export class OccurrencesComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  addOccurrence(occurence: Occurrence) {}
-
-  countOccurrencesByYear(year: number) {}
-  filterOccurrenceByDateRange(from: Date, to: Date) {}
-  filterOcurrencesByUrgencyLevel(urgencyLevel: number) {}
-
+  
   postOccurrence() {
     var occurrence = new Occurrence(
       this.dateOccurrence,
@@ -51,7 +45,6 @@ export class OccurrencesComponent implements OnInit {
       this.urgLevel,
       this.location
     );
-    console.log(occurrence);
 
     this.occurrenceService
       .postOccurrence(occurrence)
@@ -62,7 +55,6 @@ export class OccurrencesComponent implements OnInit {
           return { ...institution, addressString, mapsUrl };
         });
 
-        console.log(this.filteredInst);
       })
       .catch((erro) => alert(erro));
   }
