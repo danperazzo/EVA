@@ -82,10 +82,11 @@ defineSupportCode(function ({ Given, When, Then }) {
   Then(
     /^O sistema possui alguma ocorrência situada em "([^\"]*)"$/,
     async (city) => {
+      var string_req = '"city":"'+city+'"'
       await request
         .get(base_url + "occurrences")
         .then((body) =>
-          expect(body.includes('"city":"Recife"')).to.equal(true)
+          expect(body.includes(string_req)).to.equal(true)
         );
     }
   );
