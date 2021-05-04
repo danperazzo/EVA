@@ -87,7 +87,7 @@ defineSupportCode(function ({ Given, When, Then }) {
     await browser.sleep(1000);
   });
 
-  Then(/^Eu vou para a pagina "([^\"]*)"&/, async (pageName: string) => {
+  Then(/^Eu vou para a pagina "([^\"]*)"$/, async (pageName: string) => {
     var EC = ExpectedConditions;
     browser.wait(EC.urlContains(pageName), 5000);
   });

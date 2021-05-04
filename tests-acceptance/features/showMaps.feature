@@ -17,4 +17,5 @@ Scenario: a vítima vê o mapa após clicar no endereço de instituição
 	Given Eu insiro que estou em "Olinda"
   Given Clico em "Submeter"
 	Given Clico no endereço "0"
+	Then Eu vou para a pagina "mapa"
 	Then Eu vejo o mapa
