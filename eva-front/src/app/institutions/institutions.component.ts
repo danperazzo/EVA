@@ -111,11 +111,17 @@ export class InstitutionsComponent implements OnInit {
     const city = this.selectedCity;  
   
     if(isChecked == true){
-      if(this.selectedCity.name == 'Nenhuma selecionada'){
+      console.log("TOO AQUII",this.selectedCity);
+      if(this.selectedCity == null){
         this.filterInstitutionByName();
       }
       else{
-        this.filterInstitutionByNameByCity();
+        if(this.selectedCity.name == 'Nenhuma selecionada' ){
+          console.log("TOO AQUII",this.selectedCity.name);
+          this.filterInstitutionByName();
+        }else{
+          this.filterInstitutionByNameByCity();
+        }
       }
     }
     else{

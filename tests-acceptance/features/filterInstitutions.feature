@@ -13,7 +13,13 @@ Feature: Mostrar as instituições de ajuda filtradas
         Then O sistema retorna a instituição com os parâmetros "Psicologo" e "Recife"
 
 
+############################## GUI Scenario ##############################
 
+    Scenario: visualização bem sucedida da instituição filtrada por nome da instituição e por cidade
+        Given Eu estou na página "institutions"
+        When Eu insiro nome da instituição "Psicologo"
+        And Clico em "filtrar"
+        Then Eu visualizo instituições "Psicologo" 
 
    
 

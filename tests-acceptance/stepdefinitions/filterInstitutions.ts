@@ -5,8 +5,37 @@ let expect = chai.expect;
 import request = require("request-promise");
 import { Institution } from "../../common/models";
 
+
 var base_url = "http://localhost:3333/institutions";
 var responseBody ;
+
+async function clickButtonName(name) {
+  var but_pol = element.all(by.name(name)).get(0);
+ // but_pol.click();
+  await but_pol.isSelected();
+}
+
+
+let sameName = (elem, name) =>
+  elem
+    .element(by.name("institutionName"))
+    .getText()
+    .then((text) => {
+      return text === name;
+    });
+
+async function assertTamanhoEqual(set, n) {
+  await set.then((elems) =>
+    expect(Promise.resolve(elems.length)).to.eventually.equal(n)
+  );
+}
+
+async function assertElementsWithSameName(n, name) {
+  var institutionsAlunos: ElementArrayFinder = element.all(by.name("institutionList"));
+  var samenames = institutionsAlunos.filter((elem) => sameName(elem, name));
+  //console.log(samenames);
+  await assertTamanhoEqual(samenames, n);
+}
 
 defineSupportCode(function ({ Given, When, Then }) {
 
@@ -69,6 +98,37 @@ defineSupportCode(function ({ Given, When, Then }) {
       
       }
     );
-  
+
+    //#########GUI Scenarios###############
     
+    Given(/^Eu estou na página "([^\"]*)"$/, async (page:string) => {
+      await browser.get("http://localhost:4200/" + page);
+      await browser.sleep(500);
+      await expect(browser.getCurrentUrl()).to.eventually.equal("http://localhost:4200/" + page);
+      await expect(browser.getTitle()).to.eventually.equal("EVAGui");
     });
+  
+    When(
+      /^Eu insiro nome da instituição "([^\"]*)"$/,
+      async (name: string) => {
+        var institutionName = element.all(by.id("institutionname")).get(0);
+       // console.log("institution Name   : ",institutionName);
+        await institutionName.sendKeys(name);
+      }
+    );
+
+   /*  When(/^Eu seleciono a cidade "([^\"]*)"$/, async (city: string) => {
+      var cityName = element(by.id("cityname"));
+        //console.log("city Name   : ",cityName);
+        await cityName.selectByVisibleText(city);
+    });
+ */
+    When(/^Clico em "([^\"]*)"$/, async (buttonName: string) => {
+      await clickButtonName(buttonName);
+    });
+
+    Then(/^Eu visualizo instituições "([^\"]*)"$/, async (institutionName: string) => {
+      await assertElementsWithSameName(0, institutionName);
+    });
+    
+  });

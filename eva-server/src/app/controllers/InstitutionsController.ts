@@ -244,7 +244,7 @@ class InstitutionsController {
         .and([{name: new RegExp(id, 'i')},{ "address.city": city}]);  
           
           return res.json({ institutions: institutions });
-        }
+      }
 
 
     } catch (err) {
