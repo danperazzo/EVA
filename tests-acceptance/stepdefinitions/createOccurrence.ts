@@ -28,8 +28,8 @@ async function assertTamanhoEqual(set, n) {
 }
 
 async function assertElementsWithSameName(n, name) {
-  var allalunos: ElementArrayFinder = element.all(by.name("institutionlist"));
-  var samenames = allalunos.filter((elem) => sameName(elem, name));
+  var institutionsAlunos: ElementArrayFinder = element.all(by.name("institutionlist"));
+  var samenames = institutionsAlunos.filter((elem) => sameName(elem, name));
   await assertTamanhoEqual(samenames, n);
 }
 
