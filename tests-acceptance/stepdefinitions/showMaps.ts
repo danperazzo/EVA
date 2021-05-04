@@ -1,12 +1,6 @@
+import { assert } from "console";
 import { defineSupportCode } from "cucumber";
-import {
-  browser,
-  $,
-  element,
-  ElementArrayFinder,
-  by,
-  ExpectedConditions,
-} from "protractor";
+import { browser, $, element, by, ExpectedConditions } from "protractor";
 let chai = require("chai").use(require("chai-as-promised"));
 let expect = chai.expect;
 import request = require("request-promise");
@@ -20,18 +14,12 @@ async function clickButtonName(name) {
   await but_pol.click();
 }
 
-let sameName = (elem, name) =>
-  elem
-    .element(by.name("institutionsName"))
-    .getText()
-    .then((text) => {
-      return text === name;
-    });
+async function assertGreaterThan(set, n) {
+  await expect(set).to.be.at.least(1);
+}
 
-async function assertTamanhoEqual(set, n) {
-  await set.then((elems) =>
-    expect(Promise.resolve(elems.length)).to.eventually.equal(n)
-  );
+async function assertEqual(a, b) {
+  await expect(a).to.equal(b);
 }
 
 defineSupportCode(function ({ Given, When, Then }) {
@@ -47,7 +35,7 @@ defineSupportCode(function ({ Given, When, Then }) {
       };
 
       await request(options).then((result: any) => {
-        // assert result.institutions >= 1
+        assertGreaterThan(result.institutions.length, 1);
       });
     }
   );
@@ -60,14 +48,16 @@ defineSupportCode(function ({ Given, When, Then }) {
     };
 
     await request(options).then((result: any) => {
-      // assert result.institutions >= 1
+      assertGreaterThan(result.institutions.length, 1);
       _result = result;
     });
   });
 
   Then(
-    /^O sistema me retorna o objeto com street "Galeria Cordeiro - Praça Doze de Março"$/,
-    async () => {}
+    /^O sistema me retorna o objeto com street "([^\"]*)"$/,
+    async (name: string) => {
+      assertEqual(name, _result.institutions[0].address.street);
+    }
   );
 
   Given(/^Eu estou no menu inicial$/, async () => {
