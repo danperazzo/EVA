@@ -5,7 +5,7 @@
         <i class="pi pi-chart-line"></i>
         <span name="aba0">Visão Mensal</span>
       </ng-template>
-      <div class="divMonthFilter">
+      <div class="card">
           <label for="icon">From</label>
           <p-calendar name="from" [(ngModel)]="startDate" [showIcon]="true" inputId="icon"></p-calendar>
 
@@ -56,7 +56,7 @@
         <i class="pi pi-chart-bar"></i>
         <span name="aba1">Visão Anual</span>
       </ng-template>
-      <div class="divYearFilter">
+      <div class="card">
         <input name="yearSelector" [(ngModel)]="yearFilter" type="text" pInputText placeholder="Year" />
         <p-button
           name="yearFilterButton"
