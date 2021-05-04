@@ -70,13 +70,8 @@ export class InstitutionsComponent implements OnInit {
           console.log(this.institutions[i]);
           this.receivedInstitutions[i] = this.institutions[i];
           console.log(this.receivedInstitutions[i]);
-
         }
         
-        console.log(
-          'institutions ->>>',
-          this.institutions
-        );
       });
   }
 
@@ -89,35 +84,23 @@ export class InstitutionsComponent implements OnInit {
 
         for(let i=0; i<response.institutions.length; i++){
           this.institutions[i] = response.institutions[i];
-          
           this.receivedInstitutions[i] = this.institutions[i];
         }
-        
-        console.log(
-          'institutions ->>>',
-          this.institutions
-        );
+       
       });
-
   } 
-
- 
 
   showLocationOnMap(institution: Institution) {}
 
   handleChange(e:any) {
-    let isChecked = e.checked;
-    const name = this.institutionName;
-    const city = this.selectedCity;  
+    let isChecked = e.checked; 
   
     if(isChecked == true){
-      console.log("TOO AQUII",this.selectedCity);
       if(this.selectedCity == null){
         this.filterInstitutionByName();
       }
       else{
         if(this.selectedCity.name == 'Nenhuma selecionada' ){
-          console.log("TOO AQUII",this.selectedCity.name);
           this.filterInstitutionByName();
         }else{
           this.filterInstitutionByNameByCity();
@@ -133,7 +116,6 @@ export class InstitutionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleChange;
-    
   }
 
   

@@ -15,11 +15,11 @@ Feature: Mostrar as instituições de ajuda filtradas
 
 ############################## GUI Scenario ##############################
 
-    Scenario: visualização bem sucedida da instituição filtrada por nome da instituição e por cidade
+    Scenario: visualização bem sucedida da instituição filtrada por nome da instituição
         Given Eu estou na página "institutions"
-        When Eu insiro nome da instituição "Psicologo"
+        When Eu insiro nome da instituição "Medic 1"
         And Clico em "filtrar"
-        Then Eu visualizo instituições "Psicologo" 
+        Then Eu visualizo instituições "Medic 1" 
 
    
 

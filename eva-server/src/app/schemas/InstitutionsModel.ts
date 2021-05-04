@@ -1,5 +1,4 @@
 import mongoose, { model } from "mongoose";
-import { number } from "yup";
 
 const InstitutionSchema = new mongoose.Schema({
   name: {
@@ -18,7 +17,6 @@ const InstitutionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // adress_id: String,
   address: {
     street: String,
     number: String,
@@ -32,6 +30,5 @@ const InstitutionSchema = new mongoose.Schema({
 });
 
 const Institution = mongoose.model("Institution", InstitutionSchema);
-const ObjectId = mongoose.Types.ObjectId;
 
 export { Institution, InstitutionSchema };

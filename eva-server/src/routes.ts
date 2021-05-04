@@ -9,11 +9,9 @@ const routes = Router();
 routes.get('/institutions', InstitutionsController.index);
 routes.post('/institutions', InstitutionsController.store);
 routes.get('/institutions/:id', InstitutionsController.findOne);
-
-// TODO: remove this route on refactor!!
-// routes.get('/institutions/findbytype/:type', InstitutionsController.findByType);
-
 routes.post('/institutions/storeMocked', InstitutionsController.storeMockedData);
+
+//institutions filters routes
 routes.get('/institutions_name/findbyname', InstitutionsController.filterByName);
 routes.get('/institutions_name/findbyname/findbycity', InstitutionsController.filterByNameByCity);
 routes.delete('/institutions_name', InstitutionsController.deleteByCity);
